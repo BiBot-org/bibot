@@ -1,0 +1,7 @@
+.defaultFooter {
+    position: fixed;
+    padding: 2rem 2rem;
+    bottom: 5rem;
+    width: 100%;
+    z-index: 100;
+}
