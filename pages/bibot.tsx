@@ -1,7 +1,7 @@
 import Layout from "@/components/layouts/layout";
 import { NextPageWithLayout } from "./_app";
 
-const Home: NextPageWithLayout = () => {
+const Bibot: NextPageWithLayout = () => {
   return (
     <main>
       {/* <h1>Home</h1> */}
@@ -9,7 +9,7 @@ const Home: NextPageWithLayout = () => {
   )
 }
 
-Home.getLayout = function getLayout(page: React.ReactNode) {
+Bibot.getLayout = function getLayout(page: React.ReactNode) {
   return (
     <>
     <Layout>
@@ -19,4 +19,4 @@ Home.getLayout = function getLayout(page: React.ReactNode) {
   )
 }
 
-export default Home
+export default Bibot
