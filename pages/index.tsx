@@ -4,9 +4,11 @@ import AnnounceMent from "@/components/widgets/main/AnnounceMent";
 import CategoryNav from "@/components/widgets/main/CategoryNav";
 import ApprovalHistory from "@/components/modal/main/ApprovalHistory";
 
+import style from '@/styles/main/Home.module.css'
+
 const Home: NextPageWithLayout = () => {
   return (
-    <main>
+    <main className={style.mainContainer}>
       <CategoryNav/>
       <AnnounceMent />
       <ApprovalHistory />

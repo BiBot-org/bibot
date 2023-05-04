@@ -18,9 +18,6 @@
 html,
 body {
   overflow-x: hidden;
-  width: 100%;
-  height: 100vh;
-  background: var(--bibot-bg-linear);
 }
 
 a {
