@@ -6,7 +6,7 @@
   --bibot-gray: #2B2B2B20;
   --bibot-red: #FDD1D1;
 
-  --bibot-bg-linear: linear-gradient(180deg, #0DCABF 0%, #FDD1D1 100%);
+  --bibot-bg-linear: linear-gradient(135deg, #0DCABF 0%, #FDD1D1 80%);
 }
 
 * {
