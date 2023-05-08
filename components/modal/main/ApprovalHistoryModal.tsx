@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import style from '@/components/modal/main/ApprovalHistory.module.css'
-import Image from 'next/image'
+import style from '@/components/modal/main/ApprovalHistoryModal.module.css'
+import Approval from '@/components/widgets/Approval'
 
-export default function ApprovalHistory() {
+export default function ApprovalHistoryModal() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
   return (
@@ -15,18 +15,7 @@ export default function ApprovalHistory() {
         </div>
       </div>
       <div className={style.modalContentsWrap}>
-        <div className={style.modalContent}>
-          <div className={style.ContentImage}>
-            <Image src={'/assets/images/icons/Food.svg'} alt={'Food'} width={25} height={25} />
-          </div>
-          <div className={style.ContentInfo}>
-            <p>조선갈비탕</p>
-            <p>2023/04/28 - 13:00</p>
-          </div>
-          <div className={style.ContentPrice}>
-            <p>13000원</p>
-          </div>
-        </div>
+        <Approval />
       </div>
     </div>
   )
