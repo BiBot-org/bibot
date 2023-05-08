@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import style from 'components/layouts/find_password.module.css';
+import style from 'styles/module.css/find_password.module.css'
 
 export default function FindPassword() {
   const [showModal, setShowModal] = useState<boolean>(false);

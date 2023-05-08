@@ -34,3 +34,31 @@
   font-size: 1.2rem;
   font-weight: bold;
 }
+
+.card_used_list{
+  
+  display: flex;
+  justify-content: space-between;
+  margin-top: -40px;
+  padding: 35px;
+  text-align:left;
+  /*border-top: solid 1px #c7c7c7;*/
+}
+
+.cafe_list p:first-child{
+
+  color: #1E1E1E;
+  font-size: 1.2rem;
+}
+
+.cafe_list p:last-child{
+
+  color: #9B9B9B;
+  font-size: 1rem;
+}
+
+.sum_price p{
+
+  margin: 10px 0px;
+  font-size: 1.2rem;
+}
