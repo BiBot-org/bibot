@@ -1,0 +1,4 @@
+.itemWrap {
+    display: flex;
+    justify-content: space-between;
+}
