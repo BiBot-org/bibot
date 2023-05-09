@@ -1,21 +1,11 @@
-.find_password_wrap{
+.login_wrap {
   padding: 50px;
+  margin-top: 80px;
 }
 
-.find_password_header{
-  margin-top: 115px;
-  font-size: 1.5rem;
+.login_header {
+  margin-bottom: 20px;
   color: #0DCABF;
-}
-
-.find_words{
-  margin-top: 20px;
-  color: #B6B7B9;
-  font-size: 0.75rem;
-}
-
-.find_words p:last-child{
-  margin-top: 10px;
 }
 
 .login_box {
@@ -48,10 +38,36 @@
   font-size: 1rem;
   font-weight: bold;
   border-radius: 10px;
-  padding: 30px 75px;
+  padding: 30px 120px;
   height: 40px;
   color: #FFFFFF;
   background-color: #0DCABF;
   border: none;
   margin-top: 30px;
+}
+
+.find_password_btn_wrap {
+  display: flex;
+  justify-content: center;
+  padding: 30px 0px 90px 0px;
+}
+
+.find_password_btn {
+  border: none;
+  background-color: #FFFFFF;
+  color: #8262F8;
+  font-size: 1rem;
+}
+
+.sign_up_wrap{
+  display: flex;
+  justify-content: center;
+}
+
+.Sign_btn{
+  border: none;
+  background-color: #FFFFFF;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #2945FF;
 }
