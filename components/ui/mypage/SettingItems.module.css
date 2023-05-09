@@ -1,0 +1,20 @@
+.settingItem {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1rem;
+    border-bottom: 1px solid var(--bibot-gray);
+}
+
+.settingItemImage {
+    background-color: var(--bibot-gray);
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.settingItemTitle {
+    margin-left: 1rem;
+}
