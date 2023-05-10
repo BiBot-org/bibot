@@ -1,0 +1,24 @@
+.accountWrap {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid var(--bibot-gray);
+}
+
+.accountImage {
+    background-color: var(--bibot-gray);
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.accountImage image {
+    object-fit: cover;
+}
+
+.accountInfo {
+    margin-left: 1rem;
+}
+
+.accountInfo :last-child{
+    color: var(--bibot-gray);
+}
