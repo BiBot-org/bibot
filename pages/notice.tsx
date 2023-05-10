@@ -1,18 +1,13 @@
 import BackNotiLayout from '@/components/layouts/BackNotiLayout'
 import Separator from '@/components/ui/Separator'
+import Image from 'next/image'
 import React from 'react'
 import style from 'styles/pages/notice.module.css'
 
 export default function notice() {
   return (
     <div className={style.notice_wrap}>
-      {/* <div className={style.notice_header}>
-      <img src='/assets//images/icons/back_gray.svg' alt='bell' className='back_gray' />
-      <h1 className={style.notice_h1}>공지사항</h1>
-        <img src='/assets//images/icons/bell.svg' alt='bell' className='bell' />
-      </div> */}
       <Separator gutter={7} />
-
       <ul className={style.notice_nav_wrap}>
         <li><a href=''>전체</a></li>
         <li><a href=''>공지사항</a></li>
@@ -28,7 +23,7 @@ export default function notice() {
         </select>
         <div className={style.notice_texting}>
           <input type='text' placeholder='검색어를 입력해주세요'></input>
-          <img src='/assets/images/icons/glasses.svg' alt='glasses' className='glasses' />
+          <Image src={'/assets/images/icons/glasses.svg'} alt='glasses' width={30} height={20} />
         </div>
       </div>
       <div className={style.notice_board_wrap}>
