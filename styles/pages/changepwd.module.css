@@ -1,16 +1,3 @@
-.changePwdWrap {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem 1rem;
-    margin: 0 auto;
-}
-
-.changePwdWrap input {
-    width: 80%;
-    height: 50px;
-    margin: 1.5rem auto;
-}
-
-.changePwdWrap button {
-    margin: 0 auto;
+.mainContainer {
+    padding: 0 3rem;
 }
