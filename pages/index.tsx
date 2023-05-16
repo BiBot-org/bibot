@@ -1,29 +1,24 @@
-import Layout from "@/components/layouts/layout";
-import { NextPageWithLayout } from "./_app";
-import AnnounceMent from "@/components/widgets/main/AnnounceMent";
-import CategoryNav from "@/components/widgets/main/CategoryNav";
-import ApprovalHistoryModal from "@/components/modal/main/ApprovalHistoryModal";
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react'
+import style from '@/styles/pages/index.module.css'
+import Image from 'next/image';
 
-import style from '@/styles/pages/main/Home.module.css'
+export default function index() {
+  const router = useRouter();
 
-const Home: NextPageWithLayout = () => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+    router.push('/login');
+  }, 3000);
+
+  return () => clearTimeout(timer);
+  }, []);
+
   return (
     <main className={style.mainContainer}>
-      <CategoryNav/>
-      <AnnounceMent />
-      <ApprovalHistoryModal />
+      <div className={style.logo}>
+        <Image src="assets/images/icons/companyLogo.svg" alt="logo" width={200} height={200} priority />
+      </div>
     </main>
   )
 }
-
-Home.getLayout = function getLayout(page: React.ReactNode) {
-  return (
-    <>
-    <Layout>
-        {page}
-    </Layout>
-    </>
-  )
-}
-
-export default Home
