@@ -1,4 +1,4 @@
-import { NextUIProvider } from '@nextui-org/react';
+import { NextUIProvider, useSSR } from '@nextui-org/react';
 import { NextPage } from 'next';
 import { AppProps } from 'next/app';
 import { ReactElement, ReactNode } from 'react';
@@ -14,10 +14,13 @@ type AppPropsWithLayout = AppProps & {
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page)
-  return getLayout(
+  const {isBrowser} = useSSR();
+  return (
+    isBrowser && getLayout(
     <NextUIProvider>
       <Component {...pageProps} />
     </NextUIProvider>
+    )
   )
 }
 
