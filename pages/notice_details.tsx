@@ -28,13 +28,13 @@ export default function notice_details() {
       <Image src={'/assets/images/icons/back.svg'} alt='back' width={20} height={20} />
       <p>이전글</p>
       <p className={style.notice_icon}>공지</p>
-      <p>서비스이용약관 개정 안내...</p>
+      <p className={style.detail_words}>서비스이용약관 개정 안내 7월</p>
       </div>
       <div className={style.notice_details_list_n}>
       <Image src={'/assets/images/icons/back.svg'} alt='back' width={20} height={20} />
       <p>다음글</p>
       <p className={style.notice_icon}>공지</p>
-      <p>5월1일 근로자의날 고객...</p>
+      <p className={style.detail_words}>5월1일 근로자의날 고객센터 휴무</p>
       </div>
       <button className={style.notice_btn}><p>목록</p></button>
     </div>
