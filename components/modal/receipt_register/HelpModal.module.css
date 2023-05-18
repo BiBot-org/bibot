@@ -1,0 +1,73 @@
+.helpWrap {
+    background-color: #3E3E3E80;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.helpContent {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 90%;
+    height: 50%;
+}
+
+.ContentHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ContentBodyWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    background-image: url('/assets/images/borderImage.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.ContentBody {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ContentHeader p {
+    color: var(--bibot-primary);
+    font-size: 11px;
+}
+
+.ContentBodyWrap {
+    background-color: var(--bibot-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.BtnWrap {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Btn {
+    background-color: var(--bibot-secondary);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
