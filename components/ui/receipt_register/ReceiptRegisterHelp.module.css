@@ -1,0 +1,8 @@
+.helpIcon {
+    display: flex;
+    align-items: center;
+}
+
+.helpIcon img {
+    height: auto;
+}
