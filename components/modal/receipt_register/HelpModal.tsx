@@ -1,6 +1,7 @@
 import React from 'react'
 import style from '@/components/modal/receipt_register/HelpModal.module.css'
 import Image from 'next/image'
+import { Spacer } from '@nextui-org/react'
 
 export default function HelpModal(props: { IsModalOpen: boolean, setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>> }) {
     if (!props.IsModalOpen) return null
@@ -14,8 +15,10 @@ export default function HelpModal(props: { IsModalOpen: boolean, setIsModalOpen:
                         width={40}
                         height={40}
                     />
+                    <Spacer y={0.5} />
                     <p>빛이 반사되지 않게 해주시고 어두운 배경에서 촬영해주세요.</p>
                 </div>
+                <Spacer y={0.5} />
                 <div className={style.ContentBodyWrap}>
                     <div className={style.ContentBody}>
                         <Image
