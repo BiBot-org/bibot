@@ -1,29 +1,58 @@
-import React from 'react'
-import Separator from '@/components/ui/Separator'
+import React, { useRef, useState } from 'react'
 import Approval from '@/components/widgets/Approval'
 import Image from 'next/image'
 import style from '@/styles/pages/receipt_register.module.css'
 import ReceiptItem from '@/components/ui/receipt_register/ReceiptItem'
 import BackTitleLayout from '@/components/layouts/BackTitleLayout'
+import { Button, Spacer } from '@nextui-org/react'
 
 export default function receipt_register() {
+    const [imgUrl, setImgUrl] = useState<string>()
+    const imgRef = useRef<HTMLImageElement>(null)
+
+    const readImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            const imageFile = e.target.files[0];
+            const reader = new FileReader()
+            reader.addEventListener('load', (e: ProgressEvent<FileReader>) => {
+                if (!e || !e.target) return
+                if (typeof e.target.result === 'string' && imgRef.current) {
+                    imgRef.current.src = e.target.result as string
+                    setImgUrl(e.target.result as string)
+                }
+            })
+            reader.readAsDataURL(imageFile)
+        }
+    }
+
     return (
         <>
-            <header>
+            <main className={style.mainContainer}>
                 <Approval />
-            </header>
-            <main>
                 <div className={style.emptyReceiptWrap}>
-                    <Image
+                    <label className={style.emptyReceiptBg} htmlFor='input-image' >
+                        <Image
+                            ref={imgRef}
+                            src='/assets/images/emptyborder.svg'
+                            alt='borderCameraIcon'
+                            width={319}
+                            height={319}
+                        />
+                    </label>
+                    {/* <Image
+                        ref={imgRef}
                         src='/assets/images/icons/emptyReceipt.svg'
                         alt='emptyReceipt'
                         width={200}
                         height={200}
                         priority={true}
-                    />
-                    <input type='file'></input>
+                        id = 'preview-image'
+                    /> */}
+                    <input type='file' id='input-image' accept='image/*' onChange={(e) => readImage(e)} style={{ display: 'none' }} disabled={imgRef.current ? true : false} />
+                    {imgRef.current === null ? <p className={style.uploadText}>영수증 사진을 업로드 해주세요.</p> : null}
                 </div>
-                <Separator gutter={3} />
+
+                {/* <Separator gutter={3} />
                 <div className={style.ReceiptOCRWrap}>
                     <div className={style.ReceiptOCRHeader}>
                         Payment Details
@@ -46,7 +75,10 @@ export default function receipt_register() {
                         </select>
                     </div>
                 </div>
-                <button className={style.submitBtn}>등록 및 신청</button>
+                 */}
+                <div className={style.registerBtn} >
+                    <Button disabled={imgRef.current ? false : true} size={'lg'}>등록하기</Button>
+                </div>
             </main>
         </>
     )
