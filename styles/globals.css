@@ -35,7 +35,3 @@ ul {
 .nextui-progress-bar {
   background: linear-gradient(to left, #C95DEF 0%, #0DCABF 100%);
 }
-
-.nextui-button-text {
-  z-index: 0;
-}
