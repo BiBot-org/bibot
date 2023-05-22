@@ -8,6 +8,8 @@ import SettingItems from '@/components/ui/mypage/SettingItems'
 import AccountProfile from '@/components/ui/mypage/AccountProfile'
 import CommonModal from '@/components/modal/CommonModal'
 import TwoBtnModal from '@/components/modal/TwoBtnModal'
+import BackTitleLayout from '@/components/layouts/BackTitleLayout'
+import { Switch } from "@nextui-org/react";
 
 export default function mypage() {
     const [isModal, setIsModal] = useState(false)
@@ -21,22 +23,22 @@ export default function mypage() {
                     text='로그아웃 하시겠습니까?'
                     link='/'
                 />}
-            <Separator gutter={6} />
-            <Title title="My page" size={30} />
-            <div className={style.logoImage}>
-                <Image src="/assets/images/dummy/companyLogo.svg" alt="companyLogo" width={200} height={200} />
-            </div>
             <Title title="Account" size={20} />
-            <AccountProfile imageUrl='/assets/images/dummy/user01.png' name='김땡땡' email='spharos@newworld.com' />
-            <Title title="Setting" size={20} />
+            <AccountProfile imageUrl='/assets/images/dummy/user01.png' name='김땡땡' company='스파로스' email='spharos@newworld.com' />
+            <Separator gutter={1} />
+            <Title title="Service" size={20} />
             <div className={style.settingWrap}>
-                <SettingItems title='결제내역' iconUrl='/assets/images/icons/wonIcon.svg' iconAlt='won' link='/approvalhistory' />
-                <SettingItems title='출장내역' iconUrl='/assets/images/icons/businesstrip.svg' iconAlt='businesstrip' link='/mypage' />
-                <SettingItems title='환경설정' iconUrl='/assets/images/icons/settingIcon.svg' iconAlt='setting' link='/bibot' />
+                <div className={style.Service_wrap}>
+                    <SettingItems title='이용약관' iconUrl='/assets/images/icons/term.svg' iconAlt='won' link='/approvalhistory' />
+                </div>
+                <SettingItems title='버전정보' iconUrl='/assets/images/bibot-pic/bibot.svg' iconAlt='businesstrip' link='/mypage' />
+                <SettingItems title='도움말' iconUrl='/assets/images/icons/question.svg' iconAlt='question' link='/mypage' />
             </div>
-            <Separator gutter={5} />
+            <Separator gutter={2} />
+            <Title title="Setting" size={20} />
+            <SettingItems title='환경설정' iconUrl='/assets/images/icons/setting.svg' iconAlt='setting' link='/bibot' />
             <div className={style.logout} onClick={() => setIsModal(!isModal)}>
-                <SettingItems title='로그아웃' iconUrl='/assets/images/icons/logoutIcon.svg' iconAlt='logout' />
+                <SettingItems title='로그아웃' iconUrl='/assets/images/icons/logout.svg' iconAlt='logout' />
             </div>
 
         </>
@@ -45,8 +47,9 @@ export default function mypage() {
 
 mypage.getLayout = function getLayout(page: React.ReactNode) {
     return (
-        <BackNotiLayout>
+        <BackTitleLayout title='MyPage'>
             {page}
-        </BackNotiLayout>
+        </BackTitleLayout>
     )
 }
+
