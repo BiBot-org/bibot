@@ -25,3 +25,13 @@ body {
 a {
   text-decoration: none;
 }
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* next ui custom */
+.nextui-progress-bar {
+  background: linear-gradient(to left, #C95DEF 0%, #0DCABF 100%);
+}

@@ -7,10 +7,8 @@
 
 .defaultFooter .footerBtnWrap {
     margin: 0 auto;
-    /* width: 50%; */
-    /* min-width: 20rem; */
     opacity: 0;
-    max-width: 30rem;
+    max-width: 14rem;
     background-color: #0DCABF;
     display: flex;
     justify-content: space-between;
@@ -69,7 +67,7 @@
     }
 
     100% {
-        width: 20rem;
+        width: 13rem;
         opacity: 1;
     }
 }

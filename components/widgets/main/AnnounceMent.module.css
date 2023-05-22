@@ -4,8 +4,8 @@
     border: 1px solid #BA73E7;
     width: 80%;
     height: 4rem;
-    position: relative;
-    top: 15rem;
+    /* position: relative;
+    top: 15rem; */
     margin: 0 auto;
     display: flex;
     align-items: center;

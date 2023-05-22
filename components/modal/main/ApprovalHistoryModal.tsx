@@ -6,9 +6,10 @@ export default function ApprovalHistoryModal() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
   return (
-    <div style={{ bottom: `${isModalOpen ? 0 : -300}px` }} className={style.modalWrap}>
+    <>
+    <div className={isModalOpen ? `${style.modalWrap} ${style.modalOpen} ` : `${style.modalWrap}` }>
       <div className={style.modalHeaderWrap} onClick={() => setIsModalOpen(!isModalOpen)}>
-        <div className={style.modalHeaderToggle}></div>
+        {/* <div className={style.modalHeaderToggle}></div> */}
         <div className={style.modalHeaderSubject}>
           <p className={style.Subject}>Approval History</p>
           {isModalOpen ? <p className={style.HistoryLink}>all history</p> : ''}
@@ -18,5 +19,7 @@ export default function ApprovalHistoryModal() {
         <Approval />
       </div>
     </div>
+    <div className={isModalOpen ? style.modalBackground : style.modalBackgroundClose} onClick={() => setIsModalOpen(!isModalOpen)}></div>
+    </>
   )
 }
