@@ -3,8 +3,10 @@ import Image from 'next/image';
 import LoginUrlSetLayout from '@/components/layouts/LoginUrlSetLayout';
 import style from '@/styles/pages/login.module.css'
 import { Button, Container, Input, Link, Row, Spacer } from '@nextui-org/react';
+import { useRouter } from 'next/router';
 
 export default function login() {
+  const router = useRouter();
   return (
     <main className={style.mainContainer}>
       <article>
@@ -20,11 +22,11 @@ export default function login() {
           </Row>
           <Spacer y={1} />
           <Row>
-            <Button style={{ width: '100%' }}>로그인</Button>
+            <Button onClick={() => router.push('/main')} css={{width:'100%'}}>로그인</Button>
           </Row>
           <Spacer y={1} />
           <Row justify='center'>
-            <Link href='#'>비밀번호 찾기</Link>
+            <Link href='/find_password'>비밀번호 찾기</Link>
           </Row>
         </Container>
       </article>
