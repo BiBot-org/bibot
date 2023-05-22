@@ -2,6 +2,8 @@
     width: 100%;
     height: 100vh;
     background: linear-gradient(-45deg, #FDD1D1, #e73c7e50, #0DCABF, #0DCABF);
+    background-size: 300% 300%;
+    animation: AnimationName 6s ease infinite;
 }
 
 .logo {
@@ -10,4 +12,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@keyframes AnimationName {
+    0% {
+        background-position: 0% 50%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 0% 50%
+    }
 }
