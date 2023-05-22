@@ -19,6 +19,28 @@
     transform: translate(-50%, 50%);
 }
 
+.ReceiptOCRHeader {
+    text-align: center;
+    color: var(--bibot-primary);
+}
+
+.ReceiptOCRDetails {
+    border-top: 1px dashed var(--bibot-black);
+    stroke-dasharray: 1px;
+}
+
+.categorySel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modifyBtn {
+    display: flex;
+    justify-content: center;
+}
+
 .registerBtn {
     display: flex;
     justify-content: center;

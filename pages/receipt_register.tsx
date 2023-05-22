@@ -51,34 +51,44 @@ export default function receipt_register() {
                     <input type='file' id='input-image' accept='image/*' onChange={(e) => readImage(e)} style={{ display: 'none' }} disabled={imgRef.current ? true : false} />
                     {imgRef.current === null ? <p className={style.uploadText}>영수증 사진을 업로드 해주세요.</p> : null}
                 </div>
-
-                {/* <Separator gutter={3} />
-                <div className={style.ReceiptOCRWrap}>
-                    <div className={style.ReceiptOCRHeader}>
-                        Payment Details
-                    </div>
-                    <div className={style.ReceiptOCRDetails}>
-                        <ReceiptItem />
-                        <ReceiptItem />
-                        <ReceiptItem />
-                        <ReceiptItem />
-                        <ReceiptItem />
-                    </div>
-                    <Separator gutter={1} />
-                    <div className={style.categorySel}>
-                        <p>카테고리</p>
-                        <select>
-                            <option value='식비'>식비</option>
-                            <option value='교통비'>교통비</option>
-                            <option value='문화비'>문화비</option>
-                            <option value='유류비'>유류비</option>
-                        </select>
-                    </div>
-                </div>
-                 */}
-                <div className={style.registerBtn} >
-                    <Button disabled={imgRef.current ? false : true} size={'lg'}>등록하기</Button>
-                </div>
+                {imgRef.current ?
+                    <>
+                        <Spacer y={3} />
+                        <div className={style.ReceiptOCRWrap}>
+                            <div className={style.ReceiptOCRHeader}>
+                                <h4>Payment Details</h4>
+                            </div>
+                            <div className={style.ReceiptOCRDetails}>
+                                <ReceiptItem />
+                                <ReceiptItem />
+                                <ReceiptItem />
+                                <ReceiptItem />
+                                <ReceiptItem />
+                            </div>
+                            <Spacer y={1} />
+                            <div className={style.modifyBtn}>
+                                <Button size={'xs'}>수정</Button>
+                            </div>
+                            <Spacer y={1} />
+                            <div className={style.categorySel}>
+                                <select name='category'>
+                                    <option>
+                                        카테고리를 선택해주세요.
+                                    </option>
+                                    <option value='식비'>식비</option>
+                                    <option value='교통비'>교통비</option>
+                                    <option value='문화비'>문화비</option>
+                                    <option value='유류비'>유류비</option>
+                                </select>
+                            </div>
+                            
+                        </div>
+                        <Spacer y={5} />
+                        <div className={style.registerBtn} >
+                            <Button disabled={imgRef.current ? false : true} size={'lg'}>등록하기</Button>
+                        </div>
+                    </>
+                    : null}
             </main>
         </>
     )
