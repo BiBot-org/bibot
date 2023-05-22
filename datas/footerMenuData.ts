@@ -3,13 +3,13 @@ export const footerMenu = [
     id: 1,
     name: "Home",
     iconImgUrl: "/assets/images/icons/homeIcon.svg",
-    link: "/"
+    link: "/main"
   },
   {
     id: 2,
     name: "Bibot",
     iconImgUrl: "/assets/images/icons/robotIcon.svg",
-    link: "/bibot"
+    link: "/card_used_list"
   },
   {
     id: 3,
