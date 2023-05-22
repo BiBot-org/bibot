@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import style from '@/components/ui/mypage/AccountProfile.module.css'
 
-export default function AccountProfile(props: { imageUrl: string, name: string, email: string }) {
+export default function AccountProfile(props: { imageUrl: string, name: string, company: string, email: string }) {
     return (
         <div className={style.accountWrap}>
             <div className={style.accountImage}>
@@ -10,6 +10,7 @@ export default function AccountProfile(props: { imageUrl: string, name: string, 
             </div>
             <div className={style.accountInfo}>
                 <p>{props.name}</p>
+                <p>{props.company}</p>
                 <p>{props.email}</p>
             </div>
         </div>
