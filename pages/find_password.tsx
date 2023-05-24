@@ -4,9 +4,9 @@ import style from '@/styles/pages/find_password.module.css'
 import { Button, Container, Input, Row, Spacer } from '@nextui-org/react'
 import CommonModal from '@/components/modal/CommonModal'
 
-export default function find_password() {
+export default function Find_password() {
 
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
   return (
     <>
@@ -33,7 +33,7 @@ export default function find_password() {
   )
 }
 
-find_password.getLayout = function getLayout(page: React.ReactNode) {
+Find_password.getLayout = function getLayout(page: React.ReactNode) {
   return (
     <LoginUrlSetLayout title='비밀번호 찾기'>
       {page}

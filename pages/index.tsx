@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import style from '@/styles/pages/index.module.css'
 import Image from 'next/image';
 
-export default function index() {
+export default function Home() {
   const router = useRouter();
 
   useEffect(() => {

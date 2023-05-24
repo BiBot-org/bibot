@@ -1,7 +1,7 @@
 import React from 'react'
-import style from './Card_used_item.module.css'
+import style from './CardUsedItem.module.css'
 
-export default function Card_used_item(props: { category: string, title:string, price:number, date:string }) {
+export default function CardUsedItem(props: { category: string, title:string, price:number, date:string }) {
     return (
         <div className={style.card_used_list}>
             <div className={style.usedItemInfo}>

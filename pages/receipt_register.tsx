@@ -6,7 +6,7 @@ import ReceiptItem from '@/components/ui/receipt_register/ReceiptItem'
 import BackTitleLayout from '@/components/layouts/BackTitleLayout'
 import { Button, Spacer } from '@nextui-org/react'
 
-export default function receipt_register() {
+export default function ReceiptRegister() {
     const [imgUrl, setImgUrl] = useState<string>()
     const imgRef = useRef<HTMLImageElement>(null)
 
@@ -94,7 +94,7 @@ export default function receipt_register() {
     )
 }
 
-receipt_register.getLayout = function getLayout(page: React.ReactElement) {
+ReceiptRegister.getLayout = function getLayout(page: React.ReactElement) {
     return (
         <BackTitleLayout title='영수증 등록'>{page}</BackTitleLayout>
     )
