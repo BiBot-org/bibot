@@ -5,9 +5,9 @@ import style from '@/styles/module.css/terms.module.css'
 
 export default function terms() {
   return (
-    <header className={style.terms_wrap}>
+    <main className={style.terms_wrap}>
       <div><Terms_items /></div>
-    </header>
+    </main>
   )
 }
 
