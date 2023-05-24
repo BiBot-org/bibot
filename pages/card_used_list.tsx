@@ -1,47 +1,63 @@
-import React from 'react'
-import style from 'styles/module.css/card_used_list.module.css'
+import React, { ReactNode, useState } from 'react'
+import style from 'styles/pages/card_used_list.module.css'
+import Image from 'next/image'
+import Slider from 'react-slick'
+import BackTitleLayout from '@/components/layouts/BackTitleLayout'
+import Used_list from '@/components/widgets/card_used_list/Used_list'
+import { cardListData } from '@/datas/dummy/cardListData'
+import { useRouter } from 'next/router'
 
-export default function card_used_list() {
+
+export default function Card_used_list() {
+  const router = useRouter()
+  const [currentIndex, setCurrentIndex] = useState<number>(1)
+
+  const settings = {
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    centerMode: true,
+    focusOnSelect: true,
+    initialSlide: 1,
+    afterChange: (current: number) => setCurrentIndex(current)
+  }
+
   return (
-    <form className={style.card_list_pic}>
-      <h1 className={style.card_used_wrap}>카드사용내역</h1>
-      <img src='/assets/images/bibot-pic/color_card.svg' alt='empty-card' className='empty-card' />
-      <div className={style.card_name}>법카 가족카드</div>
-      <div className={style.card_used_sum}>
-        <p>사용내역 합</p>
-        <p>789,000원</p>
-      </div>
-      <div className={style.card_used_list}>
-        <img src='assets/images/icons/spoon.svg' alt='spoon' className='spoon_img' />
-        <div className={style.cafe_list}>
-          <p>조선갈비탕</p>
-          <p>2023/04/28 13:00PM</p>
-        </div>
-        <div className={style.sum_price}>
-          <p>13,000원</p>
-        </div>
-      </div>
-      <div className={style.card_used_list}>
-        <img src='assets/images/icons/gasoline.svg' alt='gasoline' className='gasoline_img' />
-        <div className={style.cafe_list}>
-          <p>GS 칼텍스</p>
-          <p>2023/04/27 07:28PM</p>
-        </div>
-        <div className={style.sum_price}>
-          <p>50,100원</p>
-        </div>
-      </div>
-      <div className={style.card_used_list}>
-        <img src='assets/images/icons/supplies.svg' alt='supplies' className='supplies_img' />
-        <div className={style.cafe_list}>
-          <p>핫트랙스</p>
-          <p>2023/04/25 13:36PM</p>
-        </div>
-        <div className={style.sum_price}>
-          <p>21,050원</p>
-        </div>
-      </div>
-    </form>
+    <>
+      <body>
+        <Slider {...settings}>
+          <div>
+            <Image src='/assets/images/icons/empty_card.svg' alt='empty-card' width={327} height={200} onClick={() => router.push('/card_step1')} />
+            <div className={style.card_empty}>카드를 등록해 주세요.</div>
+          </div>
+          {
+            cardListData && cardListData.map((data) => {
+              return (
+                <div key={data.id}>
+                  <Image src='/assets/images/icons/registered_card.svg' alt='registered-card' width={327} height={200} />
+                  <div className={style.card_name}>{data.cardname}</div>
+                </div>
+              )
+            })
+          }
+        </Slider>
+        {
+          currentIndex === 0 ? <div className={style.bibot_error_alarm}>
+            <Image src='/assets/images/bibot-pic/bibot.svg' alt='bibot' width={25} height={25} />
+            <div className={style.error_alarm}>카드를 등록해 주세요.</div>
+          </div> : <Used_list />
+        }
+      </body>
+    </>
+  )
+}
 
+
+Card_used_list.getLayout = function getLayout(page: ReactNode) {
+  return (
+    <BackTitleLayout title='카드 사용 내역'>
+      {page}
+    </BackTitleLayout>
   )
 }
