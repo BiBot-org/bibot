@@ -1,10 +1,12 @@
+import { useEffect, useState } from "react"
 import Footer from "./Footer"
 import Header from "./Header"
 
 export default function Layout(props:{children: React.ReactNode}) {
+
   return (
     <>
-    <Header />
+    <Header /> 
     <div>{props.children}</div>
     <Footer />
     </>
