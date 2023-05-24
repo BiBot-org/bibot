@@ -35,3 +35,7 @@ ul {
 .nextui-progress-bar {
   background: linear-gradient(to left, #C95DEF 0%, #0DCABF 100%);
 }
+
+/* react-slick */
+@import "~slick-carousel/slick/slick.css"; 
+@import "~slick-carousel/slick/slick-theme.css";
