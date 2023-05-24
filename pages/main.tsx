@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import style from '@/styles/pages/main/Home.module.css'
 import CategoryNav from '@/components/widgets/main/CategoryNav'
 import Layout from '@/components/layouts/layout'
@@ -21,6 +21,9 @@ export default function Main(props: {categoryData:mainCategoryType[] , user: Hea
             <CategoryNav 
                 categoryData={props.categoryData}
             />
+            <AnnounceMent />
+            <AnnounceMent />
+            <AnnounceMent />
             <AnnounceMent />
             <ApprovalHistoryModal />
         </main>

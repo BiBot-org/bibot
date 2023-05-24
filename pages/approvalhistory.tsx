@@ -1,8 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import style from '@/styles/pages/approvalhistory/approvalhistory.module.css'
 import Approval from '@/components/widgets/Approval'
 
 export default function Approvalhistory() {
+    const [scroll, setScroll] = useState(false);
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+          window.removeEventListener('scroll', handleScroll); //clean up
+        };
+      }, []);
+  
+    const handleScroll = () => {
+    console.log("window.scrollY : ", window.scrollY)
+    };
     return (
         <div className={style.approvalhistoryContainer}>
             <div className={style.expensesDetailsWrap}>
@@ -24,6 +36,26 @@ export default function Approvalhistory() {
                 </div>
             </div>
             <div className={style.listWrap}>
+                <Approval />
+                <Approval />
+                <Approval />
+                <Approval />
+                <Approval />
+                <Approval />
+                <Approval />
+                <Approval />
+                <Approval />
+                <Approval />
+                <Approval />
+                <Approval />
+                <Approval />
+                <Approval />
+                <Approval />
+                <Approval />
+                <Approval />
+                <Approval />
+                <Approval />
+                <Approval />
                 <Approval />
                 <Approval />
                 <Approval />
