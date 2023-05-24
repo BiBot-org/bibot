@@ -2,7 +2,7 @@ import React from 'react'
 import style from '@/styles/pages/approvalhistory/approvalhistory.module.css'
 import Approval from '@/components/widgets/Approval'
 
-export default function approvalhistory() {
+export default function Approvalhistory() {
     return (
         <div className={style.approvalhistoryContainer}>
             <div className={style.expensesDetailsWrap}>

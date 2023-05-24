@@ -23,7 +23,6 @@ export default function LoginUrlSetLayout(props: { children: React.ReactNode, ti
                 }
                 <div className={style.logoText}>
                     <p>{props.title}</p>
-                    <Spacer y={1} />
                 </div>
             </header>
             {props.children}

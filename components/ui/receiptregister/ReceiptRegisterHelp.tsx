@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
-import style from '@/components/ui/receipt_register/ReceiptRegisterHelp.module.css'
-import HelpModal from '@/components/modal/receipt_register/HelpModal'
+import style from '@/components/ui/receiptregister/ReceiptRegisterHelp.module.css'
+import HelpModal from '@/components/modal/receiptregister/HelpModal'
 
 export default function ReceiptRegisterHelp() {
     const [isModalOpen, setIsModalOpen] = useState(false)

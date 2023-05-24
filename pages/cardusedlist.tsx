@@ -1,14 +1,14 @@
 import React, { ReactNode, useState } from 'react'
-import style from 'styles/pages/card_used_list.module.css'
+import style from 'styles/pages/cardusedlist.module.css'
 import Image from 'next/image'
 import Slider from 'react-slick'
 import BackTitleLayout from '@/components/layouts/BackTitleLayout'
-import Used_list from '@/components/widgets/card_used_list/Used_list'
 import { cardListData } from '@/datas/dummy/cardListData'
 import { useRouter } from 'next/router'
+import Usedlist from '@/components/widgets/cardusedlist/Usedlist'
 
 
-export default function Card_used_list() {
+export default function CardUsedList() {
   const router = useRouter()
   const [currentIndex, setCurrentIndex] = useState<number>(1)
 
@@ -46,7 +46,7 @@ export default function Card_used_list() {
           currentIndex === 0 ? <div className={style.bibot_error_alarm}>
             <Image src='/assets/images/bibot-pic/bibot.svg' alt='bibot' width={25} height={25} />
             <div className={style.error_alarm}>카드를 등록해 주세요.</div>
-          </div> : <Used_list />
+          </div> : <Usedlist />
         }
       </body>
     </>
@@ -54,7 +54,7 @@ export default function Card_used_list() {
 }
 
 
-Card_used_list.getLayout = function getLayout(page: ReactNode) {
+CardUsedList.getLayout = function getLayout(page: ReactNode) {
   return (
     <BackTitleLayout title='카드 사용 내역'>
       {page}

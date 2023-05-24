@@ -1,7 +1,7 @@
 import React from 'react'
-import style from '@/components/ui/alarm_details/Alarm_details_item.module.css'
+import style from '@/components/ui/alarmdetails/AlarmDetailsItem.module.css'
 
-export default function Alarm_details_item() {
+export default function AlarmDetailsItem() {
   return (
     <>
       <div className={style.alarm_board}>

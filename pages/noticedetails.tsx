@@ -1,9 +1,9 @@
 import React from 'react'
 import BackTitleLayout from '@/components/layouts/BackTitleLayout'
-import style from 'styles/module.css/notice_details.module.css'
+import style from 'styles/module.css/noticedetails.module.css'
 import Image from 'next/image'
 
-export default function notice_details() {
+export default function Noticedetails() {
   return (
     <div className={style.notice_details_wrap}>
       <div className={style.notice_border}></div>
@@ -41,7 +41,7 @@ export default function notice_details() {
   )
 }
 
-notice_details.getLayout = function getLayout(page: React.ReactNode) {
+Noticedetails.getLayout = function getLayout(page: React.ReactNode) {
   return (
     <BackTitleLayout title='공지사항'>
       {page}

@@ -4,7 +4,7 @@ import style from '@/styles/pages/settings.module.css'
 import Separator from '@/components/ui/Separator'
 import Title from '@/components/ui/Title'
 
-export default function settings() {
+export default function Settings() {
 
     return (
         <>
@@ -38,7 +38,7 @@ export default function settings() {
     )
 }
 
-settings.getLayout = function getLayout(page: React.ReactElement) {
+Settings.getLayout = function getLayout(page: React.ReactElement) {
     return (
         <BackNotiLayout>
             {page}
