@@ -1,0 +1,21 @@
+.profileInfo {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    height: 40px;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid black;
+}
+
+.profileInfoTitle {
+    width: 25%;
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+}
+
+.profileInfoContent {
+    width: 75%;
+    font-size: medium;
+}

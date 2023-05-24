@@ -1,0 +1,18 @@
+.alarm_details_wrap {
+  padding: 30px 40px 0px 40px;
+}
+
+.alarm_board {
+  padding: 15px 0px 15px 0px;
+  border-bottom: solid 1px #9d9dae;
+}
+
+.alarm_words {
+  color: #9d9dae;
+}
+
+.alarm_board_second{
+  border-bottom: solid 1px #9d9dae;
+  background-color: #d6d0d0;
+  opacity: 0.5;
+}

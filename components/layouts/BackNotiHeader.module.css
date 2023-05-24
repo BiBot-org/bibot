@@ -1,0 +1,11 @@
+.backNotiHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem 2rem;
+    padding-bottom: 0;
+    background-color: var(--bibot-white);
+    position: fixed;
+    top: 0;
+}

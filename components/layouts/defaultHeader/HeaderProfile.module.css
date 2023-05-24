@@ -1,0 +1,26 @@
+.headerProfileWrap {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.headerProfileImgWrap {
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  filter: contrast(130%) brightness(0%) invert(1);
+  margin-right: 10px;
+}
+.headerProfileImgWrap img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.headerProfileNotiWrap p {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #fff;
+  line-height: 1.1;
+}
+
