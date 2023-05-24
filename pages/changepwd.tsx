@@ -3,7 +3,7 @@ import LoginUrlSetLayout from '@/components/layouts/LoginUrlSetLayout'
 import { Button, Container, Input, Row, Spacer } from '@nextui-org/react'
 import style from '@/styles/pages/changepwd.module.css'
 
-export default function changepwd() {
+export default function Changepwd() {
     return (
         <>
             <Spacer y={3} />
@@ -47,7 +47,7 @@ export default function changepwd() {
     )
 }
 
-changepwd.getLayout = function getLayout(page: React.ReactNode) {
+Changepwd.getLayout = function getLayout(page: React.ReactNode) {
     return (
         <LoginUrlSetLayout title='비밀번호 변경'>
             {page}

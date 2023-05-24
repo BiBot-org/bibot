@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react'
-import style from 'styles/module.css/card_register.module.css';
+import style from 'styles/module.css/cardregister.module.css';
 
 export default function CardRegister() {
   return (

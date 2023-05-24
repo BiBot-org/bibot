@@ -5,7 +5,7 @@ import Image from 'next/image'
 import React from 'react'
 import style from 'styles/pages/notice.module.css'
 
-export default function notice() {
+export default function Notice() {
   return (
     <div className={style.notice_wrap}>
       <ul className={style.notice_nav_wrap}>
@@ -65,7 +65,7 @@ export default function notice() {
   )
 }
 
-notice.getLayout = function getLayout(page: React.ReactNode) {
+Notice.getLayout = function getLayout(page: React.ReactNode) {
   return (
     <BackTitleLayout title='공지사항'>
       {page}

@@ -1,8 +1,8 @@
 import React from 'react'
 import BackTitleLayout from '@/components/layouts/BackTitleLayout'
-import style from 'styles/module.css/payment_details.module.css'
+import style from 'styles/module.css/paymentdetails.module.css'
 
-export default function payment_details() {
+export default function Paymentdetails() {
   return (
     <div className={style.payment_details_wrap}>
       <div className={style.payment_details_list}>
@@ -77,7 +77,7 @@ export default function payment_details() {
   )
 }
 
-payment_details.getLayout = function getLayout(page: React.ReactNode) {
+Paymentdetails.getLayout = function getLayout(page: React.ReactNode) {
   return (
     <BackTitleLayout title='결재내역 조회'>
       {page}

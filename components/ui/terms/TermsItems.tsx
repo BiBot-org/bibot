@@ -1,7 +1,7 @@
 import React from 'react'
 import style from '@/components/ui/terms/Terms_items.module.css'
 
-export default function terms_items() {
+export default function TermsItems() {
   return (
     // <>
     //   <body>

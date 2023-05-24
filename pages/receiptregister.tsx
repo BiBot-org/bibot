@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react'
 import Approval from '@/components/widgets/Approval'
 import Image from 'next/image'
-import style from '@/styles/pages/receipt_register.module.css'
-import ReceiptItem from '@/components/ui/receipt_register/ReceiptItem'
+import style from '@/styles/pages/receiptregister.module.css'
+import ReceiptItem from '@/components/ui/receiptregister/ReceiptItem'
 import BackTitleLayout from '@/components/layouts/BackTitleLayout'
 import { Button, Spacer } from '@nextui-org/react'
 

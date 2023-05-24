@@ -1,5 +1,5 @@
 import React from 'react'
-import style from '@/components/modal/receipt_register/HelpModal.module.css'
+import style from '@/components/modal/receiptregister/HelpModal.module.css'
 import Image from 'next/image'
 import { Spacer } from '@nextui-org/react'
 

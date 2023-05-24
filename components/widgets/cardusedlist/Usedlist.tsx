@@ -1,9 +1,9 @@
 import React from 'react'
-import style from './Used_list.module.css'
+import style from './Usedlist.module.css'
 import { cardUsedData } from '@/datas/dummy/cardUsedData'
-import CardUsedItem from '@/components/ui/card_used_list/CardUsedItem'
+import CardUsedItem from '@/components/ui/cardusedlist/CardUsedItem'
 
-export default function Used_list() {
+export default function Usedlist() {
   const sum = cardUsedData.reduce((acc, cur) => {
     return acc + cur.price
   }, 0)
