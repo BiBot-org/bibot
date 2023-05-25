@@ -40,7 +40,6 @@ export default function Mypage() {
             <div className={style.logout} onClick={() => setIsModal(!isModal)}>
                 <SettingItems title='로그아웃' iconUrl='/assets/images/icons/logout.svg' iconAlt='logout' />
             </div>
-
         </>
     )
 }
