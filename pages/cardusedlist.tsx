@@ -1,5 +1,5 @@
 import React, { ReactNode, useCallback, useState } from 'react'
-import style from 'styles/pages/cardUsedList.module.css'
+import style from 'styles/pages/cardusedlist.module.css'
 import Image from 'next/image'
 import Slider from 'react-slick'
 import BackTitleLayout from '@/components/layouts/BackTitleLayout'
