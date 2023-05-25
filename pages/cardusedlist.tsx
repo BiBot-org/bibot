@@ -7,7 +7,7 @@ import { cardListData } from '@/datas/dummy/cardListData'
 import { useRouter } from 'next/router'
 import CardImage from '@/components/ui/cardusedlist/CardImage'
 import DeleteModal from '@/components/modal/cardUsedList/DeleteModal'
-import UsedList from '@/components/widgets/cardUsedList/Usedlist'
+import UsedList from '@/components/widgets/cardUsedList/UsedList'
 
 
 export default function CardUsedList() {
