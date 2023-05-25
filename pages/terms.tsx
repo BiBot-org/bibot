@@ -1,6 +1,6 @@
 import React from 'react'
 import BackTitleLayout from '@/components/layouts/BackTitleLayout'
-import Terms_items from '@/components/ui/terms/terms_items'
+import Terms_items from '@/components/ui/terms/Terms_items'
 import style from '@/styles/module.css/terms.module.css'
 
 export default function terms() {
