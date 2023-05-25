@@ -9,29 +9,9 @@
     margin: 0 auto;
 }
 
-.toggleSwitch {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 20px;
-    margin: 5px;
-    cursor: pointer;
-    background-color: #ccc;
-    border-radius: 20px;
+.settingsWrap h3 {
+    font-size: 1.2rem;
+    margin: 1rem 3.3rem;
+    color: #9a9d96;
 }
 
-.toggleButton {
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background-color: #fff;
-    transition: all 0.3s;
-}
-
-input[type='checkbox']:checked+.toggleSwitch .toggleButton {
-    transform: translateX(20px);
-    background-color: #00ff44;
-}
