@@ -8,7 +8,7 @@ export default function UsedList() {
   const sum = cardUsedData.reduce((acc, cur) => {
     return acc + cur.price
   }, 0)
-  
+
   return (
     <>
       <div className={style.card_used_sum}>
@@ -16,9 +16,9 @@ export default function UsedList() {
         <p>{sum.toLocaleString()}원</p>
       </div>
       <div className={style.dateWrap}>
-        <Input type='date'/>
+        <Input type='date' />
         <span>-</span>
-        <Input type='date'/>
+        <Input type='date' />
       </div>
       <Spacer y={1} />
       {
@@ -28,7 +28,6 @@ export default function UsedList() {
           )
         })
       }
-      
     </>
   )
 }
