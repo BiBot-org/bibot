@@ -5,9 +5,9 @@ import Slider from 'react-slick'
 import BackTitleLayout from '@/components/layouts/BackTitleLayout'
 import { cardListData } from '@/datas/dummy/cardListData'
 import { useRouter } from 'next/router'
-import UsedList from '@/components/widgets/cardUsedList/UsedList'
 import CardImage from '@/components/ui/cardusedlist/CardImage'
 import DeleteModal from '@/components/modal/cardUsedList/DeleteModal'
+import UsedList from '@/components/widgets/cardUsedList/Usedlist'
 
 
 export default function CardUsedList() {
