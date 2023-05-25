@@ -1,0 +1,12 @@
+.cardImage {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.cardInfo {
+    color: var(--bibot-white);
+    position: absolute;
+    top: 39%;
+    margin-left: 2%;
+}
