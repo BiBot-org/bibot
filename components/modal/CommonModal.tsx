@@ -1,12 +1,12 @@
 import React from 'react'
 import style from '@/components/modal/CommonModal.module.css'
 import Image from 'next/image'
-import { Button, Spacer } from '@nextui-org/react'
+import { Spacer, styled, Button } from '@nextui-org/react'
 import { useRouter } from 'next/router';
 
 export default function CommonModal(props: { isModal: boolean, modal: React.Dispatch<React.SetStateAction<boolean>>, text: string, positive: boolean }) {
     const router = useRouter();
-    
+
     if (!props.isModal) return null;
 
     return (
@@ -25,16 +25,16 @@ export default function CommonModal(props: { isModal: boolean, modal: React.Disp
                     </div>
                 </div>
                 <div className={style.contentsBtn}>
-                    <Button
+                    <p
+                        aria-label='confirm'
                         className={style.confirmBtn}
-                        style={props.positive ? { backgroundColor: '#40CCC3' } : { backgroundColor: '#C95DEF' }}
+                        style={{ backgroundColor: props.positive ? '#40CCC3' : '#C95DEF' }}
                         onClick={() => router.push('/login')}
-                        auto
-                        icon={props.positive ?
+                    >
+                        {props.positive ?
                             <Image src='/assets/images/icons/checkicon.svg' alt='checkicon' width={20} height={20} />
                             : <Image src='/assets/images/icons/cancelicon.svg' alt='cancelicon' width={20} height={20} />}
-                    >
-                    </Button>
+                    </p>
                 </div>
             </div>
         </div>
