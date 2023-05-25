@@ -11,22 +11,40 @@ export default function Login() {
     <main className={style.mainContainer}>
       <article>
         <Image src="assets/images/bibot-pic/logoText.svg" alt="logo" width={135} height={46} priority />
-        <Spacer y={5} />
+        <Spacer y={3} />
         <Container style={{ padding: 0 }}>
-          <Row>
-            <Input width='100%' bordered labelPlaceholder="Input your Email" />
-          </Row>
-          <Spacer y={1.5} />
-          <Row>
-            <Input.Password width='100%' bordered labelPlaceholder="Input your password" type='password' />
-          </Row>
+          <Input
+            aria-label='email'
+            width='100%'
+            bordered
+            size='lg'
+            placeholder="Input your Email"
+            color='primary'
+            style={{ fontSize: '0.8rem', fontWeight: 'bold' }}
+          />
           <Spacer y={1} />
-          <Row>
-            <Button onClick={() => router.push('/main')} css={{width:'100%'}}>로그인</Button>
-          </Row>
+          <Input.Password
+            aria-label='password'
+            width='100%'
+            bordered
+            size='lg'
+            placeholder="Input your password"
+            color='primary'
+            type='password'
+            style={{ fontSize: '0.8rem', fontWeight: 'bold' }}
+          />
+          <Spacer y={1} />
+          <Button
+            aria-label='login'
+            size='lg'
+            onPress={() => router.push('/main')}
+            style={{ width: '100%', backgroundColor: '#40CCC3' }}
+          >
+            로그인
+          </Button>
           <Spacer y={1} />
           <Row justify='center'>
-            <Link href='/find_password'>비밀번호 찾기</Link>
+            <Link href='/findpassword'>비밀번호 찾기</Link>
           </Row>
         </Container>
       </article>
