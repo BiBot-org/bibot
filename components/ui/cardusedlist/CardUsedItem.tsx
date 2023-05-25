@@ -14,7 +14,7 @@ export default function CardUsedItem(props: { category: string, title:string, pr
                 </div>
             </div>
             <div className={style.price}>
-                <p>{props.price}원</p>
+                <p>{props.price.toLocaleString()}원</p>
             </div>
         </div>
     )
