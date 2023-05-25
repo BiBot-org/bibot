@@ -1,5 +1,5 @@
 import React from 'react'
-import style from './Usedlist.module.css'
+import style from './UsedList.module.css'
 import { cardUsedData } from '@/datas/dummy/cardUsedData'
 import CardUsedItem from '@/components/ui/cardusedlist/CardUsedItem'
 import { Input, Spacer } from '@nextui-org/react'
