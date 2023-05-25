@@ -7,7 +7,7 @@ import Title from '@/components/ui/Title'
 import ProfileInfo from '@/components/ui/profile/ProfileInfo'
 import { useRouter } from 'next/router'
 
-export default function profile() {
+export default function Profile() {
     const router = useRouter()
     return (
         <div className={style.profileWrap}>
@@ -34,7 +34,7 @@ export default function profile() {
     )
 }
 
-profile.getLayout = function getLayout(page: React.ReactElement) {
+Profile.getLayout = function getLayout(page: React.ReactElement) {
     return (
         <BackNotiLayout>
             {page}

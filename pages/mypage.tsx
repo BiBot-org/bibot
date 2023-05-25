@@ -11,7 +11,7 @@ import TwoBtnModal from '@/components/modal/TwoBtnModal'
 import BackTitleLayout from '@/components/layouts/BackTitleLayout'
 import { Switch } from "@nextui-org/react";
 
-export default function mypage() {
+export default function Mypage() {
     const [isModal, setIsModal] = useState(false)
 
     return (
@@ -45,7 +45,7 @@ export default function mypage() {
     )
 }
 
-mypage.getLayout = function getLayout(page: React.ReactNode) {
+Mypage.getLayout = function getLayout(page: React.ReactNode) {
     return (
         <BackTitleLayout title='MyPage'>
             {page}

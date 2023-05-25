@@ -1,12 +1,12 @@
 import React, { useRef, useState } from 'react'
 import Approval from '@/components/widgets/Approval'
 import Image from 'next/image'
-import style from '@/styles/pages/receipt_register.module.css'
-import ReceiptItem from '@/components/ui/receipt_register/ReceiptItem'
+import style from '@/styles/pages/receiptregister.module.css'
+import ReceiptItem from '@/components/ui/receiptregister/ReceiptItem'
 import BackTitleLayout from '@/components/layouts/BackTitleLayout'
 import { Button, Spacer } from '@nextui-org/react'
 
-export default function receipt_register() {
+export default function ReceiptRegister() {
     const [imgUrl, setImgUrl] = useState<string>()
     const imgRef = useRef<HTMLImageElement>(null)
 
@@ -94,7 +94,7 @@ export default function receipt_register() {
     )
 }
 
-receipt_register.getLayout = function getLayout(page: React.ReactElement) {
+ReceiptRegister.getLayout = function getLayout(page: React.ReactElement) {
     return (
         <BackTitleLayout title='영수증 등록'>{page}</BackTitleLayout>
     )

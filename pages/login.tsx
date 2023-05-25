@@ -5,7 +5,7 @@ import style from '@/styles/pages/login.module.css'
 import { Button, Container, Input, Link, Row, Spacer } from '@nextui-org/react';
 import { useRouter } from 'next/router';
 
-export default function login() {
+export default function Login() {
   const router = useRouter();
   return (
     <main className={style.mainContainer}>
@@ -34,7 +34,7 @@ export default function login() {
   )
 }
 
-login.getLayout = function getLayout(page: ReactNode) {
+Login.getLayout = function getLayout(page: ReactNode) {
   return (
     <LoginUrlSetLayout title='LOGIN'>
       {page}

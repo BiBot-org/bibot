@@ -1,7 +1,7 @@
 import React from 'react'
 import style from '@/components/ui/terms/Terms_items.module.css'
 
-export default function terms_items() {
+export default function TermsItems() {
   return (
     <>
       <main>
@@ -9,7 +9,7 @@ export default function terms_items() {
 
         <div className={style.terms_title}>제 1 조 (목적)</div>
         <p>본 약관은 BIBOT이 운영하는 웹 사이트 (http://xxx.xxx.xxx)의 제반 서비스의 이용조건 및 절차에 관한 사항 및 기타 필요한 사항을 규정함을 목적으로 한다.</p>
-        
+
         <div className={style.terms_title}>제 2 조 (용어의 정의)</div>
         <p>본 약관에서 사용하는 용어는 다음과 같이 정의한다.</p>
         <p>①회원 : 기본 회원 정보를 입력하였고, 회사와 서비스 이용계약을 체결하여 아이디를 부여받은 개인</p>
@@ -132,5 +132,6 @@ export default function terms_items() {
         <p>②제1항의 규정에도 불구하고 동 분쟁으로 인하여 소송이 제기될 경우 동 소송은 회사의 본사 소재지를 관할하는 법원의 관할로 본다.</p>
       </main>
     </>
+
   )
 }
