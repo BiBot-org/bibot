@@ -1,6 +1,8 @@
 import React from 'react'
 import BackTitleLayout from '@/components/layouts/BackTitleLayout'
 import style from 'styles/module.css/paymentdetails.module.css'
+import Image from 'next/image'
+import { Button } from '@nextui-org/react'
 
 export default function Paymentdetails() {
   return (
@@ -18,12 +20,12 @@ export default function Paymentdetails() {
       <div className={style.payment_menu}>
         <p>17건</p>
         <div className={style.payment_menu_icon}>
-          <img src='assets/images/icons/list.svg' alt='list' className='list_img' />
+          <Image src='assets/images/icons/list.svg' alt='list' width={15} height={15} />
           <p>최신순</p>
         </div>
       </div>
       <div className={style.payment_used_list_wrap}>
-        <img src='assets/images/icons/return.svg' alt='return' className='return_img' />
+        <Image src='assets/images/icons/return.svg' alt='return' width={50} height={50} />
         <div className={style.payment_used_list}>
           <p>조선갈비탕</p>
           <p>030501-00001</p>
@@ -33,7 +35,7 @@ export default function Paymentdetails() {
         </div>
       </div>
       <div className={style.payment_used_list_wrap}>
-        <img src='assets/images/icons/sand.svg' alt='sand' className='sand_img' />
+        <Image src='assets/images/icons/sand.svg' alt='sand' width={50} height={50} />
         <div className={style.payment_used_list}>
           <p>GS칼텍스</p>
           <p>032437-00002</p>
@@ -43,7 +45,7 @@ export default function Paymentdetails() {
         </div>
       </div>
       <div className={style.payment_used_list_wrap}>
-        <img src='assets/images/icons/check.svg' alt='check' className='check_img' />
+        <Image src='assets/images/icons/check.svg' alt='check' width={50} height={50} />
         <div className={style.payment_used_list}>
           <p>조선갈비탕</p>
           <p>032427-00001</p>
@@ -53,7 +55,7 @@ export default function Paymentdetails() {
         </div>
       </div>
       <div className={style.payment_used_list_wrap}>
-        <img src='assets/images/icons/check.svg' alt='check' className='check_img' />
+        <Image src='assets/images/icons/check.svg' alt='check' width={50} height={50} />
         <div className={style.payment_used_list}>
           <p>조선갈비탕</p>
           <p>032427-00001</p>
@@ -63,7 +65,7 @@ export default function Paymentdetails() {
         </div>
       </div>
       <div className={style.payment_used_list_wrap}>
-        <img src='assets/images/icons/check.svg' alt='check' className='check_img' />
+        <Image src='assets/images/icons/check.svg' alt='check' width={50} height={50} />
         <div className={style.payment_used_list}>
           <p>조선갈비탕</p>
           <p>032427-00001</p>
@@ -72,7 +74,9 @@ export default function Paymentdetails() {
           <p>승인</p>
         </div>
       </div>
-      <button className={style.payment_btn}><p>더보기</p></button>
+      <div className={style.paymentMoreBtn}>
+        <Button size={'lg'} >더보기</Button>
+      </div>
     </div>
   )
 }

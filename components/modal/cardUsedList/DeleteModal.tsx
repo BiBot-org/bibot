@@ -5,9 +5,9 @@ import style from './DeleteModal.module.css'
 import { useRouter } from 'next/router'
 
 export default function DeleteModal(props: { ismodalopen: boolean, handlemodal: React.Dispatch<React.SetStateAction<boolean>> }) {
-    if (!props.ismodalopen) return null
     const router = useRouter()
-
+    if (!props.ismodalopen) return null
+    
     const handleClickYes = () => {
         props.handlemodal(!props.ismodalopen)
         router.replace('/cardusedlist')

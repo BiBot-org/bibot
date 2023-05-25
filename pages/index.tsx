@@ -12,7 +12,7 @@ export default function Home() {
   }, 3000);
 
   return () => clearTimeout(timer);
-  }, []);
+  });
 
   return (
     <main className={style.mainContainer}>
