@@ -29,14 +29,14 @@ export default function Mypage() {
             <Title title="Service" size={20} />
             <div className={style.settingWrap}>
                 <div className={style.Service_wrap}>
-                    <SettingItems title='이용약관' iconUrl='/assets/images/icons/term.svg' iconAlt='won' link='/approvalhistory' />
+                    <SettingItems title='이용약관' iconUrl='/assets/images/icons/term.svg' iconAlt='list' link='/terms' />
                 </div>
-                <SettingItems title='버전정보' iconUrl='/assets/images/bibot-pic/bibot.svg' iconAlt='businesstrip' link='/mypage' />
-                <SettingItems title='도움말' iconUrl='/assets/images/icons/question.svg' iconAlt='question' link='/mypage' />
+                <SettingItems title='버전정보' iconUrl='/assets/images/bibot-pic/bibot.svg' iconAlt='verinfo' link='/mypage' />
+                <SettingItems title='도움말' iconUrl='/assets/images/icons/question.svg' iconAlt='question' link='/question' />
             </div>
             <Separator gutter={2} />
             <Title title="Setting" size={20} />
-            <SettingItems title='환경설정' iconUrl='/assets/images/icons/setting.svg' iconAlt='setting' link='/bibot' />
+            <SettingItems title='환경설정' iconUrl='/assets/images/icons/setting.svg' iconAlt='setting' link='/settings' />
             <div className={style.logout} onClick={() => setIsModal(!isModal)}>
                 <SettingItems title='로그아웃' iconUrl='/assets/images/icons/logout.svg' iconAlt='logout' />
             </div>

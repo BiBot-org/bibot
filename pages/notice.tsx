@@ -67,8 +67,9 @@ export default function Notice() {
 
 Notice.getLayout = function getLayout(page: React.ReactNode) {
   return (
-    <BackTitleLayout title='공지사항'>
+    <BackTitleLayout title='공지사항' >
       {page}
     </BackTitleLayout>
   )
 }
+3
