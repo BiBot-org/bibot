@@ -13,6 +13,12 @@ export const footerMenu = [
   },
   {
     id: 3,
+    name: "Approval",
+    iconImgUrl: "/assets/images/icons/approvalhistoryicon.svg",
+    link: "/approvalhistory"
+  },
+  {
+    id: 4,
     name: "MyPage",
     iconImgUrl: "/assets/images/icons/mypageIcon.svg",
     link: "/mypage"
