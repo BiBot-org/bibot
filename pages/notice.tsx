@@ -1,6 +1,4 @@
-import BackNotiLayout from '@/components/layouts/BackNotiLayout'
 import BackTitleLayout from '@/components/layouts/BackTitleLayout'
-import Separator from '@/components/ui/Separator'
 import Image from 'next/image'
 import React from 'react'
 import style from 'styles/pages/notice.module.css'

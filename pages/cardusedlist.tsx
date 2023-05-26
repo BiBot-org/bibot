@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback, useState } from 'react'
+import React, { ReactNode, useState } from 'react'
 import style from 'styles/pages/cardusedlist.module.css'
 import Image from 'next/image'
 import Slider from 'react-slick'
@@ -16,7 +16,7 @@ export default function CardUsedList() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
   const settings = {
-    dots:false,
+    dots: false,
     infinite: false,
     speed: 500,
     slidesToShow: 1,
@@ -37,7 +37,7 @@ export default function CardUsedList() {
   return (
     <>
       <main className={style.mainContainer}>
-      <DeleteModal ismodalopen={isModalOpen} handlemodal={setIsModalOpen}/>
+        <DeleteModal ismodalopen={isModalOpen} handlemodal={setIsModalOpen} />
         <Slider {...settings}>
           <div>
             <Image src='/assets/images/icons/emptycard.svg' alt='empty-card' width={327} height={200} onClick={handleCardClick} />
@@ -74,7 +74,6 @@ export default function CardUsedList() {
     </>
   )
 }
-
 
 CardUsedList.getLayout = function getLayout(page: ReactNode) {
   return (

@@ -1,8 +1,8 @@
 .alarm_board {
-  padding: 15px 0px 15px 0px;
+  padding: 1rem 0;
   border-bottom: solid 1px #9d9dae;
 }
 
-.alarm_words {
+.alarm_board :last-child {
   color: #9d9dae;
 }

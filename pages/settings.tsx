@@ -1,6 +1,5 @@
 import React from 'react'
 import style from '@/styles/pages/settings.module.css'
-import Separator from '@/components/ui/Separator'
 import BackTitleLayout from '@/components/layouts/BackTitleLayout'
 import { Grid, Switch } from "@nextui-org/react"
 import Image from 'next/image';
@@ -9,7 +8,6 @@ export default function Settings() {
 
     return (
         <>
-            {/* //<Separator gutter={3} /> */}
             <div className={style.settingsWrap}>
                 <h3>설정</h3>
                 <div className={style.settingsItem}>
