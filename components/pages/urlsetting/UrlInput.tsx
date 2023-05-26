@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Container, Input, Row, Spacer } from '@nextui-org/react'
+import { Button, Container, Input, Spacer } from '@nextui-org/react'
 import Image from 'next/image'
 
 export default function UrlInput() {

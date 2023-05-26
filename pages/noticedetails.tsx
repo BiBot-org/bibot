@@ -1,6 +1,6 @@
 import React from 'react'
 import BackTitleLayout from '@/components/layouts/BackTitleLayout'
-import style from 'styles/module.css/noticedetails.module.css'
+import style from 'styles/pages/noticedetails.module.css'
 import Image from 'next/image'
 
 export default function Noticedetails() {

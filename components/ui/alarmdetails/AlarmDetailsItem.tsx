@@ -6,7 +6,7 @@ export default function AlarmDetailsItem() {
     <>
       <div className={style.alarm_board}>
         <p>결재가 완료 되었습니다.</p>
-        <p className={style.alarm_words}>2023-04-25</p>
+        <p>2023-04-25</p>
       </div>
       
     </>

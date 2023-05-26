@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import style from '@/styles/pages/approvalhistory/approvalhistory.module.css'
+import style from '@/styles/pages/approvalhistory.module.css'
 import Approval from '@/components/widgets/Approval'
 
 export default function Approvalhistory() {
@@ -8,12 +8,12 @@ export default function Approvalhistory() {
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => {
-          window.removeEventListener('scroll', handleScroll); //clean up
+            window.removeEventListener('scroll', handleScroll); //clean up
         };
-      }, []);
-  
+    }, []);
+
     const handleScroll = () => {
-    console.log("window.scrollY : ", window.scrollY)
+        console.log("window.scrollY : ", window.scrollY)
     };
     return (
         <div className={style.approvalhistoryContainer}>
@@ -29,7 +29,7 @@ export default function Approvalhistory() {
             </div>
             <div className={style.searchWrap}>
                 <div className={style.listSearch}>
-                    <input placeholder='3개월, 전체, 최신순 ...' maxLength={4}/>
+                    <input placeholder='3개월, 전체, 최신순 ...' maxLength={4} />
                 </div>
                 <div className={style.searchBtn}>
                     <button>검색</button>
