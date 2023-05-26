@@ -1,9 +1,9 @@
 import React from 'react'
 import { Collapse, Text } from "@nextui-org/react";
 import BackTitleLayout from '@/components/layouts/BackTitleLayout'
-import style from '@/styles/module.css/question.module.css'
+import style from '@/styles/pages/question.module.css'
 
-export default function question() {
+export default function Question() {
   return (
     <>
       <div className={style.questionwrap}>
@@ -57,7 +57,7 @@ export default function question() {
 }
 
 
-question.getLayout = function getLayout(page: React.ReactNode) {
+Question.getLayout = function getLayout(page: React.ReactNode) {
   return (
     <BackTitleLayout title='자주 묻는 질문'>
       {page}

@@ -9,7 +9,7 @@ export const footerMenu = [
     id: 2,
     name: "Bibot",
     iconImgUrl: "/assets/images/icons/robotIcon.svg",
-    link: "/card_used_list"
+    link: "/cardusedlist"
   },
   {
     id: 3,

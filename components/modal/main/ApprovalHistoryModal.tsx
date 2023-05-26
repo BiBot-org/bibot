@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import style from '@/components/modal/main/ApprovalHistoryModal.module.css'
+import style from './ApprovalHistoryModal.module.css'
 import Approval from '@/components/widgets/Approval'
 
 export default function ApprovalHistoryModal() {

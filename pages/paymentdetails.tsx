@@ -1,6 +1,6 @@
 import React from 'react'
 import BackTitleLayout from '@/components/layouts/BackTitleLayout'
-import style from 'styles/module.css/paymentdetails.module.css'
+import style from 'styles/pages/paymentdetails.module.css'
 import Image from 'next/image'
 import { Button } from '@nextui-org/react'
 

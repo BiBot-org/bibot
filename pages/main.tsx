@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import style from '@/styles/pages/main/Home.module.css'
+import React from 'react'
+import style from '@/styles/pages/Home.module.css'
 import CategoryNav from '@/components/widgets/main/CategoryNav'
 import Layout from '@/components/layouts/layout'
 import ApprovalHistoryModal from '@/components/modal/main/ApprovalHistoryModal'
@@ -10,7 +10,7 @@ import { userData } from '@/datas/dummy/userData'
 import { HeaderUserType } from '@/types/header/headerTypes'
 import { GetStaticProps } from 'next'
 
-export default function Main(props: {categoryData:mainCategoryType[] , user: HeaderUserType}) {
+export default function Main(props: { categoryData: mainCategoryType[], user: HeaderUserType }) {
 
     if (typeof window !== 'undefined' && props.user) {
         localStorage.setItem('user', JSON.stringify(props.user))
@@ -18,7 +18,7 @@ export default function Main(props: {categoryData:mainCategoryType[] , user: Hea
 
     return (
         <main className={style.mainContainer}>
-            <CategoryNav 
+            <CategoryNav
                 categoryData={props.categoryData}
             />
             <AnnounceMent />
@@ -40,7 +40,7 @@ Main.getLayout = function getLayout(page: React.ReactNode) {
     )
 }
 
-export const getStaticProps:GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
 
     // const res = await fetch(`${process.env.API_BASE_URL}/api/v1/expense/category`)
     // const categoryData = await res.json()
