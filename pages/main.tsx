@@ -22,10 +22,7 @@ export default function Main(props: { categoryData: mainCategoryType[], user: He
                 categoryData={props.categoryData}
             />
             <AnnounceMent />
-            <AnnounceMent />
-            <AnnounceMent />
-            <AnnounceMent />
-            <ApprovalHistoryModal />
+            {/* <ApprovalHistoryModal /> */}
         </main>
     )
 }
@@ -56,3 +53,5 @@ export const getStaticProps: GetStaticProps = async () => {
         }
     }
 }
+
+Main.auth = true
