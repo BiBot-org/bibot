@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import style from '@/components/layouts/Header.module.css'
 import HeaderProfile from './defaultHeader/HeaderProfile'
 import HeaderNotiMenu from './defaultHeader/HeaderNotiMenu'
