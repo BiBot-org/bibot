@@ -1,5 +1,5 @@
 .notice_wrap {
-  padding: 0px 40px 0px 40px;
+  padding: 0px 35px 0px 35px;
 }
 
 .notice_header {
@@ -23,9 +23,6 @@
 
 .notice_sum {
   margin-top: 30px;
-}
-
-.notice_sum {
   font-size: 0.8rem;
 }
 
@@ -57,7 +54,7 @@
 }
 
 .notice_texting input:focus{
-  outline: 1px solid #8262F8;;
+  outline: 1px solid #8262F8;
   border-radius: 10px;
   background-color: #F4F4F4;
 }
@@ -70,10 +67,14 @@
   margin: 0;
 }
 
+.noticeborder{
+  border-top: solid;
+}
+
+
 .notice_board_wrap {
   margin-top: 20px;
-  padding: 15px 0px 10px 0px;
-  border-top: solid;
+  padding-bottom: 10px;
   border-bottom: solid 1px #c7c7c7;
 }
 
@@ -83,18 +84,20 @@
   background-color: #F99C9C;
   font-size: 0.9rem;
   width: 41px;
-  height: 21px;
-  text-align: center;
+  height: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .notice_board {
-  margin: 10px 0px 0px 0px;
+  margin-top: 10px;
 }
 
 .notice_board_second{
   font-size: 0.85rem;
   margin-top: 5px;
-}
+} 
 
 .notice_board :last-child {
   margin-top: 5px;
@@ -115,11 +118,13 @@
   font-size: 0.9rem;
   width: 85px;
   height: 22px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .notice_btn {
-  width: 310px;
+  width: 320px;
   height: 40px;
   border: none;
   border-radius: 5px;
