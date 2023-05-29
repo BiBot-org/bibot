@@ -3,6 +3,7 @@ import HeaderBackBtn from './backbtnHeader/HeaderBackBtn'
 import style from 'components/layouts/BackTitleLayout.module.css'
 import { useRouter } from 'next/router'
 import ReceiptRegisterHelp from '../ui/receiptregister/ReceiptRegisterHelp'
+import Footer from './Footer'
 
 export default function BackTitleLayout(props: { children: React.ReactNode, title: string, }) {
   const router = useRouter()
@@ -23,7 +24,8 @@ export default function BackTitleLayout(props: { children: React.ReactNode, titl
           }
         </div>
       </header>
-      {props.children}
+      <div>{props.children}</div>
+      <Footer />
     </>
   )
 }
