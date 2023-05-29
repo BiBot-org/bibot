@@ -65,7 +65,7 @@
   background-color: #F99C9C;
   font-size: 0.9rem;
   width: 41px;
-  height: 21px;
+  height: 22px;
   text-align: center;
 }
 
@@ -95,7 +95,7 @@
   height: 40px;
   border: none;
   bottom: 3rem;
-  position: absolute;
+  position: inherit;
   border-radius: 5px;
   color:#9B9B9B;
 }

@@ -25,15 +25,14 @@ export default function Mypage() {
                 <Spacer y={1} />
                 <div>
                     <Text size="$xl" css={{ color: '#40CCC3' }} weight={'bold'}>Service</Text>
-
-                    <SettingItems title='이용약관' iconUrl='/assets/images/icons/term.svg' iconAlt='won' link='/approvalhistory' />
+                    <SettingItems title='이용약관' iconUrl='/assets/images/icons/term.svg' iconAlt='won' link='/terms' />
                     <SettingItems title='버전정보' iconUrl='/assets/images/bibot-pic/bibot.svg' iconAlt='businesstrip' link='/mypage' />
-                    <SettingItems title='도움말' iconUrl='/assets/images/icons/question.svg' iconAlt='question' link='/mypage' />
+                    <SettingItems title='도움말' iconUrl='/assets/images/icons/question.svg' iconAlt='question' link='/question' />
                 </div>
                 <Spacer y={2} />
                 <div>
                     <Text size="$xl" css={{ color: '#40CCC3' }} weight={'bold'}>Setting</Text>
-                    <SettingItems title='환경설정' iconUrl='/assets/images/icons/setting.svg' iconAlt='setting' link='/bibot' />
+                    <SettingItems title='환경설정' iconUrl='/assets/images/icons/setting.svg' iconAlt='setting' link='/settings' />
                     <div onClick={() => setIsModal(!isModal)}>
                         <SettingItems title='로그아웃' iconUrl='/assets/images/icons/logout.svg' iconAlt='logout' />
                     </div>

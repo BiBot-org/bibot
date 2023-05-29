@@ -1,0 +1,32 @@
+.notice_board_wrap {
+  margin-top: 20px;
+  padding-bottom: 10px;
+  border-bottom: solid 1px #c7c7c7;
+}
+
+.notice_first {
+  border-radius: 5px;
+  color: #EFEBEB;
+  background-color: #F99C9C;
+  font-size: 0.9rem;
+  width: 41px;
+  height: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notice_board {
+  margin: 10px 0px 0px 0px;
+}
+
+.notice_board_second{
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+.notice_board :last-child {
+  margin-top: 5px;
+  font-size: 0.85rem;
+  color: #9B9B9B;
+}
