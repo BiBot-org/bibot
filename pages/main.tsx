@@ -2,7 +2,6 @@ import React from 'react'
 import style from '@/styles/pages/Home.module.css'
 import CategoryNav from '@/components/widgets/main/CategoryNav'
 import Layout from '@/components/layouts/layout'
-import ApprovalHistoryModal from '@/components/modal/main/ApprovalHistoryModal'
 import AnnounceMent from '@/components/widgets/main/AnnounceMent'
 import { mainCategoryData } from '@/datas/mainCategoryData'
 import { mainCategoryType } from '@/types/main/mainTypes'
@@ -22,7 +21,6 @@ export default function Main(props: { categoryData: mainCategoryType[], user: He
                 categoryData={props.categoryData}
             />
             <AnnounceMent />
-            {/* <ApprovalHistoryModal /> */}
         </main>
     )
 }
