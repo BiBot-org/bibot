@@ -10,7 +10,7 @@ export default function Mypage() {
 
     return (
         <>
-            <main style={{padding:'0 2rem'}}>
+            <main>
                 {isModal &&
                     <TwoBtnModal
                         isModal={isModal}

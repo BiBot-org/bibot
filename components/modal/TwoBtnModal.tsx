@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { Button, Spacer } from '@nextui-org/react'
 
-export default function TwoBtnModal(props: { text: string, isModal: boolean, modal: React.Dispatch<React.SetStateAction<boolean>>, link: string }) {
+export default function TwoBtnModal(props: { text: string, isModal: boolean, modal: React.Dispatch<React.SetStateAction<boolean>>, link: string, company?: string }) {
     
     const router = useRouter()
 
@@ -21,15 +21,15 @@ export default function TwoBtnModal(props: { text: string, isModal: boolean, mod
                 <Spacer y={0.5} />
                 <div className={style.modalContents}>
                     <div className={style.modalText}>
+                        <p>{props.company}</p>
                         <p>{props.text}</p>
-                        <p>회사 이름이 맞습니까?</p>
                     </div>
                     <Spacer y={1} />
                     <div className={style.contentsBtn}>
-                        <Button auto className={style.checkBtn} onClick={() => router.push(props.link)}>
+                        <Button auto className={style.checkBtn} onPress={() => router.push(props.link)}>
                             늬예 늬예
                         </Button>
-                        <Button auto className={style.cancelBtn} onClick={() => props.modal(!props.isModal)}>
+                        <Button auto className={style.cancelBtn} onPress={() => props.modal(!props.isModal)}>
                             응 아니야
                         </Button>
                     </div>
