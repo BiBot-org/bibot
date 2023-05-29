@@ -1,34 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Container, Input, Spacer } from '@nextui-org/react'
 import Image from 'next/image'
+import TwoBtnModal from '@/components/modal/TwoBtnModal'
 
 export default function UrlInput() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
   return (
-    <article>
-      <Image src="/assets/images/bibot-pic/logoText.svg" alt="logo" width={135} height={46} priority />
-      <Spacer y={3} />
-      <Container style={{padding:0}}>
+    <>
+      <TwoBtnModal isModal={isModalOpen} modal={setIsModalOpen} company={'Spharos'} text={'회사 이름이 맞습니까?'} link={'/login'} />
+      <article>
+        <Image src="/assets/images/bibot-pic/logoText.svg" alt="logo" width={135} height={46} priority />
+        <Spacer y={3} />
+        <Container style={{ padding: 0 }}>
           <Input
-            // rounded
+            aria-label="url"
             bordered
             width="100%"
             size='lg'
-            placeholder="bobot.com/spharos/tech"
+            placeholder="bibot.com/spharos/tech"
             color="primary"
-            style={{textAlign:'center', fontSize:'0.8rem', fontWeight:'bold'}}
+            style={{ textAlign: 'center', fontSize: '0.8rem', fontWeight: 'bold' }}
           />
           <Spacer y={1} />
-          <Button 
+          <Button
             auto
+            aria-label="urlConfirm"
             color="primary"
             size='lg'
-            // rounded
-            style={{width:'100%', backgroundColor:'#40CCC3', color:'#fff', textAlign:'center'}}
+            onPress={() => setIsModalOpen(!isModalOpen)}
+            style={{ width: '100%', backgroundColor: '#40CCC3', color: '#fff', textAlign: 'center' }}
           >
             확인
-            </Button>
-      
-      </Container>
-    </article>
+          </Button>
+        </Container>
+      </article>
+    </>
   )
 }
