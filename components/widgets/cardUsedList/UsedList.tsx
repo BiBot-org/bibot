@@ -62,7 +62,7 @@ export default function UsedList() {
       {
         cardUsedData.map((data, index) => {
           return (
-            <CardUsedItem key={index} category={data.category} title={data.title} price={data.price} date={data.date} />
+            <CardUsedItem key={index} category={data.category} title={data.title} price={data.price} date={data.date} submit={data.submit} />
           )
         })
       }
