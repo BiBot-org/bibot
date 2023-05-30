@@ -11,15 +11,6 @@ export default function AccountProfile(props: {
   company: string;
   email: string;
 }) {
-  const [userInfo, setUserInfo] = useState<BibotUserInfo>({} as BibotUserInfo);
-  const { data: session } = useSession();
-
-  useEffect(() => {
-    if (session) {
-      GetUserInfo(session.tokenInfo.id).then((res) => setUserInfo(res.data));
-    }
-  }, [session]);
-
   return (
     <div className={style.accountWrap}>
       <div className={style.accountImage}>
