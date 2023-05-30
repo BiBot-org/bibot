@@ -8,13 +8,11 @@ export default function CardUsedList() {
     <>
       <CardSlide />
     </>
-  )
+  );
 }
 
 CardUsedList.getLayout = function getLayout(page: ReactNode) {
-  return (
-    <BackTitleLayout title='카드 사용 내역'>
-      {page}
-    </BackTitleLayout>
-  )
-}
+  return <BackTitleLayout title="카드 사용 내역">{page}</BackTitleLayout>;
+};
+
+CardUsedList.auth = true;

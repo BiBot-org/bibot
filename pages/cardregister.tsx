@@ -1,6 +1,6 @@
-import BackTitleLayout from '@/components/layouts/BackTitleLayout'
-import React from 'react'
-import style from 'styles/pages/cardregister.module.css'
+import BackTitleLayout from "@/components/layouts/BackTitleLayout";
+import React from "react";
+import style from "styles/pages/cardregister.module.css";
 
 export default function Cardregister() {
   return (
@@ -29,7 +29,7 @@ export default function Cardregister() {
         <div className={style.value_number}>
           <p>CVC(3자리)</p>
           <div>
-            <input type='password' maxLength={3} />
+            <input type="password" maxLength={3} />
           </div>
         </div>
       </div>
@@ -37,13 +37,11 @@ export default function Cardregister() {
         <button className={style.select_btn}>등록</button>
       </div>
     </main>
-  )
+  );
 }
 
 Cardregister.getLayout = function getLayout(page: React.ReactNode) {
-  return (
-    <BackTitleLayout title='카드등록'>
-      {page}
-    </BackTitleLayout>
-  )
-}
+  return <BackTitleLayout title="카드등록">{page}</BackTitleLayout>;
+};
+
+Cardregister.auth = true;

@@ -14,7 +14,7 @@ export default function ReceiptRegister() {
 }
 
 ReceiptRegister.getLayout = function getLayout(page: React.ReactElement) {
-    return (
-        <BackTitleLayout title='영수증 등록'>{page}</BackTitleLayout>
-    )
-}
+  return <BackTitleLayout title="영수증 등록">{page}</BackTitleLayout>;
+};
+
+ReceiptRegister.auth = true;

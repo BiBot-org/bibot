@@ -27,6 +27,10 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env.localhost
+
+config.dev.ts
+config.local.ts
 
 # vercel
 .vercel
