@@ -5,6 +5,7 @@ export const cardUsedData = [
         title: '맥도날드',
         price: 7000,
         date: '2023-05-01',
+        submit: true,
     },
     {
         id: 2,
@@ -12,6 +13,7 @@ export const cardUsedData = [
         title: '스타벅스',
         price: 5000,
         date: '2023-05-01',
+        submit: false,
     },
     {
         id: 3,
@@ -19,6 +21,7 @@ export const cardUsedData = [
         title: 'GS칼텍스',
         price: 30000,
         date: '2023-05-01',
+        submit: true,
     },
     {
         id: 4,
@@ -26,5 +29,6 @@ export const cardUsedData = [
         title: '다이소',
         price: 10000,
         date: '2023-05-01',
+        submit: true,
     },
 ]
