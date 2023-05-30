@@ -13,6 +13,7 @@ export default function HeaderBackBtn() {
                 height={17}
                 src='/assets/images/icons/Back_button.svg'
                 alt='backBtn'
+                style={{ width: 'auto', height: 'auto' }}
             />
         </div>
     )
