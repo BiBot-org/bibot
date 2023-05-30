@@ -27,10 +27,10 @@ export default function DeleteModal(props: { ismodalopen: boolean, handlemodal: 
                         </div>
                         <Spacer y={1} />
                         <div className={style.contentsBtn}>
-                            <Button auto className={style.checkBtn} onClick={handleClickYes} >
+                            <Button auto className={style.checkBtn} onPress={handleClickYes} >
                                 늬예 늬예
                             </Button>
-                            <Button auto className={style.cancelBtn} onClick={() => props.handlemodal(!props.ismodalopen)}>
+                            <Button auto className={style.cancelBtn} onPress={() => props.handlemodal(!props.ismodalopen)}>
                                 응 아니야
                             </Button>
                         </div>
