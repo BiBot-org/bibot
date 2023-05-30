@@ -21,12 +21,3 @@
     font-size: 1.3rem;
     font-weight: bold;
 }
-
-.bibot_error_alarm {
-    text-align: center;
-    color: #828282;
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}

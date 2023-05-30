@@ -2,9 +2,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: -40px;
-    padding: 35px;
-    text-align: left;
+    height: 5rem;
+    padding: 0 2rem;    
+    margin-top: 0.5rem;
 }
 
 .usedItemInfo {
@@ -39,6 +39,5 @@
 }
 
 .price p {
-    margin: 10px 0px;
     font-size: 1.2rem;
 }

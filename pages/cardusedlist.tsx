@@ -1,6 +1,6 @@
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode } from 'react'
 import BackTitleLayout from '@/components/layouts/BackTitleLayout'
-import CardSlide from '@/components/pages/carUsedList/CardSlide'
+import CardSlide from '@/components/pages/cardUsedList/CardSlide'
 
 export default function CardUsedList() {
 

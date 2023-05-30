@@ -10,6 +10,7 @@
 
 .uploadText {
     text-align: center;
+    white-space: nowrap;
     color: var(--bibot-primary);
     font-size: 12px;
     font-weight: bold;
@@ -21,13 +22,13 @@
 
 .ReceiptOCRHeader {
     text-align: center;
-    color: var(--bibot-primary);
+    color:var(--bibot-primary)
 }
 
-.ReceiptOCRDetails {
+/* .ReceiptOCRDetails {
     border-top: 1px dashed var(--bibot-black);
     stroke-dasharray: 1px;
-}
+} */
 
 .categorySel {
     display: flex;
@@ -45,6 +46,4 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    position: fixed;
-    bottom: 30px;
 }
