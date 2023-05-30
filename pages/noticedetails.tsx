@@ -39,13 +39,10 @@ export default function Noticedetails() {
       </div>
       <button className={style.notice_btn} onClick={() => router.push('/notice')}><p>목록</p></button>
     </div>
-  )
+  );
 }
 
 Noticedetails.getLayout = function getLayout(page: React.ReactNode) {
-  return (
-    <BackTitleLayout title='공지사항'>
-      {page}
-    </BackTitleLayout>
-  )
-}
+  return <BackTitleLayout title="공지사항">{page}</BackTitleLayout>;
+};
+Noticedetails.auth = true;
