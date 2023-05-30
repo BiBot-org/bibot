@@ -5,9 +5,10 @@ import Slider from 'react-slick'
 import Image from 'next/image'
 import DeleteModal from '@/components/modal/cardUsedList/DeleteModal'
 import { useRouter } from 'next/router'
-import style from '@/components/pages/carUsedList/CardSlide.module.css'
+import style from '@/components/pages/cardUsedList/CardSlide.module.css'
 import UsedList from '@/components/widgets/cardUsedList/UsedList'
 import { Spacer } from '@nextui-org/react'
+import EmptyCardInfo from '@/components/ui/cardusedlist/EmptyCardInfo'
 
 export default function CardSlide() {
     const router = useRouter()
@@ -75,16 +76,7 @@ export default function CardSlide() {
 
                 {
                     currentIndex === 0 ?
-                        <div className={style.bibot_error_alarm}>
-                            <Image
-                                aria-label='bibot'
-                                src='/assets/images/bibot-pic/bibot.svg'
-                                alt='bibot'
-                                width={25}
-                                height={25}
-                            />
-                            <div className={style.error_alarm}>카드를 등록해 주세요.</div>
-                        </div>
+                        <EmptyCardInfo />
                         : <UsedList />
                 }
             </main>
