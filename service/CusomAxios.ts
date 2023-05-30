@@ -10,7 +10,6 @@ export const CustomAxios = axios.create({
 
 CustomAxios.interceptors.request.use(async (config) => {
   const session = await getSession();
-  console.log(session);
   if (session) {
     config.headers.Authorization = "Bearer " + session.tokenInfo.accessToken;
   }

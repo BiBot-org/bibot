@@ -16,3 +16,11 @@ export interface NoticeInfo {
   type: string;
   regTime: string;
 }
+
+export interface SearchNoticeResult {
+  content: NoticeDTO[];
+  pageNo: number;
+  isLast: boolean;
+  totalPage: number;
+  totalElement: number;
+}
