@@ -5,10 +5,11 @@
     width: 80%;
     margin: 0.3rem auto;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
     max-width: 25rem;
     min-width: 20rem;
+    height: 5rem;
     padding: 0.8rem;
 
 }
@@ -16,16 +17,22 @@
 .announceImage {
     width: 3rem;
     height: 3rem;
+    min-width: 3rem;
+    max-width: 3rem;
     background-color: #BA73E720;
     border-radius: 8px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     margin-right: 1rem;
 }
 
 .announceImage img {
-    object-fit: contain;
+    object-fit: cover;
+}
+
+.content {
+    min-width: 60%;
 }
 
 .content p {
@@ -46,9 +53,11 @@
 
 .notiTime {
     width: 20%;
+    height: 100%;
     white-space: nowrap;
-    padding-top: 1rem;
     text-align: center;
+    display: flex;
+    align-items: flex-end;
 }
 
 .notiTime p {

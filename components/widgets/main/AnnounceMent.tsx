@@ -12,12 +12,12 @@ export default function AnnounceMent() {
 
   return (
     <>
-      {noticeList &&
-        noticeList.map((notice) => (
-          <>
-            <AnnouncementPanel key={`notice : ${notice.id}`} notice={notice} />
-          </>
-        ))}
+        {noticeList &&
+          noticeList.map((notice) => (
+            <>
+              <AnnouncementPanel key={`notice : ${notice.id}`} notice={notice} />
+            </>
+          ))}
     </>
   );
 }

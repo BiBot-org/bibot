@@ -2,14 +2,16 @@ import style from "@/components/widgets/main/AnnounceMent.module.css";
 import { NoticeDTO } from "@/types/notice/types";
 import { getFormattedDateFromLocalDateTime } from "@/utils/dateUtils";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 interface Prop {
   notice: NoticeDTO;
 }
 
 export const AnnouncementPanel = ({ notice }: Prop) => {
+  const router = useRouter();
   return (
-    <div className={style.announceWrap}>
+    <div className={style.announceWrap} onClick={()=>router.push(`noticedetail/${notice.id}`)}>
       <div className={style.announceImage}>
         <Image
           src={"/assets/images/icons/robotIcon.svg"}
