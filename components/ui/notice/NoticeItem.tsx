@@ -1,20 +1,30 @@
 import React from 'react'
 import style from '@/components/ui/notice/NoticeItem.module.css'
 import { useRouter } from 'next/router'
+import { Spacer } from '@nextui-org/react'
+import { noticeType } from '@/datas/notice/noticeStatus'
+import { noticeStatus } from '@/datas/notice/noticeBackGround'
 
-export default function NoticeItem() {
+export default function NoticeItem(props: { id: number, type: string, title: string, content: string, date: string }) {
   const router = useRouter()
+
+  const statusBackground = {
+    backgroundColor: noticeStatus[props.type]
+  }
+
   return (
     <>
       <div className={style.notice_board_wrap}>
-        <div className={style.notice_first}>
-          <p>공지</p>
+        <Spacer y={1} />
+        <div className={style.notice_first} style={statusBackground}>
+          <p>{noticeType[props.type]}</p>
         </div>
-        <div className={style.notice_board} onClick={() => router.push('/noticedetails')}>
-          <p>시스템 점검 안내</p>
-          <p className={style.notice_board_second}>익일 10:00~13:30 시스템 점검을 할지도 모릅니다.</p>
-          <p>2023-04-25</p>
+        <div className={style.notice_board} onClick={() => router.push(`/noticedetail/${props.id}`)}>
+          <p>{props.title}</p>
+          <p className={style.notice_board_second}>{props.content}</p>
+          <p>{props.date.slice(0, 10)}</p>
         </div>
+        <Spacer y={1} />
       </div>
     </>
   )
