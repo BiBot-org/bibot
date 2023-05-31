@@ -1,6 +1,6 @@
 export interface SearchPaymentHistoryReq {
-  cardId: number;
-  startDate: Date;
-  endDate: Date;
+  cardId?: number;
+  startDate: string;
+  endDate: string;
   page: number;
 }
