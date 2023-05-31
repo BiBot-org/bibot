@@ -1,29 +1,18 @@
-import React, { ChangeEvent, useState } from 'react'
-import style from './UsedList.module.css'
-import { cardUsedData } from '@/datas/dummy/cardUsedData'
-import CardUsedItem from '@/components/ui/cardusedlist/CardUsedItem'
-import { FormElement, Input, Spacer } from '@nextui-org/react'
+import React, { ChangeEvent, useEffect, useState } from "react";
+import style from "./UsedList.module.css";
+import { cardUsedData } from "@/datas/dummy/cardUsedData";
+import CardUsedItem from "@/components/ui/cardusedlist/CardUsedItem";
+import { FormElement, Input, Spacer } from "@nextui-org/react";
+import { SearchPaymentHistory } from "@/service/payment/PaymentService";
+import { SearchPaymentHistoryInfo } from "@/types/payment/types";
+import { SearchPaymentHistoryReq } from "@/types/payment/RequestTypes";
 
-export default function UsedList() {
+interface Prop {
+  cardId: number;
+}
 
-  const today = new Date().toISOString().slice(0, 10)
-  const threeMonthAgo = new Date(new Date().setMonth(new Date().getMonth() - 3)).toISOString().slice(0, 10)
-  const [leftDate, setLeftDate] = useState<string>(threeMonthAgo)
-  const [rightDate, setRightDate] = useState<string>(today)
-
-  const handleRightDateChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<FormElement>) => {
-    const selectedDate = e.target.value;
-    const currentDate = new Date();
-    const selected = new Date(selectedDate);
-
-    if (selected <= currentDate) {
-      setRightDate(selectedDate);
-      setLeftDate(calculateThreeMonthAgo(selectedDate));
-    } else {
-      setRightDate(today);
-      setLeftDate(calculateThreeMonthAgo(today));
-    }
-  };
+export default function UsedList({ cardId }: Prop) {
+  const today = new Date().toISOString().slice(0, 10);
 
   const calculateThreeMonthAgo = (selectedDate: string) => {
     const currentDate = new Date(selectedDate);
@@ -31,10 +20,47 @@ export default function UsedList() {
     return currentDate.toISOString().slice(0, 10);
   };
 
+  const [searchParam, setSearchParam] = useState<SearchPaymentHistoryReq>({
+    startDate: calculateThreeMonthAgo(today),
+    endDate: today,
+    page: 1,
+  } as SearchPaymentHistoryReq);
+
+  const [searchPaymentHistoryInfo, setSearchPaymentHistoryInfo] =
+    useState<SearchPaymentHistoryInfo>({} as SearchPaymentHistoryInfo);
+
+  const handleRightDateChange = (
+    e: ChangeEvent<HTMLInputElement> | ChangeEvent<FormElement>
+  ) => {
+    const selectedDate = e.target.value;
+    const currentDate = new Date();
+    const selected = new Date(selectedDate);
+
+    if (selected <= currentDate) {
+      setSearchParam({
+        ...searchParam,
+        startDate: calculateThreeMonthAgo(selectedDate),
+        endDate: selectedDate,
+      });
+    } else {
+      setSearchParam({
+        ...searchParam,
+        startDate: calculateThreeMonthAgo(today),
+        endDate: today,
+      });
+    }
+  };
 
   const sum = cardUsedData.reduce((acc, cur) => {
-    return acc + cur.price
-  }, 0)
+    return acc + cur.price;
+  }, 0);
+
+  useEffect(() => {
+    SearchPaymentHistory({
+      cardId: cardId,
+      ...searchParam,
+    }).then((res) => setSearchPaymentHistoryInfo(res.data));
+  }, [cardId, searchParam]);
 
   return (
     <>
@@ -44,28 +70,34 @@ export default function UsedList() {
       </div>
       <div className={style.dateWrap}>
         <Input
-          aria-label='threeMonthAgo'
-          type='date'
-          value={leftDate}
+          aria-label="threeMonthAgo"
+          type="date"
+          value={searchParam.startDate}
           readOnly
         />
         <span>-</span>
         <Input
-          aria-label='today'
-          type='date'
-          value={rightDate}
+          aria-label="today"
+          type="date"
+          value={searchParam.endDate}
           onChange={handleRightDateChange}
           max={today}
         />
       </div>
       <Spacer y={1} />
-      {
-        cardUsedData.map((data, index) => {
-          return (
-            <CardUsedItem key={index} category={data.category} title={data.title} price={data.price} date={data.date} submit={data.submit} />
-          )
-        })
-      }
+      {searchPaymentHistoryInfo.content &&
+        searchPaymentHistoryInfo.content.map((data, idx) => (
+          <>
+            <CardUsedItem
+              key={`itm ${data.id}`}
+              approvalId={data.approvalId || ""}
+              title={data.paymentDestination}
+              price={data.amount}
+              date="2023-05-31"
+              isRequested={data.isRequested}
+            />
+          </>
+        ))}
     </>
-  )
+  );
 }

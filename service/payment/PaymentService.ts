@@ -22,7 +22,7 @@ export async function GetPaymentHistory(historyId: string) {
 
 export async function SearchPaymentHistory(req: SearchPaymentHistoryReq) {
   const response: SearchPaymentHistoryRes = await CustomAxios.get(
-    `${cardServiceUrl}/api/v1/payment`,
+    `${cardServiceUrl}/api/v1/payment/search`,
     {
       params: {
         cardId: req.cardId,
