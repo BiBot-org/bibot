@@ -41,7 +41,7 @@ export default function CardSlide() {
   useEffect(() => {
     GetAllCard().then((res) => setCardInfoList(res.data));
     console.log(cardInfoList);
-  }, []);
+  }, [cardInfoList]);
 
   return (
     <>
