@@ -14,13 +14,17 @@
   align-items: center;
 }
 
-.notice_board_second{
-  font-size: 0.85rem;
-  margin-top: 5px;
+.notice_board :first-child{
+  font-weight: bold;
 }
 
 .notice_board :last-child {
   margin-top: 5px;
   font-size: 0.85rem;
   color: #9B9B9B;
+}
+
+.notice_board_second{
+  font-size: 0.85rem;
+  margin-top: 5px;
 }
