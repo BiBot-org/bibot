@@ -45,7 +45,7 @@ export default function NoticeDetailBtn(props: { id: number }) {
                 {nextNotice && (
                     <div className={style.notice_details_list_b} onClick={() => router.push(`/noticedetail/${nextNotice.id}`)}>
                         <Image src={'/assets/images/icons/back.svg'} alt='back' width={20} height={20} />
-                        <p className={style.moveText}>다음글</p>
+                        <p className={style.moveText}>다음</p>
                         <p
                             className={style.notice_icon}
                             style={{ backgroundColor: noticeStatus[nextNotice.type] }}
@@ -57,8 +57,8 @@ export default function NoticeDetailBtn(props: { id: number }) {
                     prevNotice && (
                         <div className={style.notice_details_list_n} onClick={() => router.push(`/noticedetail/${prevNotice.id}`)}>
                             <Image src={'/assets/images/icons/back.svg'} alt='back' width={20} height={20} />
-                            <p className={style.moveText}>이전글</p>
-                            <p style={{ backgroundColor: noticeStatus[prevNotice.type] }} className={style.notice_icon}>{noticeType[prevNotice.type]}</p>
+                            <p className={style.moveText}>이전</p>
+                            <p style={{ backgroundColor: noticeStatus[prevNotice.type], whiteSpace:'nowrap' }} className={style.notice_icon}>{noticeType[prevNotice.type]}</p>
                             <p className={style.detail_words}>{prevNotice.title}</p>
                         </div>
                     )}

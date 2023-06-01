@@ -16,7 +16,7 @@
 }
 
 main {
-  padding: 0 3rem;
+  padding: 0 2rem;
 }
 
 ul {
@@ -27,6 +27,10 @@ ul {
 /* next ui custom */
 .nextui-progress-bar {
   background: linear-gradient(to left, #C95DEF 0%, #0DCABF 100%);
+}
+
+.nextui-c-yrlUe-kJGdUE-activeColor-default {
+  --nextui--navbarItemHighlightTextColor: var(--bibot-white);
 }
 
 /* react-slick */

@@ -32,7 +32,7 @@ export default function Mypage() {
     if (session) {
       GetUserInfo(session.tokenInfo.id).then((res) => setUserInfo(res.data));
     }
-  }, [session]);
+  }, [session, setUserInfo]);
   return (
     <>
       <main>

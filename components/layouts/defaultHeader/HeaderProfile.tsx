@@ -31,7 +31,7 @@ export default function HeaderProfile() {
     if (session) {
       GetUserInfo(session.tokenInfo.id).then((res) => setUserInfo(res.data));
     }
-  }, [session]);
+  }, [session, setUserInfo]);
 
   useEffect(() => {
     const random = Math.floor(Math.random() * greetings.length);

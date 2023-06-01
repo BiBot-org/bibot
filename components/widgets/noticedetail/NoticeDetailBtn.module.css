@@ -7,7 +7,7 @@
 
 .notice_details_list_b img {
     transform: rotate(90deg);
-    margin: 10px;
+    margin: 5px;
 }
 
 .moveText {
@@ -20,7 +20,7 @@
     color: #EFEBEB;
     background-color: #F99C9C;
     font-size: 0.9rem;
-    width: 41px;
+    width: 51px;
     height: 22px;
     text-align: center;
 }
@@ -43,7 +43,7 @@
 
 .notice_details_list_n img {
     transform: rotate(270deg);
-    margin: 10px 10px;
+    margin: 5px;
 }
 
 .notice_btn {
