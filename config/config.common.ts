@@ -6,7 +6,7 @@ export declare namespace ICommonConfig {
     expenseServiceUrl: string;
     cardServiceUrl: string;
     keycloakUrl: string;
-    clientCridential: string;
+    clientCridential?: string;
     mode: Mode;
   }
 }
