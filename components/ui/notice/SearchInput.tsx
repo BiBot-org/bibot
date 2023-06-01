@@ -6,6 +6,7 @@ import { SearchNoticeReq } from '@/types/notice/RequestType'
 import { NoticeDTO } from '@/types/notice/types'
 
 export default function SearchInput(props: { setNoticeList: React.Dispatch<React.SetStateAction<NoticeDTO[]>> }) {
+    const { setNoticeList } = props;
 
     const [searchParam, setSearchParam] = useState<SearchNoticeReq>(
         {} as SearchNoticeReq
@@ -20,12 +21,12 @@ export default function SearchInput(props: { setNoticeList: React.Dispatch<React
 
     useEffect(() => {
         SearchNotice(searchParam).then((res) => {
-            props.setNoticeList(res.data.content)
+            setNoticeList(res.data.content)
         })
             .catch((err) => {
                 // console.log(err);
             })
-    }, [searchParam])
+    }, [setNoticeList, searchParam])
 
 
     return (

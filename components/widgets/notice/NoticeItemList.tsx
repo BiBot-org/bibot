@@ -4,12 +4,13 @@ import { NoticeDTO } from '@/types/notice/types'
 import React, { useEffect } from 'react'
 
 export default function NoticeItemList(props: { noticeList: NoticeDTO[], setNoticeList: React.Dispatch<React.SetStateAction<NoticeDTO[]>> }) {
+    const { noticeList, setNoticeList } = props;
 
     useEffect(() => {
         GetNoticeMain().then((res) => {
-            props.setNoticeList(res.data)
+            setNoticeList(res.data)
         })
-    }, [])
+    }, [noticeList, setNoticeList])
 
     console.log(props.noticeList)
     return (

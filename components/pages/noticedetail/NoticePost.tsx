@@ -15,12 +15,12 @@ export default function NoticePost() {
             console.log(res.data)
             setNotice(res.data)
         })
-        .catch((err) => {
-            if (err.response.status === 404) {
-                router.push('/404')
-            }
-        })
-    }, [id])
+            .catch((err) => {
+                if (err.response.status === 404) {
+                    router.push('/404')
+                }
+            })
+    }, [router, id])
 
     return (
         <>
@@ -32,7 +32,7 @@ export default function NoticePost() {
                         type={notice.type}
                         updateTime={notice.updateTime}
                     />
-                    <NoticeDetailBtn id={id}/>
+                    <NoticeDetailBtn id={id} />
                 </>
             }
         </>
