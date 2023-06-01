@@ -19,11 +19,11 @@ export default function ViewInfoDetail() {
         <article>
             <div>
                 <CardUsedItem
-                    category={'식비'}
+                    approvalId={'1234'}
                     title={'조선갈비탕'}
                     price={13000}
                     date={'2023-05-01'}
-                    submit={false} />
+                    isRequested={false} />
             </div>
             <div style={{ display: 'flex' }}>
                 <Image
