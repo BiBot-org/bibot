@@ -1,11 +1,11 @@
-import configLocal from "./config.local";
+import configDevelop from "./config.develop";
 
 const Config = () => {
-  switch (process.env.NEXT_PUBLIC_RUN_MODE) {
+  switch (process.env.RUN_MODE) {
     case "local":
-      return configLocal;
+      return configDevelop;
     default:
-      return configLocal;
+      return configDevelop;
   }
 };
 
