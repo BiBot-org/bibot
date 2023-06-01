@@ -35,6 +35,7 @@ export async function SearchNotice(searchParam: SearchNoticeReq) {
       params: {
         title: searchParam.title,
         page: searchParam.page,
+        type: searchParam.type,
       },
     }
   ).then((res) => res.data);
