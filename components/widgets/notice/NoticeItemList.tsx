@@ -10,14 +10,14 @@ export default function NoticeItemList(props: { noticeList: NoticeDTO[], setNoti
         GetNoticeMain().then((res) => {
             setNoticeList(res.data)
         })
-    }, [noticeList, setNoticeList])
+    }, [setNoticeList])
 
     console.log(props.noticeList)
     return (
         <div>
-            <p>{props.noticeList.length}건</p>
+            <p>{noticeList.length}건</p>
             <div>
-                {props.noticeList && props.noticeList.map((notice) =>
+                {noticeList && noticeList.map((notice) =>
                     <NoticeItem
                         key={notice.id}
                         notice={notice}
