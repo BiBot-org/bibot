@@ -51,6 +51,7 @@ export default function UsedList({ cardId }: Prop) {
     }
   };
 
+  //구현해야 합니다
   const sum = cardUsedData.reduce((acc, cur) => {
     return acc + cur.price;
   }, 0);
