@@ -1,0 +1,11 @@
+.navbar div {
+    margin: 0 !important;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.navbar ul li::before {
+    background-color: var(--bibot-primary);
+}
+

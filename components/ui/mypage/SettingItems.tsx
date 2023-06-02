@@ -21,7 +21,7 @@ export default function SettingItems(props: { title: string, iconUrl: string, ic
                 </div>
             </div>
             <div className={style.rightBtn}>
-                <Image src={'/assets/images/icons/rightArrow.svg'} alt='back' width={10} height={15} />
+                <Image src={'/assets/images/icons/rightarrowicon.svg'} alt='back' width={20} height={20} />
             </div>
         </div>
     )

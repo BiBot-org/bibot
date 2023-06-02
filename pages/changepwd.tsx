@@ -1,13 +1,12 @@
 import React from 'react'
 import LoginUrlSetLayout from '@/components/layouts/LoginUrlSetLayout'
 import { Button, Container, Input, Row, Spacer } from '@nextui-org/react'
-import style from '@/styles/pages/changepwd.module.css'
 
 export default function Changepwd() {
     return (
         <>
             <Spacer y={3} />
-            <main className={style.mainContainer}>
+            <main>
                 <article>
                     <Container style={{ padding: 0 }}>
                         <Row>

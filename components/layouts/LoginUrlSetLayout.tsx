@@ -1,7 +1,5 @@
 import React from 'react'
 import style from './LoginUrlSetLayout.module.css'
-import Separator from '../ui/Separator';
-import Image from 'next/image';
 import HeaderBackBtn from './backbtnHeader/HeaderBackBtn';
 import { Spacer } from '@nextui-org/react';
 import { useRouter } from 'next/router';

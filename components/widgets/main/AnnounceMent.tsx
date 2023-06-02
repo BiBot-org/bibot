@@ -1,22 +1,53 @@
-import React from 'react'
-import Image from 'next/image'
-import style from '@/components/widgets/main/AnnounceMent.module.css'
+import React, { useEffect, useState } from "react";
+import { GetNoticeMain } from "@/service/notice/NoticeService";
+import { NoticeDTO } from "@/types/notice/types";
+import { AnnouncementPanel } from "./Announcement-panel";
+import Link from "next/link";
 
 export default function AnnounceMent() {
-    return (
-        <>
-            <div className={style.announceWrap}>
-                <div className={style.announceImage}>
-                    <Image src={'/assets/images/icons/robotIcon.svg'} alt={'robotIcon'} width={25} height={25} />
-                </div>
-                <div className={style.content}>
-                    <p>[공지] 시스템 점검 안내</p>
-                    <p>익일 10:00 ~ 13:30 시스템 점검 예정입니다.</p>
-                </div>
-                <div className={style.notiTime}>
-                    <p>10:00 AM</p>
-                </div>
-            </div>
-        </>
-    )
+  const [noticeList, setNoticeList] = useState<NoticeDTO[]>([]);
+
+  useEffect(() => {
+    GetNoticeMain().then((res) => setNoticeList(res.data));
+  }, []);
+
+  return (
+    <>
+      <div
+        style={{
+          backgroundColor: '#ffffff40',
+          width: '90%',
+          margin: '0 auto',
+          paddingTop: '0.7rem',
+          borderRadius: '10px',
+          height: '20rem',
+          overflowY: 'scroll',
+        }}
+      >
+        <p
+          style={{
+            textAlign: 'right',
+            width: '90%',
+            margin: '0 auto',
+          }}
+        >
+          <Link
+            style={{
+              textDecoration: 'none',
+              color: 'var(--bibot-primary)'
+            }}
+            href={"/notice"}
+          >
+            전체목록
+          </Link>
+        </p>
+        {noticeList &&
+          noticeList.map((notice) => (
+            <>
+              <AnnouncementPanel key={`notice : ${notice.id}`} notice={notice} />
+            </>
+          ))}
+      </div>
+    </>
+  );
 }

@@ -1,0 +1,9 @@
+.alarm_details_wrap {
+  padding: 0 2rem;
+}
+
+.alarm_board_read {
+  border-bottom: solid 1px #9d9dae;
+  background-color: #d6d0d0;
+  opacity: 0.5;
+}

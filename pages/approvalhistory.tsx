@@ -1,37 +1,21 @@
 import React from 'react'
-import style from '@/styles/pages/approvalhistory/approvalhistory.module.css'
-import Approval from '@/components/widgets/Approval'
+import BackTitleLayout from '@/components/layouts/BackTitleLayout'
+import TotalExpense from '@/components/pages/approvalhistory/TotalExpense'
+import ApprovalList from '@/components/pages/approvalhistory/ApprovalList'
 
 export default function Approvalhistory() {
-    return (
-        <div className={style.approvalhistoryContainer}>
-            <div className={style.expensesDetailsWrap}>
-                <div className={style.expensesMonth}>
-                    <p>금월 신청한 경비</p>
-                    <p>300,000원</p>
-                </div>
-                <div className={style.expensesAvailable}>
-                    <p>신청 가능한 경비</p>
-                    <p>300,000원</p>
-                </div>
-            </div>
-            <div className={style.searchWrap}>
-                <div className={style.listSearch}>
-                    <input placeholder='3개월, 전체, 최신순 ...' maxLength={4}/>
-                </div>
-                <div className={style.searchBtn}>
-                    <button>검색</button>
-                </div>
-            </div>
-            <div className={style.listWrap}>
-                <Approval />
-                <Approval />
-                <Approval />
-                <Approval />
-                <Approval />
-                <Approval />
-                <Approval />
-            </div>
-        </div>
-    )
+  return (
+    <main>
+      <TotalExpense />
+      <ApprovalList />
+    </main>
+  )
+}
+
+Approvalhistory.getLayout = function getLayout(page: React.ReactNode) {
+  return (
+    <BackTitleLayout title='결재내역 조회'>
+      {page}
+    </BackTitleLayout>
+  )
 }

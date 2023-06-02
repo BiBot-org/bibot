@@ -1,18 +1,47 @@
-import Image from 'next/image';
-import React from 'react'
-import style from 'styles/module.css/cardregister.module.css';
+import BackTitleLayout from "@/components/layouts/BackTitleLayout";
+import React from "react";
+import style from "styles/pages/cardregister.module.css";
 
-export default function CardRegister() {
+export default function Cardregister() {
   return (
-
-    <form className={style.card_list_pic}>
-      <h1 className={style.card_list_wrap}>카드사용내역</h1>
-      <Image src='/assets/images/bibot-pic/card_select.svg' alt='empty-card' className='empty-card' width={327} height={200}/>
-      <div className={style.card_words}>카드를 등록해 주세요.</div>
-      <div className={style.bibot_error_alarm}>
-        <Image src='/assets/images/bibot-pic/bibot.svg' alt='bibot' className='bibot-pic' width={20} height={20}/>
-        <div className={style.error_alarm}>사용내역이 없습니다.</div>
+    <main className={style.card_step1}>
+      <div className={style.card_info_wrap}>
+        <div className={style.card_maxnumber}>
+          <p>카드번호 16자리</p>
+          <div className={style.card_number_step}>
+            <input type="number" maxLength={4} />
+            <span>-</span>
+            <input type="password" maxLength={4} />
+            <span>-</span>
+            <input type="password" maxLength={4} />
+            <span>-</span>
+            <input type="number" maxLength={4} />
+          </div>
+        </div>
+        <div className={style.card_date}>
+          <p>유효기간(월/년)</p>
+          <div>
+            <input type="text" maxLength={2} />
+            <span>/</span>
+            <input type="text" maxLength={2} />
+          </div>
+        </div>
+        <div className={style.value_number}>
+          <p>CVC(3자리)</p>
+          <div>
+            <input type="password" maxLength={3} />
+          </div>
+        </div>
       </div>
-    </form>
-  )
+      <div className={style.select_btn_wrap}>
+        <button className={style.select_btn}>등록</button>
+      </div>
+    </main>
+  );
 }
+
+Cardregister.getLayout = function getLayout(page: React.ReactNode) {
+  return <BackTitleLayout title="카드등록">{page}</BackTitleLayout>;
+};
+
+Cardregister.auth = true;

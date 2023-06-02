@@ -15,15 +15,8 @@
   margin: 0;
 }
 
-html,
-body {
-  overflow-x: hidden;
-  width: 100%;
-  height: 100vh;
-}
-
-a {
-  text-decoration: none;
+main {
+  padding: 0 2rem;
 }
 
 ul {
@@ -34,6 +27,10 @@ ul {
 /* next ui custom */
 .nextui-progress-bar {
   background: linear-gradient(to left, #C95DEF 0%, #0DCABF 100%);
+}
+
+.nextui-c-yrlUe-kJGdUE-activeColor-default {
+  --nextui--navbarItemHighlightTextColor: var(--bibot-white);
 }
 
 /* react-slick */

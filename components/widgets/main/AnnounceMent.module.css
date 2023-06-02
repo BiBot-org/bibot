@@ -1,65 +1,65 @@
 .announceWrap {
+    opacity: 0.8;
     background-color: #fff;
-    border-radius: 10px;
-    border: 1px solid #BA73E7;
+    border-radius: 8px;
     width: 80%;
-    height: 4rem;
-    /* position: relative;
-    top: 15rem; */
-    margin: 0 auto;
+    margin: 0.5rem auto;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     max-width: 25rem;
     min-width: 20rem;
-
+    height: 5rem;
+    padding: 0.8rem;
 }
 
 .announceImage {
-    width: 20%;
-    max-width: 4rem;
-    height: 80%;
-    background-color: #C6C6ED;
+    width: 3rem;
+    height: 3rem;
+    min-width: 3rem;
+    max-width: 3rem;
+    background-color: #BA73E720;
     border-radius: 8px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    padding: 1rem 1rem;
-    margin: 1rem 1rem;
+    margin-right: 1rem;
 }
 
 .announceImage img {
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .content {
-    display: grid;
-}
-
-.content :first-child {
-    font-size: 12px;
-}
-
-.content :last-child {
-    font-size: 11px;
+    min-width: 60%;
 }
 
 .content p {
-    display: block;
+    font-size: 0.8rem;
+    font-weight: bold;
+    line-height: 1.2rem;
+}
+
+.content .txt {
+    font-size: 0.7rem;
+    font-weight: normal;
+    width: 90%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    word-break: break-all;
+    padding-top: 0.4rem;
 }
 
 .notiTime {
     width: 20%;
+    height: 100%;
     white-space: nowrap;
-    padding-top: 1rem;
-
     text-align: center;
+    display: flex;
+    align-items: flex-end;
 }
 
 .notiTime p {
-    color: #3F3F4440;
+    color: #3F3F4480;
     font-size: 10px;
 }
