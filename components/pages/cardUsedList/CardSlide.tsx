@@ -40,9 +40,8 @@ export default function CardSlide() {
 
   useEffect(() => {
     GetAllCard().then((res) => setCardInfoList(res.data));
-    console.log(cardInfoList);
-  }, [cardInfoList]);
-
+  }, []);
+  console.log(cardInfoList,cardInfoList.length);
   return (
     <>
       <DeleteModal ismodalopen={isModalOpen} handlemodal={setIsModalOpen} />
@@ -96,7 +95,7 @@ export default function CardSlide() {
             })}
         </Slider>
 
-        {currentIndex === 0 ? <EmptyCardInfo /> : <UsedList cardId={cardId} />}
+        {currentIndex === 0 || cardInfoList.length === 0 ? <EmptyCardInfo /> : <UsedList cardId={cardId} />}
       </main>
     </>
   );
