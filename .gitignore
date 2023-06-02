@@ -38,3 +38,7 @@ config.local.ts
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# pwa
+sw.js
+workbox-*.js
