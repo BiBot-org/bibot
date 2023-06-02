@@ -12,6 +12,8 @@ interface Prop {
 }
 
 export default function UsedList({ cardId }: Prop) {
+  console.log('asd',cardId);
+  const [historySum, setHistorySum] = useState<number>(0);
   const today = new Date().toISOString().slice(0, 10);
 
   const calculateThreeMonthAgo = (selectedDate: string) => {
@@ -23,7 +25,7 @@ export default function UsedList({ cardId }: Prop) {
   const [searchParam, setSearchParam] = useState<SearchPaymentHistoryReq>({
     startDate: calculateThreeMonthAgo(today),
     endDate: today,
-    page: 1,
+    page: 0,
   } as SearchPaymentHistoryReq);
 
   const [searchPaymentHistoryInfo, setSearchPaymentHistoryInfo] =
@@ -51,23 +53,24 @@ export default function UsedList({ cardId }: Prop) {
     }
   };
 
-  //구현해야 합니다
-  const sum = cardUsedData.reduce((acc, cur) => {
-    return acc + cur.price;
-  }, 0);
-
   useEffect(() => {
     SearchPaymentHistory({
       cardId: cardId,
       ...searchParam,
-    }).then((res) => setSearchPaymentHistoryInfo(res.data));
+    }).then((res) => {
+      setSearchPaymentHistoryInfo(res.data)
+      setHistorySum(res.data.content.reduce((acc, cur) => {
+        return acc + cur.amount;
+        }, 0));
+    });
   }, [cardId, searchParam]);
 
+  console.log(searchPaymentHistoryInfo);
   return (
     <>
       <div className={style.card_used_sum}>
         <p>사용내역 합</p>
-        <p>{sum.toLocaleString()}원</p>
+        <p>{historySum.toLocaleString()}원</p>
       </div>
       <div className={style.dateWrap}>
         <Input
