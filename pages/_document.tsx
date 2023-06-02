@@ -14,7 +14,10 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="ko">
-        <Head>{CssBaseline.flush()}</Head>
+        <Head>
+          {CssBaseline.flush()}
+          <link rel="manifest" href="/manifest.json" />
+        </Head>
         <body>
           <Main />
           <NextScript />
