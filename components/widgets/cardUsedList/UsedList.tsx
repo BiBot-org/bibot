@@ -12,7 +12,6 @@ interface Prop {
 }
 
 export default function UsedList({ cardId }: Prop) {
-  console.log('asd',cardId);
   const [historySum, setHistorySum] = useState<number>(0);
   const today = new Date().toISOString().slice(0, 10);
 

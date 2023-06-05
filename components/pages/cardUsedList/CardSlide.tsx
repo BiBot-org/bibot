@@ -1,5 +1,4 @@
 import CardImage from "@/components/ui/cardusedlist/CardImage";
-import { cardListData } from "@/datas/dummy/cardListData";
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import Image from "next/image";
@@ -29,7 +28,7 @@ export default function CardSlide() {
     centerPadding: "40px",
     initialSlide: 1,
     arrows: false,
-    afterChange: (current: number) => (setCurrentIndex(current)),
+    afterChange: (current: number) => {(setCurrentIndex(current)), setCardId(cardInfoList[current]?.id)}
   };
 
   const handleCardClick = () => {
@@ -45,7 +44,6 @@ export default function CardSlide() {
     });
   }, []);
 
-  console.log(cardInfoList,cardInfoList.length);
   return (
     <>
       <DeleteModal ismodalopen={isModalOpen} handlemodal={setIsModalOpen} cardId={cardId} />
