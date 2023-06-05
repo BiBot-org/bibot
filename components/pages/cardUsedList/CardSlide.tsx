@@ -28,7 +28,7 @@ export default function CardSlide() {
     centerPadding: "40px",
     initialSlide: 1,
     arrows: false,
-    afterChange: (current: number) => {(setCurrentIndex(current)), setCardId(cardInfoList[current]?.id)}
+    afterChange: (current: number) => {(setCurrentIndex(current)), setCardId(cardInfoList[current-1]?.id)}
   };
 
   const handleCardClick = () => {
@@ -53,6 +53,7 @@ export default function CardSlide() {
           flexDirection: "column",
           padding: "0",
           height: "100vh",
+          overflow: "hidden",
         }}
       >
         <Slider {...settings}>
