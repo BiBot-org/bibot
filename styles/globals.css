@@ -33,6 +33,12 @@ ul {
   --nextui--navbarItemHighlightTextColor: var(--bibot-white);
 }
 
+.nextui-c-iwmZdB {
+  --nextui--inputHoverBorderColor: var(--bibot-primary);
+  --nextui--inputLabelColor: var(--bibot-primary);
+}
+
+
 /* react-slick */
 @import "~slick-carousel/slick/slick.css"; 
 @import "~slick-carousel/slick/slick-theme.css";

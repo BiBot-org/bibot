@@ -3,15 +3,22 @@ import { Button, Spacer } from '@nextui-org/react'
 import Image from 'next/image'
 import style from './DeleteModal.module.css'
 import { useRouter } from 'next/router'
+import { DeleteCard } from '@/service/card/CardService'
 
-export default function DeleteModal(props: { ismodalopen: boolean, handlemodal: React.Dispatch<React.SetStateAction<boolean>> }) {
+export default function DeleteModal(props: { ismodalopen: boolean, handlemodal: React.Dispatch<React.SetStateAction<boolean>>, cardId: number }) {
     const router = useRouter()
     if (!props.ismodalopen) return null
-    
-    const handleClickYes = () => {
-        props.handlemodal(!props.ismodalopen)
-        router.replace('/cardusedlist')
-    }
+    console.log('123', props.cardId);
+
+    const handleDeleteCard = () => {
+        DeleteCard(props.cardId).then((res) => {
+            console.log(res);
+            props.handlemodal(!props.ismodalopen);
+            router.push('/cardusedlist');
+        }).catch((err) => {
+            console.log(err);
+        })
+    };
 
     return (
         <>
@@ -27,7 +34,7 @@ export default function DeleteModal(props: { ismodalopen: boolean, handlemodal: 
                         </div>
                         <Spacer y={1} />
                         <div className={style.contentsBtn}>
-                            <Button auto className={style.checkBtn} onPress={handleClickYes} >
+                            <Button auto className={style.checkBtn} onPress={handleDeleteCard} >
                                 늬예 늬예
                             </Button>
                             <Button auto className={style.cancelBtn} onPress={() => props.handlemodal(!props.ismodalopen)}>
