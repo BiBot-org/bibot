@@ -9,6 +9,14 @@ export default function CardInput() {
     const [cardInfo, setCardInfo] = useState<CreateCardReq>(
         {} as CreateCardReq);
 
+    const [errorMsg, setErrorMsg] = useState<{
+        cardNo?: string,
+        month?: string,
+        year?: string,
+        company?: string,
+        cvc?: string,
+    }>({});
+
     const [cardNo, setCardNo] = useState({
         cardNo1: '',
         cardNo2: '',
@@ -21,80 +29,154 @@ export default function CardInput() {
         year: ''
     });
 
-    const cardNoRegex = /^\d{4}$/;
-    const cardValidMonthRegex = /^(0[1-9]|1[0-2])$/;
-    const cardValidYearRegex = /^\d{2}$/;
-    const cardCompanyRegex = /^[A-Za-z]{1,30}$/;
-    const cardCvcRegex = /^\d{3}$/;
+    const [allcheck, setAllcheck] = useState<boolean>(false);
 
     useEffect(() => {
-        if (cardInfo.cardNo && cardInfo.cardValid && cardInfo.cardCompany && cardInfo.cardCvc) {
-            // AddCard(cardInfo).then(() => router.push('/cardusedlist'));
-            console.log(cardInfo);
-            // setCardInfo({} as CreateCardReq);
+        if (allcheck) {
+            AddCard(cardInfo).then(() => router.push('/cardusedlist'));
+            setCardInfo({} as CreateCardReq);
+            setAllcheck(false);
         }
-    }, [cardInfo]);
+    }, [allcheck]);
+
 
     const handleCardNo = (e: ChangeEvent<FormElement>) => {
         const { id, value } = e.target;
         e.target.value = e.target.value.slice(0, 4);
-
+        if (value.match(/[^0-9]/g)) {
+            e.target.value = value.replace(/[^0-9]/g, '');
+            return;
+        }
+        if (value.length > 4)
+            return;
         setCardNo({
             ...cardNo,
             [id]: value
         });
-        console.log(cardNo);
     }
 
-    const handleValid = (e: ChangeEvent<FormElement>) => {
+    const handleMonth = (e: ChangeEvent<FormElement>) => {
         const { id, value } = e.target;
         e.target.value = e.target.value.slice(0, 2);
+        if (value.length > 2)
+            return;
+        if (parseInt(value) < 10) {
+            setCardValid({
+                ...cardValid,
+                [id]: '0' + parseInt(value)
+            });
+        }
+        else {
+            setCardValid({
+                ...cardValid,
+                [id]: value
+            });
+        }
+    }
+
+    const handleYear = (e: ChangeEvent<FormElement>) => {
+        const { id, value } = e.target;
+        e.target.value = e.target.value.slice(0, 2);
+        if (value.length > 2)
+            return;
         setCardValid({
             ...cardValid,
             [id]: value
         });
-        console.log(cardValid);
     }
 
-    const handleChange = (e: ChangeEvent<FormElement>) => {
+    const handleCvc = (e: ChangeEvent<FormElement>) => {
         const { id, value } = e.target;
-        if (id === 'cardCvc') {
-            e.target.value = e.target.value.slice(0, 3);
-            setCardInfo({
-                ...cardInfo,
-                [id]: value,
-            });
+        e.target.value = e.target.value.slice(0, 3);
+        if (value.match(/[^0-9]/g)) {
+            e.target.value = value.replace(/[^0-9]/g, '');
+            return;
         }
-        else if (id === 'cardCompany') {
-            setCardInfo({
-                ...cardInfo,
-                [id]: value,
-            });
+        if (value.length > 3)
+            return;
+        setCardInfo({
+            ...cardInfo,
+            [id]: value,
+        });
+    }
+
+    const handleCompany = (e: ChangeEvent<FormElement>) => {
+        const { id, value } = e.target;
+        if (value.match(/[^ㄱ-ㅎㅏ-ㅣ가-힣]/g)) {
+            e.target.value = value.replace(/[^ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');
+            return;
         }
-        console.log(cardInfo);
+        e.target.value = e.target.value.slice(0, 15);
+        setCardInfo({
+            ...cardInfo,
+            [id]: value,
+        });
     }
 
     const handleALL = () => {
-        const cardNum = cardNo.cardNo1 + '-' + cardNo.cardNo2 + '-' + cardNo.cardNo3 + '-' + cardNo.cardNo4;
-        const cardValidDate = cardValid.month + '/' + cardValid.year;
-        setCardInfo({
-            ...cardInfo,
-            cardNo: cardNum,
-            cardValid: cardValidDate,
-        });
+        if (cardNo.cardNo1.length < 4 || cardNo.cardNo2.length < 4 || cardNo.cardNo3.length < 4 || cardNo.cardNo4.length < 4) {
+            setErrorMsg({
+                cardNo: '카드번호를 확인해주세요.',
+            });
+        }
+        else if (cardValid.month === undefined || cardValid.month > '12' || cardValid.month < '01') {
+            setErrorMsg({
+                month: '유효기간(월)을 확인해주세요.',
+            });
+            setAllcheck(false);
+        }
+        else if (cardValid.year === undefined || cardValid.year < '23') {
+            setErrorMsg({
+                year: '유효기간(년)을 확인해주세요.',
+            });
+            setAllcheck(false);
+        }
+        else if (cardValid.year === '23' && parseInt(cardValid.month) < 6) {
+            setErrorMsg({
+                month: '유효기간(월)을 확인해주세요.',
+            });
+            setAllcheck(false);
+        }
+        else if (cardInfo.cardCompany === undefined) {
+            setErrorMsg({
+                company: '카드사를 확인해주세요.',
+            });
+            setAllcheck(false);
+        }
+        else if (cardInfo.cardCvc === undefined || cardInfo.cardCvc.length < 3) {
+            setErrorMsg({
+                cvc: 'CVC를 확인해주세요.',
+            });
+            setAllcheck(false);
+        }
+        else {
+            setErrorMsg({
+                cardNo: '',
+                month: '',
+                year: '',
+                company: '',
+                cvc: '',
+            });
+            setAllcheck(true);
+            const cardNum = cardNo.cardNo1 + '-' + cardNo.cardNo2 + '-' + cardNo.cardNo3 + '-' + cardNo.cardNo4;
+            const cardValidDate = cardValid.month + '/' + cardValid.year;
+            setCardInfo({
+                ...cardInfo,
+                cardNo: cardNum,
+                cardValid: cardValidDate,
+            });
+        }
     }
 
     return (
         <>
             <Spacer y={4} />
             <div className={style.cardRegistwrap}>
-                <p>카드번호 16자리</p>
+                <p className={style.subject}>카드번호 16자리</p>
                 <div className={style.cardNum}>
                     <Input
                         underlined
-                        color='primary'
                         aria-label='card1'
-                        type='number'
                         fullWidth={true}
                         pattern='[0-9]{4}'
                         onChange={(e) => handleCardNo(e)}
@@ -103,8 +185,8 @@ export default function CardInput() {
                     /><span>-</span>
                     <Input.Password
                         underlined
-                        hideToggle={true}
                         aria-label='card2'
+                        hideToggle={true}
                         fullWidth={true}
                         pattern='[0-9]{4}'
                         onChange={(e) => handleCardNo(e)}
@@ -124,7 +206,6 @@ export default function CardInput() {
                     <Input
                         underlined
                         aria-label='card4'
-                        type='number'
                         fullWidth={true}
                         pattern='[0-9]{4}'
                         onChange={(e) => handleCardNo(e)}
@@ -132,8 +213,9 @@ export default function CardInput() {
                         required
                     />
                 </div>
+                {errorMsg && <p className={style.errorMsg}>{errorMsg.cardNo}</p>}
                 <Spacer y={1.5} />
-                <p>유효기간(월/년)</p>
+                <p className={style.subject}>유효기간(월/년)</p>
                 <div className={style.cardValid}>
                     <Input
                         underlined
@@ -141,8 +223,7 @@ export default function CardInput() {
                         type='number'
                         fullWidth={true}
                         id='month'
-                        pattern="0[1-9]|1[0-2]"
-                        onChange={(e) => handleValid(e)}
+                        onChange={(e) => handleMonth(e)}
                         required
                     />/
                     <Input
@@ -152,12 +233,14 @@ export default function CardInput() {
                         fullWidth={true}
                         id='year'
                         pattern="\d{2}"
-                        onChange={(e) => handleValid(e)}
+                        onChange={(e) => handleYear(e)}
                         required
                     />
                 </div>
+                {errorMsg.month && <p className={style.errorMsg}>{errorMsg.month}</p>}
+                {errorMsg.year && <p className={style.errorMsg}>{errorMsg.year}</p>}
                 <Spacer y={1.5} />
-                <p>카드사</p>
+                <p className={style.subject}>카드사</p>
                 <div className={style.cardCompany}>
                     <Input
                         underlined
@@ -165,24 +248,27 @@ export default function CardInput() {
                         type='text'
                         fullWidth={true}
                         id='cardCompany'
-                        onChange={(e) => handleChange(e)}
+                        pattern="^[가-힣]{1,15}$"
+                        onChange={(e) => handleCompany(e)}
                         required
                     />
                 </div>
+                {errorMsg.company && <p className={style.errorMsg}>{errorMsg.company}</p>}
                 <Spacer y={1.5} />
-                <p>CVC(CVV)</p>
+                <p className={style.subject}>CVC(CVV)</p>
                 <div className={style.cardCVC}>
                     <Input.Password
                         underlined
                         aria-label='cardCVC'
-                        type='password'
+                        type='number'
                         fullWidth={true}
                         id='cardCvc'
-                        pattern="\d{3}"
-                        onChange={(e) => handleChange(e)}
+                        pattern="[0-9]{3}"
+                        onChange={(e) => handleCvc(e)}
                         required
                     />
                 </div>
+                {errorMsg && <p className={style.errorMsg}>{errorMsg.cvc}</p>}
                 <Spacer y={1.5} />
                 <div className={style.registBtn}>
                     <Button
