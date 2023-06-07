@@ -12,7 +12,7 @@ interface Prop {
 }
 
 export default function UsedList({ cardId }: Prop) {
-  console.log(cardId)
+  console.log(cardId);
   const [historySum, setHistorySum] = useState<number>(0);
   const [isLastPage, setIsLastPage] = useState<boolean>(false);
 
@@ -65,8 +65,8 @@ export default function UsedList({ cardId }: Prop) {
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, clientHeight, scrollHeight } = e.currentTarget;
     // const offset = 5;
-    console.log('terioasjd',searchPaymentHistoryInfo.pageNo,isLastPage)
-    if (!isLastPage && (scrollHeight - scrollTop) <= clientHeight + 1) {
+    console.log("terioasjd", searchPaymentHistoryInfo.pageNo, isLastPage);
+    if (!isLastPage && scrollHeight - scrollTop <= clientHeight + 1) {
       nextPage();
     }
   };
@@ -81,18 +81,22 @@ export default function UsedList({ cardId }: Prop) {
           return {
             ...res.data,
             content: [...prevData.content, ...res.data.content],
-          }
+          };
         } else {
-          return res.data
+          return res.data;
         }
       });
       if (res.data.isLast) {
-        setIsLastPage(true)
-      } else { setIsLastPage(false) }
+        setIsLastPage(true);
+      } else {
+        setIsLastPage(false);
+      }
 
-      setHistorySum(res.data.content.reduce((acc, cur) => {
-        return acc + cur.amount;
-      }, 0));
+      setHistorySum(
+        res.data.content.reduce((acc, cur) => {
+          return acc + cur.amount;
+        }, 0)
+      );
     });
   }, [cardId, searchParam]);
 
@@ -105,7 +109,7 @@ export default function UsedList({ cardId }: Prop) {
     setSearchPaymentHistoryInfo({} as SearchPaymentHistoryInfo);
   }, [cardId]);
 
-  console.log('asd', searchPaymentHistoryInfo, searchParam.page);
+  console.log("asd", searchPaymentHistoryInfo, searchParam.page);
   return (
     <>
       <div className={style.usedListWrap} onScroll={handleScroll}>
@@ -144,6 +148,34 @@ export default function UsedList({ cardId }: Prop) {
             </>
           ))}
       </div>
+      <div className={style.dateWrap}>
+        <Input
+          aria-label="threeMonthAgo"
+          type="date"
+          value={searchParam.startDate}
+          readOnly
+        />
+        <span>-</span>
+        <Input
+          aria-label="today"
+          type="date"
+          value={searchParam.endDate}
+          onChange={handleRightDateChange}
+          max={today}
+        />
+      </div>
+      <Spacer y={1} />
+      {searchPaymentHistoryInfo.content &&
+        searchPaymentHistoryInfo.content.map((data, idx) => (
+          <CardUsedItem
+            key={`itm ${data.id}`}
+            approvalId={data.approvalId || ""}
+            title={data.paymentDestination}
+            price={data.amount}
+            date="2023-05-31"
+            isRequested={data.isRequested}
+          />
+        ))}
     </>
   );
 }

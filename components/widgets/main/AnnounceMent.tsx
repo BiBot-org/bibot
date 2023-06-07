@@ -15,26 +15,26 @@ export default function AnnounceMent() {
     <>
       <div
         style={{
-          backgroundColor: '#ffffff40',
-          width: '90%',
-          margin: '0 auto',
-          paddingTop: '0.7rem',
-          borderRadius: '10px',
-          height: '20rem',
-          overflowY: 'scroll',
+          backgroundColor: "#ffffff40",
+          width: "90%",
+          margin: "0 auto",
+          paddingTop: "0.7rem",
+          borderRadius: "10px",
+          height: "20rem",
+          overflowY: "scroll",
         }}
       >
         <p
           style={{
-            textAlign: 'right',
-            width: '90%',
-            margin: '0 auto',
+            textAlign: "right",
+            width: "90%",
+            margin: "0 auto",
           }}
         >
           <Link
             style={{
-              textDecoration: 'none',
-              color: 'var(--bibot-primary)'
+              textDecoration: "none",
+              color: "var(--bibot-primary)",
             }}
             href={"/notice"}
           >
@@ -43,7 +43,7 @@ export default function AnnounceMent() {
         </p>
         {noticeList &&
           noticeList.map((notice) => (
-              <AnnouncementPanel key={notice.id} notice={notice} />
+            <AnnouncementPanel key={notice.id} notice={notice} />
           ))}
       </div>
     </>

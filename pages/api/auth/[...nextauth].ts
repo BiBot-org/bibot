@@ -12,18 +12,13 @@ export const jwtCallback = async ({
   token: JWT;
   user: User;
 }) => {
-  console.log("jwt callback 발동");
-
   if (token?.expiresIn) {
     if (Math.floor(Date.now() / 1000) < token.expiresIn!!) {
-      console.log("아무일도 없음");
-      console.log(token, user);
       return { ...token, ...user };
     } else if (
       token.refreshToken &&
       Math.floor(Date.now() / 1000) < token.refreshExpiresIn!!
     ) {
-      console.log("토큰 재발급");
       const newTokenData: TokenRes = await reissueToken(token.refreshToken);
       token.accessToken = newTokenData.accessToken;
       token.refreshToken = newTokenData.refreshToken;
@@ -33,8 +28,6 @@ export const jwtCallback = async ({
       return { ...token, ...newTokenData };
     }
   }
-  console.log("로그인");
-
   token.accessToken = user.tokenRes.accessToken;
   token.refreshToken = user.tokenRes.refreshToken;
   token.expiresIn = user.tokenRes.expiresIn;
@@ -43,7 +36,6 @@ export const jwtCallback = async ({
     id: user.id,
     roles: user.roles,
   };
-  console.log(token, user);
   return { ...token, ...sessionUser };
 };
 
@@ -54,19 +46,16 @@ export const session = ({
   session: Session;
   token: JWT;
 }): Promise<Session> => {
-  console.log("세션 콜백 발동");
   if (
     Math.floor(Date.now() / 1000) > token?.expiresIn! &&
     token?.refreshTokenExpires &&
     Math.floor(Date.now() / 1000) > token?.refreshExpiresIn!
   ) {
-    console.log("세션 만료");
     return Promise.reject({
       error: new Error("토큰이 만료되었습니다. 재 로그인 해 주세요."),
     });
   }
 
-  console.log(session, token);
   session.tokenInfo = token;
   return Promise.resolve(session);
 };
