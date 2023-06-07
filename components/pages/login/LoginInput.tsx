@@ -27,7 +27,7 @@ export default function LoginInput() {
       const result = await signIn("keycloak", {
         username: values.email,
         password: values.password,
-        callbackUrl: "/main",
+        callbackUrl: "/main?categoryId=1",
       });
 
       if (result?.error) {

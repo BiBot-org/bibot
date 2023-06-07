@@ -39,16 +39,16 @@ export default function ApprovalList() {
     const [approvalItems, setApprovalItems] = useState([]);
     const loding = useRef<boolean>(false);
     const [page, setPage] = useState({current: 1, total : 0, });
-    useEffect(() => { fetchApprovalItems(page); }, []);
-    const fetchApprovalItems = async (page: number) => {
-        const response = await fetch(`/api/approval-list?page=${page}&perPage=3`);
-        const data = await response.json();
-        setApprovalItems((prevItems) => { (...prevItems, data.items)});
-    };
+    // useEffect(() => { fetchApprovalItems(page); }, []);
+    // const fetchApprovalItems = async (page: number) => {
+    //     const response = await fetch(`/api/approval-list?page=${page}&perPage=3`);
+    //     const data = await response.json();
+    //     setApprovalItems((prevItems) => { (...prevItems, data.items)});
+    // };
 
-    const handleLoadMore = () => {
-        setPage((prevPage) => prevPage + 1);
-    };
+    // const handleLoadMore = () => {
+    //     setPage((prevPage) => prevPage + 1);
+    // };
 
     return (
         <>
@@ -62,14 +62,14 @@ export default function ApprovalList() {
                     </select>
                 </div>
             </div>
-            {approvalItems.map((item) => (
+            {/* {approvalItems.map((item) => (
                 <ApprovalItem key={item.id} item={item} />
             ))}
             <div className={style.approvalMoreBtn}>
                 <Button size={'lg'} onClick={handleLoadMore}>
                     더보기
                 </Button>
-            </div>
+            </div> */}
         </>
     );
 }
