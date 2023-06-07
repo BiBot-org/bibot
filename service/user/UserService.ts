@@ -1,7 +1,6 @@
 import { GetUserInfoRes, GetUserRes } from "@/types/user/ResponseType";
 import { CustomAxios } from "../CusomAxios";
 import Config from "@/config/config.export";
-import { useQuery } from "@tanstack/react-query";
 
 const { userServiceUrl } = Config();
 

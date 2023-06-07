@@ -23,7 +23,7 @@ export default function UsedList({ cardId }: Prop) {
   const [searchParam, setSearchParam] = useState<SearchPaymentHistoryReq>({
     startDate: calculateThreeMonthAgo(today),
     endDate: today,
-    page: 1,
+    page: 0,
   } as SearchPaymentHistoryReq);
 
   const [searchPaymentHistoryInfo, setSearchPaymentHistoryInfo] =
@@ -88,16 +88,14 @@ export default function UsedList({ cardId }: Prop) {
       <Spacer y={1} />
       {searchPaymentHistoryInfo.content &&
         searchPaymentHistoryInfo.content.map((data, idx) => (
-          <>
-            <CardUsedItem
-              key={`itm ${data.id}`}
-              approvalId={data.approvalId || ""}
-              title={data.paymentDestination}
-              price={data.amount}
-              date="2023-05-31"
-              isRequested={data.isRequested}
-            />
-          </>
+          <CardUsedItem
+            key={`itm ${data.id}`}
+            approvalId={data.approvalId || ""}
+            title={data.paymentDestination}
+            price={data.amount}
+            date="2023-05-31"
+            isRequested={data.isRequested}
+          />
         ))}
     </>
   );

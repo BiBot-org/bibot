@@ -7,6 +7,11 @@ import { Progress } from "@nextui-org/react";
 import { useRouter } from "next/router";
 import { CategoryDTO } from "@/types/category/types";
 import { getCategoryList } from "@/service/category/CategoryService";
+import {
+  GetAllExpenseProcessingStatus,
+  GetExpenseProcessingStatusByCategory,
+} from "@/service/expense/ExpenseService";
+import { ExpenseProcessingStatusByCategory } from "@/types/expense/types";
 
 const CountUp = dynamic(() => import("react-countup"), { ssr: false });
 
@@ -24,6 +29,10 @@ export default function CategoryNav(props: {
   const categoryData = props.categoryData;
   const router = useRouter();
   const { categoryId } = router.query;
+  const [expenseProcessingStatus, setExpenseProcessingStatus] =
+    useState<ExpenseProcessingStatusByCategory>(
+      {} as ExpenseProcessingStatusByCategory
+    );
   const targetRef = useRef<HTMLUListElement>(null);
   const handleCategory = (id: number) => {
     router.push(`/main?categoryId=${id}`);
@@ -31,71 +40,28 @@ export default function CategoryNav(props: {
 
   const [categoryList, setCategoryList] = useState<CategoryDTO[]>([]);
 
+  const [today, setToday] = useState<Date>();
+  const [isReminder, setIsReminder] = useState<boolean>(false);
+  const [mount, setMount] = useState<number>(0);
+
   useEffect(() => {
     getCategoryList().then((res) => setCategoryList(res.data));
   }, []);
 
-  const dataList = useMemo(
-    () => [
-      {
-        id: 1,
-        amount: 356500,
-        reset: 1000000,
-        resetDay: "2023-05-31",
-        resetTime: 24,
-      },
-      {
-        id: 2,
-        amount: 126500,
-        reset: 200000,
-        resetDay: "2023-05-31",
-        resetTime: 24,
-      },
-      {
-        id: 3,
-        amount: 756500,
-        reset: 1000000,
-        resetDay: "2023-05-31",
-        resetTime: 24,
-      },
-      {
-        id: 4,
-        amount: 26500,
-        reset: 300000,
-        resetDay: "2023-05-31",
-        resetTime: 24,
-      },
-      {
-        id: 5,
-        amount: 356500,
-        reset: 1000000,
-        resetDay: "2023-05-31",
-        resetTime: 24,
-      },
-    ],
-    []
-  );
-
-  const [today, setToday] = useState<Date>();
-  const [remindDay, setRemindDay] = useState<number>(0);
-  const [isReminder, setIsReminder] = useState<boolean>(false);
-  const [mount, setMount] = useState<number>(0);
-  const [data, setData] = useState<reminderType>(dataList[0]);
-
   useEffect(() => {
     const today = new Date();
     setToday(today);
-    // fetch
-    const data: reminderType = dataList.find(
-      (item: reminderType) => item.id === Number(categoryId)
-    ) as reminderType;
-    // const daysRemind = new Date(data.resetDay).getTime() - today.getTime()
-    // setRemindDay(Math.round(daysRemind/1000/60/60/24))
-    if (data) {
-      setMount(data.amount / data.reset);
-      setData(data);
+    console.log(categoryId);
+    if (categoryId !== undefined) {
+      GetExpenseProcessingStatusByCategory(Number(categoryId)).then((res) =>
+        setExpenseProcessingStatus(res.data)
+      );
+    } else {
+      GetAllExpenseProcessingStatus().then((res) =>
+        setExpenseProcessingStatus(res.data)
+      );
     }
-  }, [categoryId, dataList]);
+  }, [categoryId]);
 
   const handleMount = (a: number, b: number) => {
     if (isReminder) {
@@ -144,11 +110,26 @@ export default function CategoryNav(props: {
       </div>
       <div
         className={style.Amount}
-        onClick={() => handleMount(data.amount, data.reset)}
+        onClick={() =>
+          handleMount(
+            expenseProcessingStatus.expenseUsed,
+            expenseProcessingStatus.limitation
+          )
+        }
       >
         <CountUp
-          start={!isReminder ? data.reset - data.amount : data.amount}
-          end={isReminder ? data.reset - data.amount : data.amount}
+          start={
+            !isReminder
+              ? expenseProcessingStatus.limitation -
+                expenseProcessingStatus.expenseUsed
+              : expenseProcessingStatus.expenseUsed
+          }
+          end={
+            isReminder
+              ? expenseProcessingStatus.limitation -
+                expenseProcessingStatus.expenseUsed
+              : expenseProcessingStatus.expenseUsed
+          }
           duration={1}
         />
         {/* <p>{isReminder ? (data.reset - data.amount).toLocaleString('ko') : data.amount.toLocaleString('ko')}</p> */}
