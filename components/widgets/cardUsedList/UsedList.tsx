@@ -148,34 +148,6 @@ export default function UsedList({ cardId }: Prop) {
             </>
           ))}
       </div>
-      <div className={style.dateWrap}>
-        <Input
-          aria-label="threeMonthAgo"
-          type="date"
-          value={searchParam.startDate}
-          readOnly
-        />
-        <span>-</span>
-        <Input
-          aria-label="today"
-          type="date"
-          value={searchParam.endDate}
-          onChange={handleRightDateChange}
-          max={today}
-        />
-      </div>
-      <Spacer y={1} />
-      {searchPaymentHistoryInfo.content &&
-        searchPaymentHistoryInfo.content.map((data, idx) => (
-          <CardUsedItem
-            key={`itm ${data.id}`}
-            approvalId={data.approvalId || ""}
-            title={data.paymentDestination}
-            price={data.amount}
-            date="2023-05-31"
-            isRequested={data.isRequested}
-          />
-        ))}
     </>
   );
 }
