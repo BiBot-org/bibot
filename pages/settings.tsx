@@ -3,8 +3,10 @@ import style from "@/styles/pages/settings.module.css";
 import BackTitleLayout from "@/components/layouts/BackTitleLayout";
 import { Grid, Switch } from "@nextui-org/react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export default function Settings() {
+  const router = useRouter();
   return (
     <>
       <div className={style.settingsWrap}>
@@ -22,11 +24,11 @@ export default function Settings() {
             <span>다크모드</span>
           </div>
           <Grid>
-            <Switch shadow color="success" checked={true} />
+            <Switch shadow color="success" checked={false} />
           </Grid>
         </div>
         <h3>변경</h3>
-        <div className={style.settingsItem}>
+        <div className={style.settingsItem} onClick={()=> router.push('/changepwd')}>
           <div className={style.settingsItemTitle}>
             <span>비밀번호 변경</span>
           </div>

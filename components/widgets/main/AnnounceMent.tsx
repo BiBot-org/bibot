@@ -43,7 +43,7 @@ export default function AnnounceMent() {
         </p>
         {noticeList &&
           noticeList.map((notice) => (
-            <AnnouncementPanel key={`notice : ${notice.id}`} notice={notice} />
+            <AnnouncementPanel key={notice.id} notice={notice} />
           ))}
       </div>
     </>

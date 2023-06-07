@@ -3,16 +3,17 @@
     color: var(--bibot-primary);
     padding: 0 3rem;
 }
+
 .profileImage {
     display: flex;
     justify-content: center;
 }
 
-.changePwdWrap {
-    width: 80%;
-    height: 40px;
+.ImageBtnWrap {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 auto;
+    justify-content: center;
+}
+
+.ImageBtnWrap button {
+    background-color: var(--bibot-primary);    
 }

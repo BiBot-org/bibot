@@ -17,6 +17,7 @@
 
 main {
   padding: 0 2rem;
+  margin-bottom: 112px;
 }
 
 ul {
@@ -32,6 +33,12 @@ ul {
 .nextui-c-yrlUe-kJGdUE-activeColor-default {
   --nextui--navbarItemHighlightTextColor: var(--bibot-white);
 }
+
+.nextui-c-iwmZdB {
+  --nextui--inputHoverBorderColor: var(--bibot-primary);
+  --nextui--inputLabelColor: var(--bibot-primary);
+}
+
 
 /* react-slick */
 @import "~slick-carousel/slick/slick.css"; 

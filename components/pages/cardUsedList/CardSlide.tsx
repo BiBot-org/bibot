@@ -1,5 +1,4 @@
 import CardImage from "@/components/ui/cardusedlist/CardImage";
-import { cardListData } from "@/datas/dummy/cardListData";
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import Image from "next/image";
@@ -14,7 +13,7 @@ import { GetAllCard } from "@/service/card/CardService";
 
 export default function CardSlide() {
   const router = useRouter();
-  const [currentIndex, setCurrentIndex] = useState<number>(1);
+  const [currentIndex, setCurrentIndex] = useState<number>();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [cardInfoList, setCardInfoList] = useState<CardInfoRes[]>([]);
   const [cardId, setCardId] = useState<number>(1);
@@ -29,7 +28,7 @@ export default function CardSlide() {
     centerPadding: "40px",
     initialSlide: 1,
     arrows: false,
-    afterChange: (current: number) => setCurrentIndex(current),
+    afterChange: (current: number) => {(setCurrentIndex(current)), setCardId(cardInfoList[current-1]?.id)}
   };
 
   const handleCardClick = () => {
@@ -39,18 +38,22 @@ export default function CardSlide() {
   };
 
   useEffect(() => {
-    GetAllCard().then((res) => setCardInfoList(res.data));
+    GetAllCard().then((res) => {
+      setCardInfoList(res.data);
+      setCardId(res.data[0]?.id);
+    });
   }, []);
-  console.log(cardInfoList,cardInfoList.length);
+
   return (
     <>
-      <DeleteModal ismodalopen={isModalOpen} handlemodal={setIsModalOpen} />
+      <DeleteModal ismodalopen={isModalOpen} handlemodal={setIsModalOpen} cardId={cardId} />
       <main
         style={{
           display: "flex",
           flexDirection: "column",
           padding: "0",
           height: "100vh",
+          overflow: "hidden",
         }}
       >
         <Slider {...settings}>
@@ -94,7 +97,6 @@ export default function CardSlide() {
               );
             })}
         </Slider>
-
         {currentIndex === 0 || cardInfoList.length === 0 ? <EmptyCardInfo /> : <UsedList cardId={cardId} />}
       </main>
     </>
