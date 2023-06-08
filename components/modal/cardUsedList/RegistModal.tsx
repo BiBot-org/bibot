@@ -1,8 +1,8 @@
-import { Spacer, Button } from '@nextui-org/react';
-import router from 'next/router';
-import React from 'react'
-import style from './RegistModal.module.css'
-import Image from 'next/image'
+import { Spacer, Button } from "@nextui-org/react";
+import router from "next/router";
+import React from "react";
+import style from "./RegistModal.module.css";
+import Image from "next/image";
 
 export default function RegistModal(props: {
   isModalOpen: boolean;
@@ -24,7 +24,7 @@ export default function RegistModal(props: {
         <Spacer y={0.5} />
         <div className={style.modalContents}>
           <div className={style.modalText}>
-            <p>영수증을 등록하시겠습니다?</p>
+            <p>영수증을 등록하시겠습니까?</p>
           </div>
           <Spacer y={1} />
           <div className={style.contentsBtn}>
@@ -34,7 +34,7 @@ export default function RegistModal(props: {
               onPress={() => {
                 props.setIsModalOpen(!props.isModalOpen);
                 props.onClose(false);
-                router.push('/cardusedlist');
+                router.push("/cardusedlist");
               }}
             >
               YES
@@ -50,5 +50,5 @@ export default function RegistModal(props: {
         </div>
       </div>
     </div>
-  )
+  );
 }

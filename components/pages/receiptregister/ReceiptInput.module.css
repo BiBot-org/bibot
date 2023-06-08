@@ -1,3 +1,13 @@
+.modalContainer {
+  z-index: 110;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+}
+
 .emptyReceiptWrap {
   position: relative;
 }
@@ -23,7 +33,7 @@
   align-items: center;
 }
 
-.categorySel select{
+.categorySel select {
   width: 70%;
   height: 50px;
   font-size: 1.2rem;
@@ -34,8 +44,14 @@
   justify-content: center;
 }
 
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .registerBtn {
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 30%;
 }

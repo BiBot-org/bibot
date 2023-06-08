@@ -1,3 +1,4 @@
+"use client";
 import { Spacer, Container, Input, Button, Row } from "@nextui-org/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -5,10 +6,14 @@ import React from "react";
 import Image from "next/image";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { signIn } from "next-auth/react";
+import { getSession, signIn } from "next-auth/react";
+import Swal from "sweetalert2";
+import { useRecoilState } from "recoil";
+import { userInfoState } from "@/state/userInfo/UserInfoState";
 
 export default function LoginInput() {
   const router = useRouter();
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
 
   const formik = useFormik({
     initialValues: {
@@ -29,11 +34,20 @@ export default function LoginInput() {
         password: values.password,
         callbackUrl: "/main?categoryId=1",
       });
-
+      console.log(result);
       if (result?.error) {
-        alert("아이디와 비밀번호를 확인하세요");
+        Swal.fire({
+          text: "아이디와 비밀번호를 확인 해 주세요",
+          icon: "error",
+        });
       } else {
-        alert("환영합니다.");
+        const session = await getSession();
+        console.log(session);
+
+        Swal.fire({
+          text: `환영합니다.${session}`,
+          icon: "success",
+        });
       }
     },
   });
@@ -90,7 +104,13 @@ export default function LoginInput() {
         </form>
         <Spacer y={1} />
         <Row justify="center">
-          <Link href="/findpassword">비밀번호 찾기</Link>
+          <Button
+            size="lg"
+            onPress={() => router.push("/findpassword")}
+            style={{ width: "100%", backgroundColor: "#40CCC3" }}
+          >
+            비밀번호 찾기
+          </Button>
         </Row>
       </Container>
     </article>

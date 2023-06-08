@@ -1,3 +1,4 @@
+"use client";
 import CardImage from "@/components/ui/cardusedlist/CardImage";
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
@@ -28,7 +29,9 @@ export default function CardSlide() {
     centerPadding: "40px",
     initialSlide: 1,
     arrows: false,
-    afterChange: (current: number) => {(setCurrentIndex(current)), setCardId(cardInfoList[current-1]?.id)}
+    afterChange: (current: number) => {
+      setCurrentIndex(current), setCardId(cardInfoList[current - 1]?.id);
+    },
   };
 
   const handleCardClick = () => {
@@ -46,7 +49,11 @@ export default function CardSlide() {
 
   return (
     <>
-      <DeleteModal ismodalopen={isModalOpen} handlemodal={setIsModalOpen} cardId={cardId} />
+      <DeleteModal
+        ismodalopen={isModalOpen}
+        handlemodal={setIsModalOpen}
+        cardId={cardId}
+      />
       <main
         style={{
           display: "flex",
@@ -97,7 +104,11 @@ export default function CardSlide() {
               );
             })}
         </Slider>
-        {currentIndex === 0 || cardInfoList.length === 0 ? <EmptyCardInfo /> : <UsedList cardId={cardId} />}
+        {currentIndex === 0 || cardInfoList.length === 0 ? (
+          <EmptyCardInfo />
+        ) : (
+          <UsedList cardId={cardId} />
+        )}
       </main>
     </>
   );

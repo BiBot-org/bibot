@@ -10,3 +10,9 @@ export function getFormattedDateFromLocalDateTime(localDateTime: string) {
     return "";
   }
 }
+
+export function calculateThreeMonthAgo(selectedDate: string) {
+  const currentDate = new Date(selectedDate);
+  currentDate.setMonth(currentDate.getMonth() - 3);
+  return currentDate.toISOString().slice(0, 10);
+}

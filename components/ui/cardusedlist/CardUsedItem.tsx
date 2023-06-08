@@ -13,12 +13,11 @@ export default function CardUsedItem({ paymentHistory }: Props) {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   const handleClick = () => {
-    // if (!props.isRequested) {
-    //   router.push("/receiptregister");
-    // } else {
-    //   router.push(`/viewreceipt/${1}`);
-    // }
-    setModalOpen(true);
+    if (paymentHistory.requested) {
+      router.push(`/viewreceipt/${1}`);
+    } else {
+      setModalOpen(true);
+    }
   };
 
   const backgroundStyle = {
