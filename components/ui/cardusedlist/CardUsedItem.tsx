@@ -1,27 +1,28 @@
 import React, { useState } from "react";
 import style from "./CardUsedItem.module.css";
 import { useRouter } from "next/router";
+import ReceiptRegisterModal from "@/components/pages/receiptregister/ReceiptInputModal";
+import { PaymentHistoryInfo } from "@/types/payment/types";
 
-export default function CardUsedItem(props: {
-  approvalId?: string;
-  title: string;
-  price: number;
-  date: string;
-  isRequested: boolean;
-}) {
+interface Props {
+  paymentHistory: PaymentHistoryInfo;
+}
+
+export default function CardUsedItem({ paymentHistory }: Props) {
   const router = useRouter();
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   const handleClick = () => {
-    if (!props.isRequested) {
-      router.push("/receiptregister");
-    } else {
-      router.push(`/viewreceipt/${1}`);
-    }
+    // if (!props.isRequested) {
+    //   router.push("/receiptregister");
+    // } else {
+    //   router.push(`/viewreceipt/${1}`);
+    // }
+    setModalOpen(true);
   };
 
-  const [categoryName, setCategoryName] = useState<string>("미승인");
   const backgroundStyle = {
-    backgroundColor: props.isRequested ? "lightgray" : "transparent",
+    backgroundColor: paymentHistory.requested ? "lightgray" : "transparent",
   };
 
   //   const categoryColor: Record<string, string> = {
@@ -36,24 +37,31 @@ export default function CardUsedItem(props: {
   //   };
 
   return (
-    <div
-      className={style.card_used_list}
-      onClick={handleClick}
-      style={backgroundStyle}
-    >
-      <div className={style.usedItemInfo}>
-        {}
-        <div className={style.category}>
-          <p>{categoryName}</p>
+    <>
+      <ReceiptRegisterModal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        paymentHistory={paymentHistory}
+      />
+      <div
+        className={style.card_used_list}
+        onClick={handleClick}
+        style={backgroundStyle}
+      >
+        <div className={style.usedItemInfo}>
+          {}
+          <div className={style.category}>
+            <p>{paymentHistory.requested === true ? "승인" : "미승인"}</p>
+          </div>
+          <div className={style.useInfo}>
+            <p>{paymentHistory.paymentDestination}</p>
+            <p>{paymentHistory.regTime}</p>
+          </div>
         </div>
-        <div className={style.useInfo}>
-          <p>{props.title}</p>
-          <p>{props.date}</p>
+        <div className={style.price}>
+          <p>{paymentHistory.amount.toLocaleString()}원</p>
         </div>
       </div>
-      <div className={style.price}>
-        <p>{props.price.toLocaleString()}원</p>
-      </div>
-    </div>
+    </>
   );
 }

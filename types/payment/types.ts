@@ -4,11 +4,17 @@ export interface PaymentHistoryDTO {
   paymentDestination: string;
   amount: number;
   approvalId?: string;
-  isRequested: boolean;
+  requested: boolean;
+}
+
+export interface PaymentHistoryInfo extends PaymentHistoryDTO {
+  cardCompany: string;
+  cardNo: string;
+  regTime: string;
 }
 
 export interface SearchPaymentHistoryInfo {
-  content: PaymentHistoryDTO[];
+  content: PaymentHistoryInfo[];
   pageNo: number;
   isLast: boolean;
   totalPages: number;
