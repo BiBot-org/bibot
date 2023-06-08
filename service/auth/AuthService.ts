@@ -101,3 +101,36 @@ export async function endSession() {
     );
   }
 }
+
+export async function ChangePassword(
+  username: string,
+  password: string,
+  newPassword: string
+) {
+  const session = await getSession();
+  if (session) {
+    return await axios
+      .post(
+        `${keycloakUrl}/realms/bibot-org/protocol/openid-connect/token`,
+        {
+          grant_type: "password",
+          username: username,
+          password: password,
+          client_id: "bibot",
+          client_secret: clientCridential,
+        },
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      )
+      .then((res) => {
+        const tokenResponse: KeycloakTokenRes = res.data;
+        if (tokenResponse) {
+          ///비밀번호 변경 요청 보냄
+          //강제 로그아웃
+        }
+      });
+  }
+}

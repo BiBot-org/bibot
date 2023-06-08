@@ -1,5 +1,5 @@
 import Image from "next/image";
-export default function ProfileModalBackButton() {
+export default function BackButton() {
   return (
     <div>
       <Image

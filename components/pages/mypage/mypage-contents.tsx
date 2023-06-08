@@ -11,7 +11,9 @@ export default function MypageContent() {
   return (
     <>
       <ProfileInfoModal isModalOpen={modalOpen} setIsModalOpen={setModalOpen} />
-      <Account />
+      <div onClick={() => setModalOpen(true)}>
+        <Account />
+      </div>
       <Spacer y={1} />
       <Service />
       <Spacer y={2} />
