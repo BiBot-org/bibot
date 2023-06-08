@@ -9,16 +9,16 @@ export default function AccountProfile(props: {
   company: string;
   email: string;
 }) {
-  const router = useRouter();  
+  const router = useRouter();
   return (
-    <div className={style.accountWrap} onClick={()=> router.push('/profile')}>
+    <div className={style.accountWrap}>
       <div className={style.accountImage}>
-        <Image 
-        src={props.imageUrl || "/assets/images/icons/emptyprofile.svg"} 
-        alt={props.name} 
-        width={70} 
-        height={70} 
-        priority
+        <Image
+          src={props.imageUrl || "/assets/images/icons/emptyprofile.svg"}
+          alt={props.name}
+          width={70}
+          height={70}
+          priority
         />
       </div>
       <div className={style.accountInfo}>

@@ -1,3 +1,4 @@
+"use client";
 import { Spacer, Container, Input, Button, Row } from "@nextui-org/react";
 import Link from "next/link";
 import { useRouter } from "next/router";

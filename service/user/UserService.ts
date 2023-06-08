@@ -1,6 +1,7 @@
 import { GetUserInfoRes, GetUserRes } from "@/types/user/ResponseType";
 import { CustomAxios } from "../CusomAxios";
 import Config from "@/config/config.export";
+import { useQuery } from "@tanstack/react-query";
 
 const { userServiceUrl } = Config();
 
@@ -26,4 +27,11 @@ export async function GetUserInfo(userId: string) {
     }
   ).then((res) => res.data);
   return response;
+}
+
+export function useGetuserinfo(userId: string) {
+  return useQuery(
+    ["getUserInfo", userId],
+    async () => await GetUserInfo(userId)
+  );
 }
