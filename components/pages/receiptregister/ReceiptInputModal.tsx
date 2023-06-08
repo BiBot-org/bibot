@@ -1,11 +1,11 @@
 import Approval from "@/components/widgets/Approval";
 import { ReceiptType } from "@/types/receipt/receiptType";
-import { Spacer, Table, Button, Modal, Text } from "@nextui-org/react";
+import { Spacer, Button, Modal } from "@nextui-org/react";
 import React, { SetStateAction, useRef, useState } from "react";
 import style from "./ReceiptInput.module.css";
 import Image from "next/image";
 import { PaymentHistoryInfo } from "@/types/payment/types";
-import Swal from "sweetalert2";
+import RegistModal from "@/components/modal/cardUsedList/RegistModal";
 
 interface Props {
   open: boolean;
@@ -20,6 +20,7 @@ export default function ReceiptRegisterModal({
 }: Props) {
   const [imgUrl, setImgUrl] = useState<string>();
   const imgRef = useRef<HTMLImageElement>(null);
+  const [isModal, setIsModal] = useState<boolean>(false);
 
   const readImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -36,12 +37,6 @@ export default function ReceiptRegisterModal({
     }
   };
 
-  const onClickSubmit = () => {
-    Swal.fire({
-      title: "fuck",
-    });
-  };
-
   const columns = [
     { key: "item", label: "항목" },
     { key: "price", label: "가격" },
@@ -54,82 +49,50 @@ export default function ReceiptRegisterModal({
     { key: "4", item: "조선갈비탕", price: 13000 },
   ];
 
+  const handleSubmit = () => {
+    setIsModal(!isModal);
+  };
+
   return (
-    <Modal closeButton open={open} onClose={() => onClose(false)}>
-      <Modal.Header>
-        <Approval
-          paymentDestination={paymentHistory.paymentDestination}
-          regTime={paymentHistory.regTime}
-        />
-      </Modal.Header>
-      <Modal.Body>
-        <Spacer y={1} />
-        <div className={style.emptyReceiptWrap}>
-          <label className={style.emptyReceiptBg} htmlFor="input-image">
-            <Image
-              ref={imgRef}
-              src="/assets/images/icons/receiptresiter.svg"
-              alt="borderCameraIcon"
-              width={319}
-              height={319}
-              style={{ width: "100%", height: "auto" }}
-              priority
-            />
-          </label>
-          <input
-            type="file"
-            id="input-image"
-            accept="image/*"
-            onChange={(e) => readImage(e)}
-            style={{ display: "none" }}
-            disabled={imgRef.current ? true : false}
+    <>
+      <RegistModal isModalOpen={isModal} setIsModalOpen={setIsModal} onClose={onClose} />
+      <Modal
+        closeButton open={open}
+        onClose={() => onClose(false)}
+        css={{ zIndex: 100 }}
+      >
+        <Modal.Header>
+          <Approval
+            paymentDestination={paymentHistory.paymentDestination}
+            regTime={paymentHistory.regTime}
           />
-          <div className={style.registerBtn}>
-            <Button onClick={onClickSubmit} size={"lg"}>
-              등록하기
-            </Button>
-          </div>
-          {imgRef.current === null ? (
-            <p className={style.uploadText}>영수증 사진을 업로드 해주세요.</p>
-          ) : null}
-        </div>
-        {imgRef.current ? (
-          <>
-            <div className={style.ReceiptOCRWrap}>
-              <div className={style.ReceiptOCRHeader}>
-                <Text h4 css={{ color: "var(--bibot-primary" }}>
-                  Payment Details
-                </Text>
-              </div>
-              <Table aria-label="영수증 정보" style={{ padding: "0 2rem" }}>
-                <Table.Header columns={columns}>
-                  {(column) => (
-                    <Table.Column
-                      align="center"
-                      key={column.key}
-                      css={{ backgroundColor: "var(--bibot-primary" }}
-                    >
-                      {column.label}
-                    </Table.Column>
-                  )}
-                </Table.Header>
-                <Table.Body items={rows}>
-                  {(item) => (
-                    <Table.Row key={item.key}>
-                      {(columnKey) => (
-                        <Table.Cell css={{ textAlign: "center" }}>
-                          {item[columnKey as keyof ReceiptType]}
-                        </Table.Cell>
-                      )}
-                    </Table.Row>
-                  )}
-                </Table.Body>
-              </Table>
-              <Spacer y={1} />
-              <div className={style.modifyBtn}>
-                <Button size={"xs"}>수정</Button>
-              </div>
-              <Spacer y={1} />
+        </Modal.Header>
+        <Modal.Body>
+          <Spacer y={1} />
+          <div className={style.emptyReceiptWrap}>
+            <label className={style.emptyReceiptBg} htmlFor="input-image">
+              <Image
+                ref={imgRef}
+                src="/assets/images/icons/receiptresiter.svg"
+                alt="borderCameraIcon"
+                width={319}
+                height={319}
+                style={{ width: "100%", height: "auto" }}
+                priority
+              />
+            </label>
+            <input
+              type="file"
+              id="input-image"
+              accept="image/*"
+              onChange={(e) => readImage(e)}
+              style={{ display: "none" }}
+              disabled={imgRef.current ? true : false}
+            />
+            {imgRef.current === null ? (
+              <p className={style.uploadText}>영수증 사진을 업로드 해주세요.</p>
+            ) : <>
+            <Spacer y={1} />
               <div className={style.categorySel}>
                 <select name="category">
                   <option>카테고리를 선택해주세요.</option>
@@ -139,13 +102,14 @@ export default function ReceiptRegisterModal({
                   <option value="유류비">유류비</option>
                 </select>
               </div>
-            </div>
-            <div className={style.registerBtn}>
-              <Button size={"lg"}>등록하기</Button>
-            </div>
-          </>
-        ) : null}
-      </Modal.Body>
-    </Modal>
+              <Spacer y={1} />
+              <div className={style.registerBtn}>
+                <Button onPress={handleSubmit} size={"lg"}>등록하기</Button>
+              </div>
+            </>}
+          </div>
+        </Modal.Body>
+      </Modal>
+    </>
   );
 }

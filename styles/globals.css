@@ -39,6 +39,10 @@ ul {
   --nextui--inputLabelColor: var(--bibot-primary);
 }
 
+.nextui-c-csEDlc {
+  z-index: 100
+}
+
 /* react-slick */
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
