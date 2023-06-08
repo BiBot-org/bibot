@@ -33,6 +33,7 @@
     "recoil": "^0.7.7",
     "recoil-persist": "^4.2.0",
     "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.7.11",
     "typescript": "5.0.4",
     "uuid": "^9.0.0",
     "yup": "^1.2.0"
