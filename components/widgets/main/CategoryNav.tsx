@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import style from "@/components/widgets/main/CategoryNav.module.css";
 import Image from "next/image";
-import { mainCategoryType } from "@/types/main/mainTypes";
 import dynamic from "next/dynamic";
 import { Progress } from "@nextui-org/react";
 import { useRouter } from "next/router";
@@ -23,10 +22,7 @@ export interface reminderType {
   resetTime: number;
 }
 
-export default function CategoryNav(props: {
-  categoryData: mainCategoryType[];
-}) {
-  const categoryData = props.categoryData;
+export default function CategoryNav() {
   const router = useRouter();
   const { categoryId } = router.query;
   const [expenseProcessingStatus, setExpenseProcessingStatus] =
@@ -40,7 +36,6 @@ export default function CategoryNav(props: {
 
   const [categoryList, setCategoryList] = useState<CategoryDTO[]>([]);
 
-  const [today, setToday] = useState<Date>();
   const [isReminder, setIsReminder] = useState<boolean>(false);
   const [mount, setMount] = useState<number>(0);
 
@@ -49,9 +44,6 @@ export default function CategoryNav(props: {
   }, []);
 
   useEffect(() => {
-    const today = new Date();
-    setToday(today);
-    console.log(categoryId);
     if (categoryId !== undefined) {
       GetExpenseProcessingStatusByCategory(Number(categoryId)).then((res) =>
         setExpenseProcessingStatus(res.data)

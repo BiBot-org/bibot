@@ -1,11 +1,14 @@
 import Approval from "@/components/widgets/Approval";
-import { ReceiptType } from "@/types/receipt/receiptType";
 import { Spacer, Button, Modal } from "@nextui-org/react";
 import React, { SetStateAction, useRef, useState } from "react";
 import style from "./ReceiptInput.module.css";
 import Image from "next/image";
 import { PaymentHistoryInfo } from "@/types/payment/types";
-import RegistModal from "@/components/modal/cardUsedList/RegistModal";
+import Swal from "sweetalert2";
+import BackButton from "@/components/button/BackButton";
+import { useGetCategoryList } from "@/service/category/CategoryService";
+import CategorySelectBox from "@/components/select/categorySelect";
+import { UploadReceiptImage } from "@/service/receipt/ReceiptService";
 
 interface Props {
   open: boolean;
@@ -20,7 +23,8 @@ export default function ReceiptRegisterModal({
 }: Props) {
   const [imgUrl, setImgUrl] = useState<string>();
   const imgRef = useRef<HTMLImageElement>(null);
-  const [isModal, setIsModal] = useState<boolean>(false);
+  const [imageBlob, setImageBlob] = useState<File>();
+  const [categoryId, setCategoryId] = useState<number>(0);
 
   const readImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -33,41 +37,58 @@ export default function ReceiptRegisterModal({
           setImgUrl(e.target.result as string);
         }
       });
+      setImageBlob(imageFile);
       reader.readAsDataURL(imageFile);
     }
   };
 
-  const columns = [
-    { key: "item", label: "항목" },
-    { key: "price", label: "가격" },
-  ];
-
-  const rows: ReceiptType[] = [
-    { key: "1", item: "만두국", price: 8000 },
-    { key: "2", item: "쇠고기해장국", price: 8000 },
-    { key: "3", item: "뚝배기불고기", price: 8000 },
-    { key: "4", item: "조선갈비탕", price: 13000 },
-  ];
+  const onChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setCategoryId(Number(e.target.value));
+  };
 
   const handleSubmit = () => {
-    setIsModal(!isModal);
+    Swal.fire({
+      text: "전송 하시겠습니까?",
+      icon: "question",
+      showCancelButton: true,
+    }).then((res) => {
+      if (res.isConfirmed) {
+        UploadReceiptImage({
+          file: imageBlob!!,
+          cardId: paymentHistory.cardId,
+          categoryId: categoryId,
+          paymentId: paymentHistory.id,
+        });
+        Swal.fire({
+          title: "Success!",
+          text: "전송 되었습니다.",
+          icon: "success",
+        }).then(() => {
+          onClose(false);
+        });
+      }
+    });
   };
 
   return (
     <>
-      <RegistModal isModalOpen={isModal} setIsModalOpen={setIsModal} onClose={onClose} />
-      <Modal
-        closeButton open={open}
-        onClose={() => onClose(false)}
-        css={{ zIndex: 100 }}
-      >
-        <Modal.Header>
+      {open && (
+        <div className={style.modalContainer}>
+          <div
+            style={{
+              marginTop: 10,
+              marginLeft: 10,
+            }}
+            onClick={() => onClose(false)}
+          >
+            <BackButton />
+          </div>
           <Approval
             paymentDestination={paymentHistory.paymentDestination}
             regTime={paymentHistory.regTime}
           />
-        </Modal.Header>
-        <Modal.Body>
+
+          <p className={style.uploadText}>영수증 사진을 업로드 해주세요.</p>
           <Spacer y={1} />
           <div className={style.emptyReceiptWrap}>
             <label className={style.emptyReceiptBg} htmlFor="input-image">
@@ -89,27 +110,22 @@ export default function ReceiptRegisterModal({
               style={{ display: "none" }}
               disabled={imgRef.current ? true : false}
             />
-            {imgRef.current === null ? (
-              <p className={style.uploadText}>영수증 사진을 업로드 해주세요.</p>
-            ) : <>
+
             <Spacer y={1} />
-              <div className={style.categorySel}>
-                <select name="category">
-                  <option>카테고리를 선택해주세요.</option>
-                  <option value="식비">식비</option>
-                  <option value="교통비">교통비</option>
-                  <option value="문화비">문화비</option>
-                  <option value="유류비">유류비</option>
-                </select>
-              </div>
-              <Spacer y={1} />
-              <div className={style.registerBtn}>
-                <Button onPress={handleSubmit} size={"lg"}>등록하기</Button>
-              </div>
-            </>}
+            <div className={style.categorySel}>
+              <select name="category" onChange={onChangeSelect}>
+                <CategorySelectBox />
+              </select>
+            </div>
+            <Spacer y={1} />
+            <div className={style.btnContainer}>
+              <button className={style.registerBtn} onClick={handleSubmit}>
+                등록하기
+              </button>
+            </div>
           </div>
-        </Modal.Body>
-      </Modal>
+        </div>
+      )}
     </>
   );
 }

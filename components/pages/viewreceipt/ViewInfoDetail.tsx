@@ -1,20 +1,19 @@
-import CardUsedItem from '@/components/ui/cardusedlist/CardUsedItem'
-import React from 'react'
-import Image from 'next/image'
-import { Spacer, Table } from '@nextui-org/react'
-import { ReceiptType } from '@/types/receipt/receiptType'
+import CardUsedItem from "@/components/ui/cardusedlist/CardUsedItem";
+import React from "react";
+import Image from "next/image";
+import { Spacer, Table } from "@nextui-org/react";
+import { ReceiptType } from "@/types/receipt/receiptType";
 
 export default function ViewInfoDetail() {
-    const columns = [
-        { key: "item", label: "항목" },
-        { key: "price", label: "가격" },
-    ]
+  const columns = [
+    { key: "item", label: "항목" },
+    { key: "price", label: "가격" },
+  ];
 
-    const rows: ReceiptType[] = [
-        { key: "1", item: "만두국", price: 8000 },
-        { key: "2", item: "쇠고기해장국", price: 8000 },
-    ]
-
+  const rows: ReceiptType[] = [
+    { key: "1", item: "만두국", price: 8000 },
+    { key: "2", item: "쇠고기해장국", price: 8000 },
+  ];
     return (
         <article>
             <div>
