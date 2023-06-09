@@ -10,7 +10,7 @@ export interface PaymentHistoryDTO {
 export interface SearchPaymentHistoryInfo {
   content: PaymentHistoryDTO[];
   pageNo: number;
-  isLast: boolean;
+  last: boolean;
   totalPages: number;
   totalElements: number;
 }

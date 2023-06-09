@@ -1,12 +1,16 @@
 .usedListWrap {
     height: 100%;
-    overflow-y: auto;
 }
+
 .card_used_sum {
     display: flex;
     justify-content: space-between;
     padding: 30px;
-    overflow-y: none
+    background-color: var(--bibot-white);
+    position: sticky;
+    width: 100%;
+    top: 0;
+    z-index: 300;
 }
 
 .card_used_sum p:first-child {

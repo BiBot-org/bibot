@@ -7,8 +7,9 @@ export default function EmptyCardInfo() {
             textAlign: 'center',
             color: '#828282',
             position: 'absolute',
-            top: '60%',
+            top: '75%',
             left: '50%',
+            width: '100%',
             transform: 'translate(-50%, -50%)'
         }}>
             <Image

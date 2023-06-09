@@ -4,6 +4,7 @@ import style from 'components/layouts/BackTitleLayout.module.css'
 import { useRouter } from 'next/router'
 import ReceiptRegisterHelp from '../ui/receiptregister/ReceiptRegisterHelp'
 import Footer from './Footer'
+import { Spacer } from '@nextui-org/react'
 
 export default function BackTitleLayout(props: { children: React.ReactNode, title: string, }) {
   const router = useRouter()
@@ -24,6 +25,7 @@ export default function BackTitleLayout(props: { children: React.ReactNode, titl
           }
         </div>
       </header>
+      <Spacer y={4} />
       <div>{props.children}</div>
       <Footer />
     </>

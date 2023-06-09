@@ -28,7 +28,7 @@ export default function CardSlide() {
     centerPadding: "40px",
     initialSlide: 1,
     arrows: false,
-    afterChange: (current: number) => {(setCurrentIndex(current)), setCardId(cardInfoList[current-1]?.id)}
+    afterChange: (current: number) => { (setCurrentIndex(current)), setCardId(cardInfoList[current - 1]?.id) }
   };
 
   const handleCardClick = () => {
@@ -52,8 +52,7 @@ export default function CardSlide() {
           display: "flex",
           flexDirection: "column",
           padding: "0",
-          height: "100vh",
-          overflow: "hidden",
+          height: "70vh",
         }}
       >
         <Slider {...settings}>
@@ -97,7 +96,7 @@ export default function CardSlide() {
               );
             })}
         </Slider>
-        {currentIndex === 0 || cardInfoList.length === 0 ? <EmptyCardInfo /> : <UsedList cardId={cardId} />}
+        {currentIndex === 0 || cardInfoList.length === 0 ?<EmptyCardInfo /> : <UsedList cardId={cardId} />}
       </main>
     </>
   );
