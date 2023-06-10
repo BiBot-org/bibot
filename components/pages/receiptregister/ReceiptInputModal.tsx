@@ -1,5 +1,5 @@
 import Approval from "@/components/widgets/Approval";
-import { Spacer } from "@nextui-org/react";
+import { Spacer, Table } from "@nextui-org/react";
 import React, { SetStateAction, useRef, useState } from "react";
 import style from "./ReceiptInput.module.css";
 import Image from "next/image";
@@ -7,7 +7,10 @@ import { PaymentHistoryInfo } from "@/types/payment/types";
 import Swal from "sweetalert2";
 import BackButton from "@/components/button/BackButton";
 import CategorySelectBox from "@/components/select/categorySelect";
-import { UploadReceiptImage } from "@/service/receipt/ReceiptService";
+import { RequestOCR } from "@/service/receipt/ReceiptService";
+import { OCRResponse, ReceiptType } from "@/types/receipt/receiptType";
+import { getFormattedDateFromLocalDateTime } from "@/utils/dateUtils";
+import ReceiptOcrResult from "./ReceiptOcrResult";
 
 interface Props {
   open: boolean;
@@ -24,6 +27,9 @@ export default function ReceiptRegisterModal({
   const imgRef = useRef<HTMLImageElement>(null);
   const [imageBlob, setImageBlob] = useState<File>();
   const [categoryId, setCategoryId] = useState<number>(0);
+  const [ocrResponse, setOcrResponse] = useState<OCRResponse>(
+    {} as OCRResponse
+  );
 
   const readImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -52,19 +58,25 @@ export default function ReceiptRegisterModal({
       showCancelButton: true,
     }).then((res) => {
       if (res.isConfirmed) {
-        UploadReceiptImage({
-          file: imageBlob!!,
-          cardId: paymentHistory.cardId,
-          categoryId: categoryId,
-          paymentId: paymentHistory.id,
+        RequestOCR({
+          file: imageBlob!,
+          regTime: paymentHistory.regTime,
+        }).then((res) => {
+          console.log(res);
         });
-        Swal.fire({
-          title: "Success!",
-          text: "전송 되었습니다.",
-          icon: "success",
-        }).then(() => {
-          onClose(false);
-        });
+        // UploadReceiptImage({
+        //   file: imageBlob!!,
+        //   cardId: paymentHistory.cardId,
+        //   categoryId: categoryId,
+        //   paymentId: paymentHistory.id,
+        // });
+        // Swal.fire({
+        //   title: "Success!",
+        //   text: "전송 되었습니다.",
+        //   icon: "success",
+        // }).then(() => {
+        //   onClose(false);
+        // });
       }
     });
   };
@@ -84,7 +96,7 @@ export default function ReceiptRegisterModal({
           </div>
           <Approval
             paymentDestination={paymentHistory.paymentDestination}
-            regTime={paymentHistory.regTime}
+            regTime={getFormattedDateFromLocalDateTime(paymentHistory.regTime)}
           />
 
           <p className={style.uploadText}>영수증 사진을 업로드 해주세요.</p>
@@ -117,11 +129,14 @@ export default function ReceiptRegisterModal({
               </select>
             </div>
             <Spacer y={1} />
-            <div className={style.btnContainer}>
-              <button className={style.registerBtn} onClick={handleSubmit}>
-                등록하기
-              </button>
-            </div>
+            {ocrResponse.items !== undefined && (
+              <ReceiptOcrResult
+                ocrResponse={ocrResponse}
+                paymentHistory={paymentHistory}
+              />
+            )}
+
+            <Spacer y={1} />
           </div>
         </div>
       )}

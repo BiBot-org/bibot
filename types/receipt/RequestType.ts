@@ -4,3 +4,8 @@ export interface UploadReceiptImageReq {
   categoryId: number;
   paymentId: string;
 }
+
+export interface UploadReceiptReq {
+  file: File;
+  regTime: string;
+}
