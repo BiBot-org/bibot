@@ -1,6 +1,5 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import style from "./UsedList.module.css";
-import { cardUsedData } from "@/datas/dummy/cardUsedData";
 import CardUsedItem from "@/components/ui/cardusedlist/CardUsedItem";
 import { FormElement, Input, Spacer } from "@nextui-org/react";
 import { SearchPaymentHistory } from "@/service/payment/PaymentService";
@@ -14,8 +13,6 @@ interface Prop {
 }
 
 export default function UsedList({ cardId }: Prop) {
-  const [historySum, setHistorySum] = useState<number>(0);
-
   const today = new Date().toISOString().slice(0, 10);
 
   const calculateThreeMonthAgo = (selectedDate: string) => {
@@ -28,7 +25,6 @@ export default function UsedList({ cardId }: Prop) {
     cardId: cardId,
     startDate: calculateThreeMonthAgo(today),
     endDate: today,
-    page: 0,
   } as SearchPaymentHistoryReq);
 
   const [searchPaymentHistoryInfo, setSearchPaymentHistoryInfo] =
@@ -39,10 +35,8 @@ export default function UsedList({ cardId }: Prop) {
       [`searchPaymentHistory`, searchParam],
       ({ pageParam = 0 }) => SearchPaymentHistory(searchParam, pageParam),
       {
-        getNextPageParam: (element) => {
-          return element.data.isLast === true
-            ? undefined
-            : element.data.pageNo + 1;
+        getNextPageParam: (lastPage, pages) => {
+          return lastPage.data.last ? undefined : lastPage.data.pageNo + 1;
         },
       }
     );
@@ -72,10 +66,6 @@ export default function UsedList({ cardId }: Prop) {
   return (
     <>
       <div className={style.usedListWrap}>
-        <div className={style.card_used_sum}>
-          <p>사용내역 합</p>
-          <p>{historySum.toLocaleString()}원</p>
-        </div>
         <div className={style.dateWrap}>
           <Input
             aria-label="threeMonthAgo"
@@ -99,7 +89,6 @@ export default function UsedList({ cardId }: Prop) {
           useWindow={false}
         >
           {data?.pages.map((page) => {
-            console.log(hasNextPage);
             return page.data.content.map((history) => (
               <CardUsedItem key={history.id} paymentHistory={history} />
             ));

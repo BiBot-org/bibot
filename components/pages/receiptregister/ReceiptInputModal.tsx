@@ -1,12 +1,11 @@
 import Approval from "@/components/widgets/Approval";
-import { Spacer, Button, Modal } from "@nextui-org/react";
+import { Spacer } from "@nextui-org/react";
 import React, { SetStateAction, useRef, useState } from "react";
 import style from "./ReceiptInput.module.css";
 import Image from "next/image";
 import { PaymentHistoryInfo } from "@/types/payment/types";
 import Swal from "sweetalert2";
 import BackButton from "@/components/button/BackButton";
-import { useGetCategoryList } from "@/service/category/CategoryService";
 import CategorySelectBox from "@/components/select/categorySelect";
 import { UploadReceiptImage } from "@/service/receipt/ReceiptService";
 

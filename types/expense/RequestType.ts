@@ -3,5 +3,4 @@ export interface SearchApprovalInfoReq {
   endDate: string;
   status?: string;
   categoryId?: number;
-  page: number;
 }
