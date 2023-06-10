@@ -6,15 +6,15 @@ import { FormElement, Input, Spacer } from "@nextui-org/react";
 import { SearchPaymentHistory } from "@/service/payment/PaymentService";
 import { SearchPaymentHistoryInfo } from "@/types/payment/types";
 import { SearchPaymentHistoryReq } from "@/types/payment/RequestTypes";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import InfiniteScroll from "react-infinite-scroller";
 
 interface Prop {
   cardId: number;
 }
 
 export default function UsedList({ cardId }: Prop) {
-  console.log(cardId);
   const [historySum, setHistorySum] = useState<number>(0);
-  const [isLastPage, setIsLastPage] = useState<boolean>(false);
 
   const today = new Date().toISOString().slice(0, 10);
 
@@ -25,6 +25,7 @@ export default function UsedList({ cardId }: Prop) {
   };
 
   const [searchParam, setSearchParam] = useState<SearchPaymentHistoryReq>({
+    cardId: cardId,
     startDate: calculateThreeMonthAgo(today),
     endDate: today,
     page: 0,
@@ -32,6 +33,19 @@ export default function UsedList({ cardId }: Prop) {
 
   const [searchPaymentHistoryInfo, setSearchPaymentHistoryInfo] =
     useState<SearchPaymentHistoryInfo>({} as SearchPaymentHistoryInfo);
+
+  const { data, fetchNextPage, hasNextPage, isLoading, isError } =
+    useInfiniteQuery(
+      [`searchPaymentHistory`, searchParam],
+      ({ pageParam = 0 }) => SearchPaymentHistory(searchParam, pageParam),
+      {
+        getNextPageParam: (element) => {
+          return element.data.isLast === true
+            ? undefined
+            : element.data.pageNo + 1;
+        },
+      }
+    );
 
   const handleRightDateChange = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<FormElement>
@@ -55,64 +69,9 @@ export default function UsedList({ cardId }: Prop) {
     }
   };
 
-  const nextPage = () => {
-    setSearchParam({
-      ...searchParam,
-      page: searchParam.page + 1,
-    });
-  };
-
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const { scrollTop, clientHeight, scrollHeight } = e.currentTarget;
-    // const offset = 5;
-    console.log("terioasjd", searchPaymentHistoryInfo.pageNo, isLastPage);
-    if (!isLastPage && scrollHeight - scrollTop <= clientHeight + 1) {
-      nextPage();
-    }
-  };
-
-  useEffect(() => {
-    SearchPaymentHistory({
-      cardId: cardId,
-      ...searchParam,
-    }).then((res) => {
-      setSearchPaymentHistoryInfo((prevData) => {
-        if (prevData && prevData.content) {
-          return {
-            ...res.data,
-            content: [...prevData.content, ...res.data.content],
-          };
-        } else {
-          return res.data;
-        }
-      });
-      if (res.data.isLast) {
-        setIsLastPage(true);
-      } else {
-        setIsLastPage(false);
-      }
-
-      setHistorySum(
-        res.data.content.reduce((acc, cur) => {
-          return acc + cur.amount;
-        }, 0)
-      );
-    });
-  }, [cardId, searchParam]);
-
-  useEffect(() => {
-    setSearchParam({
-      startDate: calculateThreeMonthAgo(today),
-      endDate: today,
-      page: 0,
-    });
-    setSearchPaymentHistoryInfo({} as SearchPaymentHistoryInfo);
-  }, [cardId]);
-
-  console.log("asd", searchPaymentHistoryInfo, searchParam.page);
   return (
     <>
-      <div className={style.usedListWrap} onScroll={handleScroll}>
+      <div className={style.usedListWrap}>
         <div className={style.card_used_sum}>
           <p>사용내역 합</p>
           <p>{historySum.toLocaleString()}원</p>
@@ -134,10 +93,18 @@ export default function UsedList({ cardId }: Prop) {
           />
         </div>
         <Spacer y={1} />
-        {searchPaymentHistoryInfo.content &&
-          searchPaymentHistoryInfo.content.map((data, idx) => (
-            <CardUsedItem key={data.id} paymentHistory={data} />
-          ))}
+        <InfiniteScroll
+          hasMore={hasNextPage}
+          loadMore={() => fetchNextPage()}
+          useWindow={false}
+        >
+          {data?.pages.map((page) => {
+            console.log(hasNextPage);
+            return page.data.content.map((history) => (
+              <CardUsedItem key={history.id} paymentHistory={history} />
+            ));
+          })}
+        </InfiniteScroll>
       </div>
     </>
   );
