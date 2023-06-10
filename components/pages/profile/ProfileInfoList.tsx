@@ -23,16 +23,13 @@ export default function ProfileInfoList() {
 
   return (
     <>
-      {!(isLoading && isError) && (
+      {!isLoading && (
         <div className={style.profileWrap}>
           <Spacer y={2} />
           <div className={style.profileImage}>
             <Image
               id="profileImage"
-              src={
-                data?.data.bibotUser.profileUrl ||
-                "/assets/images/icons/emptyprofile.svg"
-              }
+              src={`${data?.data.bibotUser.profileUrl}`}
               width={150}
               height={150}
               alt="profile"
@@ -63,13 +60,13 @@ export default function ProfileInfoList() {
             />
             <ProfileInfo
               title="이메일"
-              content={data?.data.bibotUser.email || ""}
+              content={`${data?.data.bibotUser.email}`}
             />
             <ProfileInfo
               title="부서"
-              content={data?.data.department.name || ""}
+              content={`${data?.data.department.name}`}
             />
-            <ProfileInfo title="소속" content={data?.data.team.name || ""} />
+            <ProfileInfo title="소속" content={`${data?.data.team.name}`} />
           </div>
         </div>
       )}

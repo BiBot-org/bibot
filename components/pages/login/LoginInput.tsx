@@ -41,12 +41,16 @@ export default function LoginInput() {
           icon: "error",
         });
       } else {
-        const session = await getSession();
-        console.log(session);
-
         Swal.fire({
-          text: `환영합니다.${session}`,
+          text: `환영합니다`,
           icon: "success",
+          timer: 3000,
+        }).then(async () => {
+          const session = await getSession();
+          setUserInfo({
+            isLogin: true,
+            userId: session?.tokenInfo.id,
+          });
         });
       }
     },

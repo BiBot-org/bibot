@@ -12,17 +12,17 @@ export default function Account() {
 
   return (
     <>
-      {!(isLoading && isError) && (
+      {!isLoading && (
         <div>
           <Text size="$xl" css={{ color: "#40CCC3" }} weight={"bold"}>
             Account
           </Text>
 
           <AccountProfile
-            imageUrl={data?.data.bibotUser.profileUrl || ""}
+            imageUrl={`${data?.data.bibotUser.profileUrl}`}
             name={`${data?.data.bibotUser.lastName} ${data?.data.bibotUser.firstName}`}
             company={`${data?.data.department.name} ${data?.data.team.name}`}
-            email={data?.data.bibotUser.email || ""}
+            email={`${data?.data.bibotUser.email}`}
           />
         </div>
       )}

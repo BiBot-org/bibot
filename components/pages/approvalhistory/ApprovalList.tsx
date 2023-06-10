@@ -8,6 +8,7 @@ import { SearchApprovalInfoReq } from "@/types/expense/RequestType";
 import { calculateThreeMonthAgo } from "@/utils/dateUtils";
 import { useSearchApprovalInfo } from "@/service/expense/ExpenseService";
 import ApprovalListItem from "./ApprovalListItem";
+import CategorySelectBox from "@/components/select/categorySelect";
 
 export default function ApprovalList() {
   const [approvalItems, setApprovalItems] = useState([]);
@@ -41,7 +42,18 @@ export default function ApprovalList() {
         />
       </div>
       <div className={style.approval_menu}>
-        <p>{approvalItems.length}건</p>
+        {!isLoading && <p>{data?.data.totalElements}건</p>}
+        <div className={style.approval_menu_icon}>
+          <Image
+            src="assets/images/icons/list.svg"
+            alt="list"
+            width={15}
+            height={15}
+          />
+          <select>
+            <CategorySelectBox />
+          </select>
+        </div>
         <div className={style.approval_menu_icon}>
           <Image
             src="assets/images/icons/list.svg"
