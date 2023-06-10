@@ -20,7 +20,10 @@ export async function GetPaymentHistory(historyId: string) {
   return response;
 }
 
-export async function SearchPaymentHistory(req: SearchPaymentHistoryReq) {
+export async function SearchPaymentHistory(
+  req: SearchPaymentHistoryReq,
+  page: number
+) {
   const response: SearchPaymentHistoryRes = await CustomAxios.get(
     `${cardServiceUrl}/api/v1/payment/search`,
     {
@@ -28,7 +31,7 @@ export async function SearchPaymentHistory(req: SearchPaymentHistoryReq) {
         cardId: req.cardId,
         startDate: req.startDate,
         endDate: req.endDate,
-        page: req.page,
+        page: page,
       },
     }
   ).then((res) => res.data);

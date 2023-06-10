@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import { Progress } from "@nextui-org/react";
 import { useRouter } from "next/router";
 import { CategoryDTO } from "@/types/category/types";
-import { getCategoryList } from "@/service/category/CategoryService";
+import { useGetCategoryList } from "@/service/category/CategoryService";
 import {
   GetAllExpenseProcessingStatus,
   GetExpenseProcessingStatusByCategory,
@@ -34,14 +34,10 @@ export default function CategoryNav() {
     router.push(`/main?categoryId=${id}`);
   };
 
-  const [categoryList, setCategoryList] = useState<CategoryDTO[]>([]);
-
   const [isReminder, setIsReminder] = useState<boolean>(false);
   const [mount, setMount] = useState<number>(0);
 
-  useEffect(() => {
-    getCategoryList().then((res) => setCategoryList(res.data));
-  }, []);
+  const { isLoading, data } = useGetCategoryList();
 
   useEffect(() => {
     if (categoryId !== undefined) {
@@ -76,21 +72,26 @@ export default function CategoryNav() {
             height={20}
           />
         </div>
-        <div className={style.CategoryNav}>
-          <nav>
-            <ul ref={targetRef}>
-              {categoryList.map((item: CategoryDTO) => (
-                <li
-                  key={item.id}
-                  className={item.id === Number(categoryId) ? style.active : ""}
-                  onClick={() => handleCategory(item.id)}
-                >
-                  {item.categoryName}
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </div>
+        {!isLoading && (
+          <div className={style.CategoryNav}>
+            <nav>
+              <ul ref={targetRef}>
+                {data?.data.map((item: CategoryDTO) => (
+                  <li
+                    key={item.id}
+                    className={
+                      item.id === Number(categoryId) ? style.active : ""
+                    }
+                    onClick={() => handleCategory(item.id)}
+                  >
+                    {item.categoryName}
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+        )}
+
         <div className={style.RightBtn}>
           <Image
             src={"/assets/images/icons/RightBtn.svg"}

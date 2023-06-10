@@ -49,7 +49,7 @@ export default function HeaderProfile() {
             </p>
             <p>
               {data?.data.department.name} {data?.data.team.name}
-              {`${data?.data.bibotUser.lastName} ${data?.data.bibotUser.firstName}`}
+              {` ${data?.data.bibotUser.lastName} ${data?.data.bibotUser.firstName}`}
               님
             </p>
           </div>

@@ -20,7 +20,7 @@ export async function AddCard(req: CreateCardReq) {
 
 export async function DeleteCard(cardId: number) {
   return await CustomAxios.delete(`${cardServiceUrl}/api/v1/card`, {
-    params: {
+    data: {
       id: cardId,
     },
   }).then((res) => res.data);

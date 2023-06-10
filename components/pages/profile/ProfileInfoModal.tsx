@@ -13,6 +13,7 @@ import {
 } from "@/service/user/UserService";
 import ProfileModalBackButton from "./ProfileModalBackbutton";
 import Swal from "sweetalert2";
+import { useMutation } from "@tanstack/react-query";
 
 interface Props {
   isModalOpen: boolean;
@@ -28,7 +29,11 @@ export default function ProfileInfoModal({
   const imgRef = useRef<HTMLImageElement>(null);
 
   const { isLoading, data, isError } = useGetuserinfo(userInfo.userId);
-
+  const { mutate } = useMutation((req: File) =>
+    UploadUserProfileImage({
+      profileImage: req,
+    })
+  );
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const imageFile = e.target.files[0];
@@ -46,21 +51,20 @@ export default function ProfileInfoModal({
         showCancelButton: true,
       }).then((res) => {
         if (res.isConfirmed) {
-          UploadUserProfileImage({
-            profileImage: imageFile,
-          })
-            .then(() => {
+          mutate(imageFile, {
+            onSuccess: () => {
               Swal.fire({
                 text: "프로필이 변경 되었습니다.",
                 icon: "success",
               });
-            })
-            .catch(() => {
+            },
+            onError: () => {
               Swal.fire({
                 text: "에러가 발생했습니다!",
                 icon: "error",
               });
-            });
+            },
+          });
         }
       });
     }

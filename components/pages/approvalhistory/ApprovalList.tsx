@@ -1,25 +1,38 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import style from "./ApprovalList.module.css";
 import Image from "next/image";
-import { Button, Input } from "@nextui-org/react";
+import { Input } from "@nextui-org/react";
 import ApprovalItem from "@/components/ui/approvalhistory/ApprovalItem";
-import { approvalList } from "@/datas/dummy/approvalListData";
 import { SearchApprovalInfoReq } from "@/types/expense/RequestType";
 import { calculateThreeMonthAgo } from "@/utils/dateUtils";
-import { useSearchApprovalInfo } from "@/service/expense/ExpenseService";
-import ApprovalListItem from "./ApprovalListItem";
+import CategorySelectBox from "@/components/select/categorySelect";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { SearchApprovalInfo } from "@/service/expense/ExpenseService";
+import InfiniteScroll from "react-infinite-scroller";
 
 export default function ApprovalList() {
-  const [approvalItems, setApprovalItems] = useState([]);
   const [searchParam, setSearchParam] = useState<SearchApprovalInfoReq>({
     startDate: calculateThreeMonthAgo(new Date().toISOString().slice(0, 10)),
     endDate: new Date().toISOString().slice(0, 10),
-    page: 0,
   });
-  const loding = useRef<boolean>(false);
-  const [page, setPage] = useState({ current: 1, total: 0 });
 
-  const { isLoading, data } = useSearchApprovalInfo(searchParam);
+  const onChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSearchParam({
+      ...searchParam,
+      categoryId: Number(e.target.value),
+    });
+  };
+
+  const { data, fetchNextPage, hasNextPage, isLoading, isError } =
+    useInfiniteQuery(
+      [`searchApprovalInfo`, searchParam],
+      ({ pageParam = 0 }) => SearchApprovalInfo(searchParam, pageParam),
+      {
+        getNextPageParam: (element) => {
+          return element.data.last ? undefined : element.data.pageNo + 1;
+        },
+      }
+    );
 
   const today = new Date().toISOString().slice(0, 10);
 
@@ -41,7 +54,18 @@ export default function ApprovalList() {
         />
       </div>
       <div className={style.approval_menu}>
-        <p>{approvalItems.length}건</p>
+        {!isLoading && <p>{data?.pages[0].data.totalElements}건</p>}
+        <div className={style.approval_menu_icon}>
+          <Image
+            src="assets/images/icons/list.svg"
+            alt="list"
+            width={15}
+            height={15}
+          />
+          <select onChange={onChangeSelect}>
+            <CategorySelectBox />
+          </select>
+        </div>
         <div className={style.approval_menu_icon}>
           <Image
             src="assets/images/icons/list.svg"
@@ -55,10 +79,18 @@ export default function ApprovalList() {
           </select>
         </div>
       </div>
-      {!isLoading &&
-        data?.data.content.map((approval) => (
-          <ApprovalItem key={approval.id} item={approval} />
-        ))}
+      <InfiniteScroll
+        hasMore={hasNextPage}
+        loadMore={() => fetchNextPage()}
+        useWindow={false}
+      >
+        {!isLoading &&
+          data?.pages.map((page) => {
+            return page.data.content.map((history) => (
+              <ApprovalItem key={history.id} item={history} />
+            ));
+          })}
+      </InfiniteScroll>
     </section>
   );
 }

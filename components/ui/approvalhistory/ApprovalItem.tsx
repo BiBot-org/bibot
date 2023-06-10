@@ -4,6 +4,7 @@ import Image from "next/image";
 import { approvalIcon, approvalStatusBC } from "@/datas/approval/approvalItem";
 import { SearchApproval } from "@/types/expense/types";
 import { useGetCategoryById } from "@/service/category/CategoryService";
+import dayjs from "dayjs";
 
 export default function ApprovalItem(props: { item: SearchApproval }) {
   const item = props.item;
@@ -27,7 +28,7 @@ export default function ApprovalItem(props: { item: SearchApproval }) {
           <div className={style.itemInfoWrap}>
             <div className={style.itemInfo}>
               <p>{item.id}</p>
-              <p>{item.regTime}</p>
+              <p>{dayjs(item.regTime).format("YYYY-MM-DDTHH:mm:ss")}</p>
             </div>
             <div className={style.itemStatus} style={itemStyle}>
               <p>{data?.data.categoryName}</p>

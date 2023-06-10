@@ -3,6 +3,7 @@ import style from "./CardUsedItem.module.css";
 import { useRouter } from "next/router";
 import ReceiptRegisterModal from "@/components/pages/receiptregister/ReceiptInputModal";
 import { PaymentHistoryInfo } from "@/types/payment/types";
+import { getFormattedDateTimeFromLocalDateTime } from "@/utils/dateUtils";
 
 interface Props {
   paymentHistory: PaymentHistoryInfo;
@@ -54,7 +55,9 @@ export default function CardUsedItem({ paymentHistory }: Props) {
           </div>
           <div className={style.useInfo}>
             <p>{paymentHistory.paymentDestination}</p>
-            <p>{paymentHistory.regTime}</p>
+            <p>
+              {getFormattedDateTimeFromLocalDateTime(paymentHistory.regTime)}
+            </p>
           </div>
         </div>
         <div className={style.price}>
