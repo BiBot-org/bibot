@@ -1,38 +1,45 @@
-import React, { useState } from 'react'
-import style from '@/components/widgets/Approval.module.css'
-import Image from 'next/image'
-import { ApprovalDTO } from '@/types/expense/types'
-import { Collapse, Grid } from "@nextui-org/react";
+import React, { useState } from "react";
+import style from "@/components/widgets/Approval.module.css";
+import Image from "next/image";
+import { ApprovalDTO, SearchApproval } from "@/types/expense/types";
+import { Collapse, Grid, Text } from "@nextui-org/react";
+import ApprovalCategoryLogo from "./ApprovalCategoryLogo";
+import { getFormattedDateTimeFromLocalDateTime } from "@/utils/dateUtils";
+import {
+  approvalStatusBC,
+  approvalStatus,
+} from "@/datas/approval/approvalItem";
+interface Prop {
+  approval: SearchApproval;
+}
 
-export default function ApprovalDetail(props: { storeName: string, reason: string, manager: string }) {
-    // const [info, setInfo] = useState<ApprovalDTO>()
-    return (
-        <div className={style.modalContent}>
-            <div className={style.ContentImage}>
-                <Image src={'/assets/images/icons/Food.svg'} alt={'Food'} width={25} height={25} />
-            </div>
+export default function ApprovalDetail({ approval }: Prop) {
+  const itemStyle = {
+    backgroundColor:
+      approvalStatusBC[approval.status] || "var(--bibot-primary)",
+  };
 
-            <div className={style.ContentInfo}>
-                <div className={style.Contentitle}>
-                    <div className={style.contentmenu}>
-                        <p>{props.storeName}</p>
-                    </div>
-                    <Grid.Container gap={1}>
-                        <Grid>
-                            <Collapse.Group>
-                                <Collapse title="상세정보 확인">
-                                    <p>사유 : 영수증 번호 불일치</p>
-                                    <p>담당자 : 박노명</p>
-                                </Collapse>
-                            </Collapse.Group>
-                        </Grid>
-                    </Grid.Container>
-                </div>
-            </div>
-            <div className={style.ContentPrice}>
-                <p>반려</p>
-            </div>
-
+  return (
+    <div className={style.modalContent}>
+      <ApprovalCategoryLogo
+        categoryId={approval.categoryId}
+        backgroundColor={itemStyle.backgroundColor}
+      />
+      <div className={style.ContentInfo}>
+        <div className={style.Contentitle}>
+          <div className={style.contentmenu}></div>
+          <Grid.Container gap={1}>
+            <Grid>
+              <Text h4>
+                {getFormattedDateTimeFromLocalDateTime(approval.regTime)}
+              </Text>
+              <div className={style.ContentPrice} style={itemStyle}>
+                <p>{approvalStatus[approval.status]}</p>
+              </div>
+            </Grid>
+          </Grid.Container>
         </div>
-    )
+      </div>
+    </div>
+  );
 }

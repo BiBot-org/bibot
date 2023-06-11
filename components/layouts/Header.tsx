@@ -14,7 +14,6 @@ export default function Header() {
   }, []);
 
   const handleScroll = () => {
-    console.log("window.scrollY : ", window.scrollY);
     setScroll(window.scrollY > 50);
   };
 

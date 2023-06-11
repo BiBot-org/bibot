@@ -24,7 +24,6 @@ export const jwtCallback = async ({
       token.refreshToken = newTokenData.refreshToken;
       token.expiresIn = newTokenData.expiresIn;
       token.refreshExpiresIn = newTokenData.refreshExpiresIn;
-      console.log(token, user);
       return { ...token, ...newTokenData };
     }
   }

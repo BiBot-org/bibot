@@ -25,12 +25,10 @@ export default function CardUsedItem({ paymentHistory }: Props) {
     backgroundColor: paymentHistory.requested ? "lightgray" : "transparent",
   };
 
-  //   const categoryColor: Record<string, string> = {
-  //     식비: "var(--bibot-primary)",
-  //     유류비: "var(--bibot-secondary)",
-  //     비품비: "#FFD28E",
-  //     미승인: "#FFF6",
-  //   };
+  const categoryColor: Record<string, string> = {
+    requested: "var(--bibot-primary)",
+    notrequestd: "var(--bibot-secondary)",
+  };
 
   //   const categoryBackground = {
   //     backgroundColor: categoryColor[categoryName] || "var(--bibot-primary)",

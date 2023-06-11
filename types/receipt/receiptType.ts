@@ -5,6 +5,16 @@ export interface ReceiptType {
   price: number;
 }
 
+export interface BibotReceiptDTO {
+  receiptId: string;
+  userId: string;
+  cardId: string;
+  approveId: string;
+  paymentId: string;
+  imageUrl: string;
+  ocrResult: OCRResponse;
+}
+
 export interface OCRResponse {
   storeInfo: StoreInfoRes;
   paymentInfo: PaymentInforRes;

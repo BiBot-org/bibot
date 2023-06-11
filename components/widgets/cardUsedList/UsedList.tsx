@@ -3,7 +3,6 @@ import style from "./UsedList.module.css";
 import CardUsedItem from "@/components/ui/cardusedlist/CardUsedItem";
 import { FormElement, Input, Spacer } from "@nextui-org/react";
 import { SearchPaymentHistory } from "@/service/payment/PaymentService";
-import { SearchPaymentHistoryInfo } from "@/types/payment/types";
 import { SearchPaymentHistoryReq } from "@/types/payment/RequestTypes";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import InfiniteScroll from "react-infinite-scroller";
@@ -26,9 +25,6 @@ export default function UsedList({ cardId }: Prop) {
     startDate: calculateThreeMonthAgo(today),
     endDate: today,
   } as SearchPaymentHistoryReq);
-
-  const [searchPaymentHistoryInfo, setSearchPaymentHistoryInfo] =
-    useState<SearchPaymentHistoryInfo>({} as SearchPaymentHistoryInfo);
 
   const { data, fetchNextPage, hasNextPage, isLoading, isError } =
     useInfiniteQuery(

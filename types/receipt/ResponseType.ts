@@ -1,6 +1,10 @@
 import { BaseRes } from "../BaseRes";
-import { OCRResponse } from "./receiptType";
+import { BibotReceiptDTO, OCRResponse } from "./receiptType";
 
 export interface GetOcrResultRes extends BaseRes {
   data: OCRResponse;
+}
+
+export interface GetReceiptInfoRes extends BaseRes {
+  data: BibotReceiptDTO;
 }

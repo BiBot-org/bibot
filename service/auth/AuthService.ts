@@ -34,7 +34,6 @@ export async function keycloakSignIn(username: string, password: string) {
           }
         )
         .then((res) => {
-          console.log(res.data);
           const userInfo: KeycloakUserInfoRes = res.data;
           return {
             id: userInfo.sub,
