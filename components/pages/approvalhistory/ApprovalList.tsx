@@ -56,23 +56,11 @@ export default function ApprovalList() {
       <div className={style.approval_menu}>
         {!isLoading && <p>{data?.pages[0].data.totalElements}건</p>}
         <div className={style.approval_menu_icon}>
-          <Image
-            src="assets/images/icons/list.svg"
-            alt="list"
-            width={15}
-            height={15}
-          />
           <select onChange={onChangeSelect}>
             <CategorySelectBox />
           </select>
         </div>
         <div className={style.approval_menu_icon}>
-          <Image
-            src="assets/images/icons/list.svg"
-            alt="list"
-            width={15}
-            height={15}
-          />
           <select>
             <option>최신순</option>
             <option>기간순</option>

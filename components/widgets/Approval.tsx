@@ -20,7 +20,7 @@ export default function Approval({ paymentDestination, regTime }: Prop) {
       </div>
       <div className={style.ContentInfo}>
         <p>{paymentDestination}</p>
-        <p>{regTime.toLocaleString()}</p>
+        <p>{regTime}</p>
       </div>
     </div>
   );

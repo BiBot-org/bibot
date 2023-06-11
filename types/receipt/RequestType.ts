@@ -3,6 +3,7 @@ export interface UploadReceiptImageReq {
   cardId: number;
   categoryId: number;
   paymentId: string;
+  regTime: string;
 }
 
 export interface UploadReceiptReq {

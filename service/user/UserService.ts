@@ -18,6 +18,10 @@ export async function GetUser(userId: string) {
   return response;
 }
 
+export function useGetUser(userId: string) {
+  return useQuery(["getUser", userId], async () => await GetUser(userId));
+}
+
 export async function GetUserInfo(userId: string) {
   const response: GetUserInfoRes = await CustomAxios.get(
     `${userServiceUrl}/api/v1/user/info`,
