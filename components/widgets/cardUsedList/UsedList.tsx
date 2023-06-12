@@ -79,6 +79,7 @@ export default function UsedList({ cardId }: Prop) {
           />
         </div>
         <Spacer y={1} />
+        {data ? (
         <InfiniteScroll
           hasMore={hasNextPage}
           loadMore={() => fetchNextPage()}
@@ -90,6 +91,9 @@ export default function UsedList({ cardId }: Prop) {
             ));
           })}
         </InfiniteScroll>
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );
