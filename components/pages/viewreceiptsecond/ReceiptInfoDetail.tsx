@@ -13,8 +13,8 @@ export default function ReceiptInfoDetail({ approvalId, status }: Prop) {
   const columns = [
     { key: "item", label: "품명" },
     { key: "price", label: "가격" },
-    { key: "price", label: "갯수" },
-    { key: "price", label: "총 가격" },
+    { key: "count", label: "갯수" },
+    { key: "total", label: "총 가격" },
   ];
 
   const [isResendModalOpen, setIsResendModalOpen] = useState<boolean>(false);
@@ -48,7 +48,7 @@ export default function ReceiptInfoDetail({ approvalId, status }: Prop) {
               )}
               {data.data.ocrResult && (
                 <Collapse title="영수증 분석 정보">
-                  <Table aria-label="영수증 정보" style={{ padding: "0 2rem" }}>
+                  <Table aria-label="영수증 정보" shadow={false} style={{padding:'0'}}>
                     <Table.Header columns={columns}>
                       {(column) => (
                         <Table.Column align="center" key={column.key}>
@@ -61,15 +61,15 @@ export default function ReceiptInfoDetail({ approvalId, status }: Prop) {
                         <Table.Row key={`${idx} ${item.name}`}>
                           <Table.Cell css={{ textAlign: "center" }}>
                             {item.name}
-                          </Table.Cell>
+                          </Table.Cell> 
                           <Table.Cell css={{ textAlign: "center" }}>
-                            {item.price}
+                            {Number(item.price).toLocaleString()}
                           </Table.Cell>
                           <Table.Cell css={{ textAlign: "center" }}>
                             {item.count}
                           </Table.Cell>
                           <Table.Cell css={{ textAlign: "center" }}>
-                            {Number(item.price) * Number(item.count)}
+                            {(Number(item.price) * Number(item.count)).toLocaleString()}
                           </Table.Cell>
                         </Table.Row>
                       ))}
