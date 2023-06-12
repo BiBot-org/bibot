@@ -17,7 +17,7 @@ export default function Setting() {
     }).then(async (res) => {
       if (res.isConfirmed) {
         await endSession().then(async () => {
-          await signOut()
+          await signOut({ callbackUrl: "/" })
             .then(() => {
               Swal.fire({
                 text: "로그아웃 되었습니다.",

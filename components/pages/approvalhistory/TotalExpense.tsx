@@ -12,11 +12,11 @@ export default function TotalExpense() {
         <div className={style.approval_details_list}>
           <div className={style.approval_did}>
             <p>지금까지 신청한 경비</p>
-            <p>{data?.data.expenseUsed}</p>
+            <p>{data?.data.expenseUsed.toLocaleString()}</p>
           </div>
           <div className={style.approval_will}>
             <p>앞으로 신청 가능한 경비</p>
-            <p>{data?.data.limitation! - data?.data.expenseUsed!}</p>
+            <p>{(data?.data.limitation! - data?.data.expenseUsed!).toLocaleString()}</p>
           </div>
         </div>
       )}

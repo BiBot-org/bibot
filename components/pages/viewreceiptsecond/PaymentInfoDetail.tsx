@@ -1,5 +1,4 @@
-import { Collapse, Input, Spacer, Text } from "@nextui-org/react";
-import style from "./ViewStatusDetail.module.css";
+import { Input, Spacer, Text } from "@nextui-org/react";
 import { SearchApproval } from "@/types/expense/types";
 import { useGetPaymentHistoryByApprovalId } from "@/service/payment/PaymentService";
 import ApprovalInfoDetail from "./ApprovalInfoDetail";
@@ -20,7 +19,7 @@ export default function PaymentInfoDetail({ approval }: Props) {
           style={{
             display: "flex",
             flexDirection: "column",
-            padding: "10px 10px 10px 10px",
+            padding: "1rem 2rem",
           }}
         >
           <Text h3>상세 정보</Text>

@@ -21,18 +21,9 @@ export default function CardUsedItem({ paymentHistory }: Props) {
     }
   };
 
-  const backgroundStyle = {
-    backgroundColor: paymentHistory.requested ? "lightgray" : "transparent",
+  const requestStyle = {
+    textDecoration: paymentHistory.requested ? "line-through" : "none",
   };
-
-  const categoryColor: Record<string, string> = {
-    requested: "var(--bibot-primary)",
-    notrequestd: "var(--bibot-secondary)",
-  };
-
-  //   const categoryBackground = {
-  //     backgroundColor: categoryColor[categoryName] || "var(--bibot-primary)",
-  //   };
 
   return (
     <>
@@ -44,15 +35,18 @@ export default function CardUsedItem({ paymentHistory }: Props) {
       <div
         className={style.card_used_list}
         onClick={handleClick}
-        style={backgroundStyle}
       >
         <div className={style.usedItemInfo}>
           {}
-          <div className={style.category}>
+          <div className={style.category}
+          style={{backgroundColor: paymentHistory.requested ? 'var(--bibot-primary)' : 'var(--bibot-secondary)' }}>
             <p>{paymentHistory.requested === true ? "승인" : "미승인"}</p>
           </div>
           <div className={style.useInfo}>
-            <p>{paymentHistory.paymentDestination}</p>
+            <p 
+            style={requestStyle}>
+              {paymentHistory.paymentDestination}
+              </p>
             <p>
               {getFormattedDateTimeFromLocalDateTime(paymentHistory.regTime)}
             </p>

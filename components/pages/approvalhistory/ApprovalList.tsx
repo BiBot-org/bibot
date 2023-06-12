@@ -44,13 +44,15 @@ export default function ApprovalList() {
           type="date"
           value={searchParam.startDate}
           max={today}
+          width="100%"
         />
-        <span>-</span>
+        <span style={{ fontSize: '2rem' }}>-</span>
         <Input
           aria-label="endDate"
           type="date"
           value={searchParam.endDate}
           max={today}
+          width="100%"
         />
       </div>
       <div className={style.approval_menu}>
@@ -67,18 +69,20 @@ export default function ApprovalList() {
           </select>
         </div>
       </div>
-      <InfiniteScroll
-        hasMore={hasNextPage}
-        loadMore={() => fetchNextPage()}
-        useWindow={false}
-      >
-        {!isLoading &&
-          data?.pages.map((page) => {
-            return page.data.content.map((history) => (
-              <ApprovalItem key={history.id} item={history} />
-            ));
-          })}
-      </InfiniteScroll>
+      <div className={style.itemWrap}>
+        <InfiniteScroll
+          hasMore={hasNextPage}
+          loadMore={() => fetchNextPage()}
+          useWindow={false}
+        >
+          {!isLoading &&
+            data?.pages.map((page) => {
+              return page.data.content.map((history) => (
+                <ApprovalItem key={history.id} item={history} />
+              ));
+            })}
+        </InfiniteScroll>
+      </div>
     </section>
   );
 }

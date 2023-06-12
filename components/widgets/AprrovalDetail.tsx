@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import style from "@/components/widgets/Approval.module.css";
-import Image from "next/image";
-import { ApprovalDTO, SearchApproval } from "@/types/expense/types";
-import { Collapse, Grid, Text } from "@nextui-org/react";
+import { SearchApproval } from "@/types/expense/types";
+import { Grid, Text } from "@nextui-org/react";
 import ApprovalCategoryLogo from "./ApprovalCategoryLogo";
 import { getFormattedDateTimeFromLocalDateTime } from "@/utils/dateUtils";
 import {
@@ -28,16 +27,17 @@ export default function ApprovalDetail({ approval }: Prop) {
       <div className={style.ContentInfo}>
         <div className={style.Contentitle}>
           <div className={style.contentmenu}></div>
-          <Grid.Container gap={1}>
-            <Grid>
-              <Text h4>
-                {getFormattedDateTimeFromLocalDateTime(approval.regTime)}
-              </Text>
-              <div className={style.ContentPrice} style={itemStyle}>
-                <p>{approvalStatus[approval.status]}</p>
-              </div>
-            </Grid>
-          </Grid.Container>
+          <Grid>
+            <Text h4>
+              {getFormattedDateTimeFromLocalDateTime(approval.regTime).slice(0, 13)}
+            </Text>
+            <Text h4>
+              {getFormattedDateTimeFromLocalDateTime(approval.regTime).slice(13,)}
+            </Text>
+            <div className={style.ContentPrice} style={itemStyle}>
+              <p>{approvalStatus[approval.status]}</p>
+            </div>
+          </Grid>
         </div>
       </div>
     </div>
