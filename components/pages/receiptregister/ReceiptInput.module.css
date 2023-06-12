@@ -34,6 +34,10 @@
   align-items: center;
 }
 
+.categorySel select {
+  width: 60%;
+  }
+
 .amountDiv {
   display: flex;
   justify-content: center;
@@ -55,7 +59,5 @@
 }
 
 .registerBtn {
-  display: flex;
-  justify-content: center;
-  width: 30%;
+  background-color: var(--bibot-primary);
 }

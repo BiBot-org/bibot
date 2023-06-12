@@ -1,11 +1,10 @@
 import Approval from "@/components/widgets/Approval";
-import { Spacer } from "@nextui-org/react";
+import { Button, Spacer } from "@nextui-org/react";
 import React, { SetStateAction, useRef, useState } from "react";
 import style from "./ReceiptInput.module.css";
 import Image from "next/image";
 import { PaymentHistoryInfo } from "@/types/payment/types";
 import Swal from "sweetalert2";
-import BackButton from "@/components/button/BackButton";
 import CategorySelectBox from "@/components/select/categorySelect";
 import { UploadReceiptImage } from "@/service/receipt/ReceiptService";
 import { getFormattedDateFromLocalDateTime } from "@/utils/dateUtils";
@@ -96,15 +95,17 @@ export default function ReceiptRegisterModal({
     <>
       {open && (
         <ModalContainer>
-          <div
-            style={{
-              marginTop: 10,
-              marginLeft: 10,
-            }}
-            onClick={() => onClose(false)}
-          >
-            <BackButton />
-          </div>
+          <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', height: '70px' }}>
+            <div></div>
+            <h4 style={{ textAlign: 'center', color: 'var(--bibot-primary)', margin: '0' }}>영수증 등록</h4>
+            <Image
+              src="/assets/images/icons/cancelMint.svg"
+              alt="cancelIcon"
+              width={20}
+              height={20}
+              onClick={() => onClose(false)}
+            />
+          </header>
           <Approval
             paymentDestination={paymentHistory.paymentDestination}
             regTime={getFormattedDateFromLocalDateTime(paymentHistory.regTime)}
@@ -141,9 +142,9 @@ export default function ReceiptRegisterModal({
             </div>
             <Spacer y={1} />
             <div className={style.btnContainer}>
-              <button className={style.registerBtn} onClick={handleSubmit}>
+              <Button className={style.registerBtn} onClick={handleSubmit}>
                 등록하기
-              </button>
+              </Button>
             </div>
             <Spacer y={1} />
           </div>
