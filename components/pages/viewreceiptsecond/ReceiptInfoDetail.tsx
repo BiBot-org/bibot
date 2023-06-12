@@ -1,10 +1,8 @@
 import { useGetReceiptInfoByApprovalId } from "@/service/receipt/ReceiptService";
-import { ReceiptType } from "@/types/receipt/receiptType";
 import { Collapse, Spacer, Table } from "@nextui-org/react";
 import Image from "next/image";
 import { useState } from "react";
 import ResendOcrModal from "./ResendOcrModal";
-import style from "./ViewStatusDetail.module.css";
 import ReceiptResendDetail from "./ReceiptResendDetail";
 interface Prop {
   approvalId: string;
@@ -31,8 +29,10 @@ export default function ReceiptInfoDetail({ approvalId, status }: Prop) {
             isResendModalOpen={isResendModalOpen}
             setIsResendModalOpen={() => setIsResendModalOpen(false)}
           />
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <Collapse.Group>
+          <div style={{ display: "flex", flexDirection: "column", padding: '0 2rem' }}>
+            <Collapse.Group
+              style={{ padding: '0' }}
+            >
               {data.data.imageUrl && (
                 <Collapse title="영수증 이미지">
                   <Image

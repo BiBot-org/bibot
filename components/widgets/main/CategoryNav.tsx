@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import style from "@/components/widgets/main/CategoryNav.module.css";
 import Image from "next/image";
 import dynamic from "next/dynamic";
@@ -49,6 +49,7 @@ export default function CategoryNav() {
         setExpenseProcessingStatus(res.data)
       );
     }
+    setMount(expenseProcessingStatus.expenseUsed / expenseProcessingStatus.limitation);
   }, [categoryId]);
 
   const handleMount = (a: number, b: number) => {
@@ -60,6 +61,24 @@ export default function CategoryNav() {
       setIsReminder(!isReminder);
     }
   };
+
+  useEffect(() => {
+    async function fetchData() {
+      const newExpenseProcessingStatus = categoryId !== undefined
+        ? await GetExpenseProcessingStatusByCategory(Number(categoryId))
+        : await GetAllExpenseProcessingStatus();
+  
+      setExpenseProcessingStatus(newExpenseProcessingStatus.data);
+      if(isReminder)
+        setMount(newExpenseProcessingStatus.data.expenseUsed / newExpenseProcessingStatus.data.limitation);
+      else
+        setMount((newExpenseProcessingStatus.data.limitation - newExpenseProcessingStatus.data.expenseUsed) / newExpenseProcessingStatus.data.limitation);
+        setIsReminder(!isReminder);
+      }
+  
+    fetchData();
+  }, [categoryId]);
+  
 
   return (
     <>
@@ -114,13 +133,13 @@ export default function CategoryNav() {
           start={
             !isReminder
               ? expenseProcessingStatus.limitation -
-                expenseProcessingStatus.expenseUsed
+              expenseProcessingStatus.expenseUsed
               : expenseProcessingStatus.expenseUsed
           }
           end={
             isReminder
               ? expenseProcessingStatus.limitation -
-                expenseProcessingStatus.expenseUsed
+              expenseProcessingStatus.expenseUsed
               : expenseProcessingStatus.expenseUsed
           }
           duration={1}

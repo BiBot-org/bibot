@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import style from "./CardImage.module.css";
 
 export default function CardImage(props: {
@@ -9,7 +8,6 @@ export default function CardImage(props: {
 }) {
   return (
     <>
-      <div>
         <div className={style.cardContainer}>
           {/* <Image
             src="/assets/images/icons/registedcard.svg"
@@ -32,7 +30,6 @@ export default function CardImage(props: {
           <p>{props.cardNumber}</p>
           <p>{props.valid}</p>
         </div>
-      </div>
     </>
   );
 }

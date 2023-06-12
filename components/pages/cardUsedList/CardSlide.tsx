@@ -59,8 +59,6 @@ export default function CardSlide() {
           display: "flex",
           flexDirection: "column",
           padding: "0",
-          height: "100vh",
-          overflow: "hidden",
         }}
       >
         <Slider {...settings}>

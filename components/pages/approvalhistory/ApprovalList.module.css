@@ -1,7 +1,6 @@
 .approval_menu {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
   margin-top: 20px;
   font-size: 0.85rem;
 }
@@ -33,4 +32,9 @@
   justify-content: space-evenly;
   align-items: center;
   margin-top: 10px;
+}
+
+.itemWrap {
+  height: 26rem;
+  overflow-y: scroll;
 }

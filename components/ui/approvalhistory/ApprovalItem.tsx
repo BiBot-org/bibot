@@ -37,7 +37,8 @@ export default function ApprovalItem(props: { item: SearchApproval }) {
             </div>
             <div className={style.itemInfoWrap}>
               <div className={style.itemInfo}>
-                <p>{getFormattedDateTimeFromLocalDateTime(item.regTime)}</p>
+                <p>{getFormattedDateTimeFromLocalDateTime(item.regTime).slice(0,13)}</p>
+                <p>{getFormattedDateTimeFromLocalDateTime(item.regTime).slice(13,)}</p>
                 <p>{item.id}</p>
               </div>
               <div className={style.itemStatus} style={itemStyle}>
