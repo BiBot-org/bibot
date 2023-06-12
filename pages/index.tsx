@@ -12,7 +12,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (workspaceUrl.url !== "") {
-        router.push("/main");
+        router.push("/login");
       } else {
         router.push("/urlsetting");
       }

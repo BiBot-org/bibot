@@ -3,7 +3,7 @@ export const footerMenu = [
     id: 1,
     name: "Home",
     iconImgUrl: "/assets/images/icons/homeIcon.svg",
-    link: "/main?categoryId=1",
+    link: "/main",
   },
   {
     id: 2,
