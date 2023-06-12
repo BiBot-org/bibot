@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import style from "@/components/ui/mypage/AccountProfile.module.css";
-import { useRouter } from "next/router";
 
 export default function AccountProfile(props: {
   imageUrl: string;
@@ -9,7 +8,6 @@ export default function AccountProfile(props: {
   company: string;
   email: string;
 }) {
-  const router = useRouter();
   return (
     <div className={style.accountWrap}>
       <div className={style.accountImage}>

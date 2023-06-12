@@ -14,6 +14,7 @@ export default function Terms(props: { ismodalopen: boolean, modal: React.Dispat
                 height: '100%',
                 overflowY: 'scroll',
                 backgroundColor: 'white',
+                zIndex: 101,
             }}>
                 <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', height: '70px' }}>
                     <div></div>
