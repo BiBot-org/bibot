@@ -35,3 +35,7 @@ export interface TokenRes {
   refreshToken: string;
   refreshExpiresIn: number;
 }
+
+export interface ResetUserPassword {
+  newPassword: string;
+}

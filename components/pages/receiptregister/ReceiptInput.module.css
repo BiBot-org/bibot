@@ -6,6 +6,7 @@
   top: 0;
   left: 0;
   background-color: white;
+  overflow: auto;
 }
 
 .emptyReceiptWrap {
@@ -33,10 +34,13 @@
   align-items: center;
 }
 
-.categorySel select {
-  width: 70%;
-  height: 50px;
-  font-size: 1.2rem;
+.amountDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.amountDiv &h4 {
+  font-size: 14px;
 }
 
 .modifyBtn {

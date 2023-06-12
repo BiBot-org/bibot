@@ -55,7 +55,10 @@ export async function GetApprovalInfo(id: string) {
   return response;
 }
 
-export async function SearchApprovalInfo(req: SearchApprovalInfoReq) {
+export async function SearchApprovalInfo(
+  req: SearchApprovalInfoReq,
+  page: number
+) {
   const response: SearchApprovalInfoRes = await CustomAxios.get(
     `${expenseServiceUrl}/api/v1/approval/search`,
     {
@@ -64,16 +67,9 @@ export async function SearchApprovalInfo(req: SearchApprovalInfoReq) {
         endDate: req.endDate,
         status: req.status,
         categoryId: req.categoryId,
-        page: req.page,
+        page: page,
       },
     }
   ).then((res) => res.data);
   return response;
-}
-
-export function useSearchApprovalInfo(req: SearchApprovalInfoReq) {
-  return useQuery<SearchApprovalInfoRes, AxiosError>(
-    ["searchApprovalInfoRes", req],
-    async () => await SearchApprovalInfo(req)
-  );
 }

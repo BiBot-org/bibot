@@ -11,7 +11,10 @@ interface Prop {
 export const AnnouncementPanel = ({ notice }: Prop) => {
   const router = useRouter();
   return (
-    <div className={style.announceWrap} onClick={()=>router.push(`noticedetail/${notice.id}`)}>
+    <div
+      className={style.announceWrap}
+      onClick={() => router.push(`noticedetail/${notice.id}`)}
+    >
       <div className={style.announceImage}>
         <Image
           src={"/assets/images/icons/robotIcon.svg"}

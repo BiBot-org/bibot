@@ -34,19 +34,22 @@ export default function LoginInput() {
         password: values.password,
         callbackUrl: "/main?categoryId=1",
       });
-      console.log(result);
       if (result?.error) {
         Swal.fire({
           text: "아이디와 비밀번호를 확인 해 주세요",
           icon: "error",
         });
       } else {
-        const session = await getSession();
-        console.log(session);
-
         Swal.fire({
-          text: `환영합니다.${session}`,
+          text: `환영합니다`,
           icon: "success",
+          timer: 3000,
+        }).then(async () => {
+          const session = await getSession();
+          setUserInfo({
+            isLogin: true,
+            userId: session?.tokenInfo.id,
+          });
         });
       }
     },

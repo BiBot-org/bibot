@@ -1,14 +1,17 @@
 import Approval from "@/components/widgets/Approval";
-import { Spacer, Button, Modal } from "@nextui-org/react";
+import { Spacer } from "@nextui-org/react";
 import React, { SetStateAction, useRef, useState } from "react";
 import style from "./ReceiptInput.module.css";
 import Image from "next/image";
 import { PaymentHistoryInfo } from "@/types/payment/types";
 import Swal from "sweetalert2";
 import BackButton from "@/components/button/BackButton";
-import { useGetCategoryList } from "@/service/category/CategoryService";
 import CategorySelectBox from "@/components/select/categorySelect";
 import { UploadReceiptImage } from "@/service/receipt/ReceiptService";
+import { getFormattedDateFromLocalDateTime } from "@/utils/dateUtils";
+import ModalContainer from "@/components/modal/modalContainer";
+import { useMutation } from "@tanstack/react-query";
+import { UploadReceiptImageReq } from "@/types/receipt/RequestType";
 
 interface Props {
   open: boolean;
@@ -21,10 +24,13 @@ export default function ReceiptRegisterModal({
   onClose,
   paymentHistory,
 }: Props) {
-  const [imgUrl, setImgUrl] = useState<string>();
   const imgRef = useRef<HTMLImageElement>(null);
   const [imageBlob, setImageBlob] = useState<File>();
   const [categoryId, setCategoryId] = useState<number>(0);
+
+  const { mutate } = useMutation((req: UploadReceiptImageReq) =>
+    UploadReceiptImage(req)
+  );
 
   const readImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -34,7 +40,6 @@ export default function ReceiptRegisterModal({
         if (!e || !e.target) return;
         if (typeof e.target.result === "string" && imgRef.current) {
           imgRef.current.src = e.target.result as string;
-          setImgUrl(e.target.result as string);
         }
       });
       setImageBlob(imageFile);
@@ -53,19 +58,36 @@ export default function ReceiptRegisterModal({
       showCancelButton: true,
     }).then((res) => {
       if (res.isConfirmed) {
-        UploadReceiptImage({
-          file: imageBlob!!,
-          cardId: paymentHistory.cardId,
-          categoryId: categoryId,
-          paymentId: paymentHistory.id,
-        });
-        Swal.fire({
-          title: "Success!",
-          text: "전송 되었습니다.",
-          icon: "success",
-        }).then(() => {
-          onClose(false);
-        });
+        mutate(
+          {
+            file: imageBlob!!,
+            cardId: paymentHistory.cardId,
+            categoryId: categoryId,
+            paymentId: paymentHistory.id,
+            regTime: paymentHistory.regTime,
+          },
+          {
+            onSuccess: () => {
+              Swal.fire({
+                title: "Success!",
+                text: "전송 되었습니다.",
+                icon: "success",
+                timer: 5000,
+                showConfirmButton: false,
+              }).then(() => {
+                onClose(false);
+              });
+            },
+            onError: () => {
+              Swal.fire({
+                title: "fail!",
+                text: "에러가 발생했습니다.",
+                icon: "error",
+                timer: 5000,
+              });
+            },
+          }
+        );
       }
     });
   };
@@ -73,7 +95,7 @@ export default function ReceiptRegisterModal({
   return (
     <>
       {open && (
-        <div className={style.modalContainer}>
+        <ModalContainer>
           <div
             style={{
               marginTop: 10,
@@ -85,7 +107,7 @@ export default function ReceiptRegisterModal({
           </div>
           <Approval
             paymentDestination={paymentHistory.paymentDestination}
-            regTime={paymentHistory.regTime}
+            regTime={getFormattedDateFromLocalDateTime(paymentHistory.regTime)}
           />
 
           <p className={style.uploadText}>영수증 사진을 업로드 해주세요.</p>
@@ -123,8 +145,9 @@ export default function ReceiptRegisterModal({
                 등록하기
               </button>
             </div>
+            <Spacer y={1} />
           </div>
-        </div>
+        </ModalContainer>
       )}
     </>
   );

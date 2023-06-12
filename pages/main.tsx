@@ -8,10 +8,10 @@ import { HeaderUserType } from "@/types/header/headerTypes";
 
 export default function Main() {
   return (
-    <main className={style.mainContainer}>
+    <div className={style.mainContainer}>
       <CategoryNav />
       <AnnounceMent />
-    </main>
+    </div>
   );
 }
 

@@ -20,7 +20,7 @@ export interface SearchApproval extends ApprovalDTO {
 export interface SearchApprovalInfo {
   content: SearchApproval[];
   pageNo: number;
-  isLast: boolean;
+  last: boolean;
   totalPages: number;
   totalElements: number;
 }
