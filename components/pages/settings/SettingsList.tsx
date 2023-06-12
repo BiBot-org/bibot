@@ -1,12 +1,17 @@
-"use client";
 import { Grid, Spacer, Switch } from "@nextui-org/react";
 import style from "./SettingsList.module.css";
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
+import { useTheme as useNextTheme } from "next-themes";
+import { useTheme } from "@nextui-org/react"
+
 export default function SettingsList() {
   const router = useRouter();
+  const { setTheme } = useNextTheme();
+  const { isDark, type } = useTheme();
+
   return (
     <main className={style.settingsWrap}>
       <h3>설정</h3>
@@ -23,7 +28,12 @@ export default function SettingsList() {
           <span>다크모드</span>
         </div>
         <Grid>
-          <Switch shadow color="success" checked={false} />
+          <Switch 
+          shadow 
+          color="success" 
+          checked={isDark} 
+          onChange={(e) => setTheme(e.target.checked ? "dark" : "light")}
+          />
         </Grid>
       </div>
       <Spacer y={1} />

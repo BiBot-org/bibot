@@ -1,4 +1,5 @@
-import { NextUIProvider, useSSR } from "@nextui-org/react";
+import { NextUIProvider, createTheme, useSSR } from "@nextui-org/react";
+import { ThemeProvider as NextThemeProvider } from "next-themes";
 import { NextPage } from "next";
 import { AppProps } from "next/app";
 import { RecoilRoot } from "recoil";
@@ -8,6 +9,16 @@ import "../styles/globals.css";
 import { useRouter } from "next/router";
 import { LoadingComponent } from "@/components/splash/Loading";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const lightTheme = createTheme({
+  type: "light",
+});
+
+const darkTheme = createTheme({
+  type: "dark",
+});
+
+
 
 export type NextPageWithLayout<P = {}, IP = P, auth = boolean> = NextPage<
   P,
@@ -44,6 +55,15 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         <QueryClientProvider client={queryClient}>
           {isBrowser &&
             getLayout(
+              <NextThemeProvider
+                defaultTheme="system"
+                attribute="class"
+                themes={[lightTheme, darkTheme]}
+                value={{ 
+                  light: lightTheme.className,
+                  dark: darkTheme.className,
+                }}
+                >
               <NextUIProvider>
                 {Component.auth ? (
                   <Auth>
@@ -53,6 +73,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                   <Component {...pageProps} />
                 )}
               </NextUIProvider>
+              </NextThemeProvider>
             )}
         </QueryClientProvider>
       </RecoilRoot>
