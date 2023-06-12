@@ -39,19 +39,6 @@ export default function CategoryNav() {
 
   const { isLoading, data } = useGetCategoryList();
 
-  useEffect(() => {
-    if (categoryId !== undefined) {
-      GetExpenseProcessingStatusByCategory(Number(categoryId)).then((res) =>
-        setExpenseProcessingStatus(res.data)
-      );
-    } else {
-      GetAllExpenseProcessingStatus().then((res) =>
-        setExpenseProcessingStatus(res.data)
-      );
-    }
-    setMount(expenseProcessingStatus.expenseUsed / expenseProcessingStatus.limitation);
-  }, [categoryId]);
-
   const handleMount = (a: number, b: number) => {
     if (isReminder) {
       setMount(a / b);
@@ -67,18 +54,14 @@ export default function CategoryNav() {
       const newExpenseProcessingStatus = categoryId !== undefined
         ? await GetExpenseProcessingStatusByCategory(Number(categoryId))
         : await GetAllExpenseProcessingStatus();
-  
       setExpenseProcessingStatus(newExpenseProcessingStatus.data);
-      if(isReminder)
+      if (isReminder)
         setMount(newExpenseProcessingStatus.data.expenseUsed / newExpenseProcessingStatus.data.limitation);
       else
         setMount((newExpenseProcessingStatus.data.limitation - newExpenseProcessingStatus.data.expenseUsed) / newExpenseProcessingStatus.data.limitation);
-        setIsReminder(!isReminder);
-      }
-  
+    }
     fetchData();
-  }, [categoryId]);
-  
+  }, [categoryId, isReminder]);
 
   return (
     <>
@@ -95,6 +78,10 @@ export default function CategoryNav() {
           <div className={style.CategoryNav}>
             <nav>
               <ul ref={targetRef}>
+                <li
+                  className={categoryId === undefined ? style.active : ""}
+                  onClick={() => router.push("/main")}
+                >전체</li>
                 {data?.data.map((item: CategoryDTO) => (
                   <li
                     key={item.id}
@@ -144,8 +131,6 @@ export default function CategoryNav() {
           }
           duration={1}
         />
-        {/* <p>{isReminder ? (data.reset - data.amount).toLocaleString('ko') : data.amount.toLocaleString('ko')}</p> */}
-        {/* <p className={style.reset}>{remindDay} day</p> */}
         <div className={style.progress}>
           <div
             className={style.liner}

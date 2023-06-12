@@ -31,13 +31,13 @@ export default function CardInput() {
 
   const [allcheck, setAllcheck] = useState<boolean>(false);
 
-  useEffect(() => {
+  const handleRegister = () => {
     if (allcheck) {
       AddCard(cardInfo).then(() => router.push("/cardusedlist"));
       setCardInfo({} as CreateCardReq);
       setAllcheck(false);
     }
-  }, [allcheck]);
+  };
 
   const handleCardNo = (e: ChangeEvent<FormElement>) => {
     const { id, value } = e.target;
@@ -170,6 +170,7 @@ export default function CardInput() {
         cardValid: cardValidDate,
       });
     }
+    handleRegister();
   };
 
   return (

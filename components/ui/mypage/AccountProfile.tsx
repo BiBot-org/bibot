@@ -12,7 +12,7 @@ export default function AccountProfile(props: {
     <div className={style.accountWrap}>
       <div className={style.accountImage}>
         <Image
-          src={props.imageUrl || "/assets/images/icons/emptyprofile.svg"}
+          src={props.imageUrl ? props.imageUrl : "/assets/images/icons/emptyprofile.svg"}
           alt={props.name}
           width={70}
           height={70}

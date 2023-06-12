@@ -68,7 +68,7 @@ export default function Findpassword() {
         text="이메일로 임시비밀번호가 발급 되었습니다."
         positive
       />
-      <article style={{ padding: "0 3rem" }}>
+      <article style={{ padding: "0 2rem" }}>
         <div style={{ color: "#B6B7B9", height: "46px" }}>
           <p style={{ fontSize: "0.8rem" }}>
             가입한 이메일 주소로 임시 비밀번호를 알려드립니다.
