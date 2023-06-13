@@ -59,6 +59,7 @@ export default function CardSlide() {
           display: "flex",
           flexDirection: "column",
           padding: "0",
+          height: currentIndex === 0 ? "100vh" : "auto",
         }}
       >
         <Slider {...settings}>
