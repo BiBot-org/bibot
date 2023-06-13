@@ -31,7 +31,7 @@
 |노홍기|박준석|손우진(Team Leader)|박노명|김효은|
 |----|-----|-----|-----|----|
 |![image](https://github.com/BiBot-org/.github/assets/36991763/d23f51cd-e437-4ad7-b7e0-efe7e44d894d)|![image](https://github.com/BiBot-org/.github/assets/36991763/a086b038-38f8-437a-a696-66c2cec28c3e)|![KakaoTalk_20230612_000331814](https://github.com/BiBot-org/.github/assets/36991763/9b1a6129-8646-42bc-a4de-878fe1f873a1)|![image](https://github.com/BiBot-org/.github/assets/36991763/b2cbfc53-8cc3-401b-9576-2cc28921bb74)|![image](https://github.com/BiBot-org/.github/assets/36991763/9b5d647e-9292-445b-a7d9-ae282ea0b815)|
-|[@swj9707](https://github.com/swj9707)|[@Junseokee](https://github.com/Junseokee)|[@shghdrl1234](https://github.com/shghdrl1234)|[@pakc918](https://github.com/pakc918)|[@Kimpopo](https://github.com/Kimpopo)|
+|[@shghdrl1234](https://github.com/shghdrl1234)|[@Junseokee](https://github.com/Junseokee)|[@swj9707](https://github.com/swj9707)|[@pakc918](https://github.com/pakc918)|[@Kimpopo](https://github.com/Kimpopo)|
 |BE|DevOps|BE & FE|FE, Publisher|FE, Publisher|
 |- OCR API 연동 및 로직 개발</br>- 스켸쥴러 기반 경비처리 주기 업데이트 로직 개발</br>- Redis 기반 API 캐싱 환경 구축</br>- 테스트 엔지니어</br>|- Google Cloud Platform k8s 서버 운영</br> - GitOps CI/CD 구축</br>- Vault 기반 시크릿 서버 구축</br>- Prometheus & Grafana & Loki 기반 로그 수집 및 모니터링 구축 </br>- DB 서버 운영 및 연결</br>|- 애플리케이션 아키텍트</br>- Kafka기반 비동기 로직 개발</br>- SSO 구축(Keycloak)</br>- 앱 인증 로직 개발(NextAuth)</br>- 관리자 애플리케이션 개발</br>- 유저 앱 경비처리 프로세스 개발</br>- ReactQuery 기반 API 캐싱</br> - JPA Specification 기반 동적쿼리 검색 로직 개발</br>- 가상 결제 시스템 개발</br>|- 유저 애플리케이션 개발 및 디자인</br>|- 유저 애플리케이션 개발 및 디자인</br>|
 
