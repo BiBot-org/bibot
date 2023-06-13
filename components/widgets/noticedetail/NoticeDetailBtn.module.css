@@ -1,7 +1,13 @@
+.noticeDetailsWrap {
+    position: fixed;
+    bottom: 112px
+}
+
 .notice_details_list_b {
     display: flex;
     align-items: center;
     padding: 10px 0px;
+    border-top: solid 1.5px;
     border-bottom: solid 1px #c7c7c7;
 }
 
@@ -39,7 +45,6 @@
     padding: 10px 0px;
     border-bottom: solid 1.5px;
 }
-
 
 .notice_details_list_n img {
     transform: rotate(270deg);

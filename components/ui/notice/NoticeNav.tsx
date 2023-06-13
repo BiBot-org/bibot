@@ -1,5 +1,4 @@
 import { SearchNoticeReq } from "@/types/notice/RequestType";
-import { Navbar, PressEvent } from "@nextui-org/react";
 import style from "./NoticeNav.module.css";
 import React from "react";
 
@@ -7,8 +6,8 @@ export default function NoticeNav(props: {
   searchParam: SearchNoticeReq;
   setSearchParam: React.Dispatch<React.SetStateAction<SearchNoticeReq>>;
 }) {
-  const onHandleNavItem = (e: PressEvent) => {
-    const targetId = e.target.id;
+  const onHandleNavItem = (id: string) => {
+    const targetId = id
     if (targetId === "all") {
       props.setSearchParam({
         ...props.searchParam,
@@ -32,32 +31,32 @@ export default function NoticeNav(props: {
   };
 
   return (
-    <Navbar isCompact className={style.navbar} isBordered variant="floating">
-      <Navbar.Content variant="highlight-rounded">
-        <Navbar.Link
-          id="all"
-          isActive={setNoticeType("")}
-          onPress={onHandleNavItem}
-        >
-          전체
-        </Navbar.Link>
-      </Navbar.Content>
-      <Navbar.Content variant="highlight-rounded">
-        <Navbar.Link
-          id="COMMON"
-          isActive={setNoticeType("COMMON")}
-          onPress={onHandleNavItem}
-        >
-          공지사항
-        </Navbar.Link>
-        <Navbar.Link
-          id="SYSTEM"
-          isActive={setNoticeType("SYSTEM")}
-          onPress={onHandleNavItem}
-        >
-          시스템점검
-        </Navbar.Link>
-      </Navbar.Content>
-    </Navbar>
+    <div className={style.navbarWrap}>
+      <nav>
+        <ul>
+          <li
+            id="all"
+            className={setNoticeType("") ? style.active : ""}
+            onClick={() => onHandleNavItem('all')}
+          >
+            전체
+          </li>
+          <li
+            id="COMMON"
+            className={setNoticeType("COMMON") ? style.active : ""}
+            onClick={() => onHandleNavItem('COMMON')}
+          >
+            공지사항
+          </li>
+          <li
+            id="SYSTEM"
+            className={setNoticeType("SYSTEM") ? style.active : ""}
+            onClick={() => onHandleNavItem('SYSTEM')}
+          >
+            시스템점검
+          </li>
+        </ul>
+      </nav>
+    </div>
   );
 }

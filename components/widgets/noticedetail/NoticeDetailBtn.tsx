@@ -41,7 +41,7 @@ export default function NoticeDetailBtn(props: { id: number }) {
 
     return (
         <>
-            <div>
+            <div className={style.noticeDetailsWrap}>
                 {nextNotice && (
                     <div className={style.notice_details_list_b} onClick={() => router.push(`/noticedetail/${nextNotice.id}`)}>
                         <Image src={'/assets/images/icons/back.svg'} alt='back' width={20} height={20} />
