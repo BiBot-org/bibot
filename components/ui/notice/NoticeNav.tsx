@@ -1,67 +1,63 @@
 import { GetNoticeMain, SearchNotice } from "@/service/notice/NoticeService";
 import { SearchNoticeReq } from "@/types/notice/RequestType";
 import { NoticeDTO } from "@/types/notice/types";
-import { Button, Navbar, Text } from "@nextui-org/react";
+import { Button, Navbar, PressEvent, Text } from "@nextui-org/react";
 import style from "./NoticeNav.module.css";
 import router from "next/router";
 import React, { useState } from "react";
 
 export default function NoticeNav(props: {
-  noticeList: NoticeDTO[];
-  setNoticeList: React.Dispatch<React.SetStateAction<NoticeDTO[]>>;
+  searchParam: SearchNoticeReq;
+  setSearchParam: React.Dispatch<React.SetStateAction<SearchNoticeReq>>;
 }) {
-  const [noticeList, setNoticeList] = useState<SearchNoticeReq>(
-    {} as SearchNoticeReq
-  );
-  const [type, setType] = useState<string>("ALL");
-
-  const handleAll = () => {
-    GetNoticeMain().then((res) => {
-      props.setNoticeList(res.data);
-      router.push("/notice");
-    });
-    setType("ALL");
-    scrollTo(0, 0);
-  };
-
-  const handleNotice = () => {
-    SearchNotice({
-      ...noticeList,
-      type: "COMMON",
-    }).then((res) => {
-      props.setNoticeList(res.data.content);
-    });
-    setType("COMMON");
-    scrollTo(0, 0);
-  };
-
-  const handleSystem = () => {
-    SearchNotice({
-      ...noticeList,
-      type: "SYSTEM",
-    }).then((res) => {
-      props.setNoticeList(res.data.content);
-    });
-    setType("SYSTEM");
-    scrollTo(0, 0);
+  const handleNavItem = (e: PressEvent) => {
+    const targetId = e.target.id;
+    if (targetId === "all") {
+      props.setSearchParam({
+        ...props.searchParam,
+        type: "",
+      });
+    } else if (targetId === "COMMON") {
+      props.setSearchParam({
+        ...props.searchParam,
+        type: "COMMON",
+      });
+    } else if (targetId === "SYSTEM") {
+      props.setSearchParam({
+        ...props.searchParam,
+        type: "SYSTEM",
+      });
+    }
   };
 
   const setNoticeType = (classtype: string) => {
-    return type === classtype ? true : false;
+    return props.searchParam.type === classtype ? true : false;
   };
 
   return (
     <Navbar isCompact className={style.navbar} isBordered variant="floating">
       <Navbar.Content variant="highlight-rounded">
-        <Navbar.Link isActive={setNoticeType("ALL")} onClick={handleAll}>
+        <Navbar.Link
+          id="all"
+          isActive={setNoticeType("")}
+          onPress={handleNavItem}
+        >
           전체
         </Navbar.Link>
       </Navbar.Content>
       <Navbar.Content variant="highlight-rounded">
-        <Navbar.Link isActive={setNoticeType("COMMON")} onClick={handleNotice}>
+        <Navbar.Link
+          id="COMMON"
+          isActive={setNoticeType("COMMON")}
+          onPress={handleNavItem}
+        >
           공지사항
         </Navbar.Link>
-        <Navbar.Link isActive={setNoticeType("SYSTEM")} onClick={handleSystem}>
+        <Navbar.Link
+          id="SYSTEM"
+          isActive={setNoticeType("SYSTEM")}
+          onPress={handleNavItem}
+        >
           시스템점검
         </Navbar.Link>
       </Navbar.Content>

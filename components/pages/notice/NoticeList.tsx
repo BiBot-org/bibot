@@ -5,29 +5,24 @@ import SearchInput from "@/components/ui/notice/SearchInput";
 import { Button, Spacer } from "@nextui-org/react";
 import NoticeItemList from "@/components/widgets/notice/NoticeItemList";
 import { NoticeDTO } from "@/types/notice/types";
+import { SearchNoticeReq } from "@/types/notice/RequestType";
 
 export default function NoticeList() {
   const [noticeList, setNoticeList] = useState<NoticeDTO[]>([]);
+  const [searchParam, setSearchParam] = useState<SearchNoticeReq>({
+    title: "",
+    type: "",
+    page: 0,
+  } as SearchNoticeReq);
 
   return (
     <>
-      <NoticeNav noticeList={noticeList} setNoticeList={setNoticeList} />
+      <NoticeNav searchParam={searchParam} setSearchParam={setSearchParam} />
       <Spacer y={1} />
-      <SearchInput setNoticeList={setNoticeList} />
+      <SearchInput searchParam={searchParam} setSearchParam={setSearchParam} />
       <Spacer y={1} />
-      <NoticeItemList noticeList={noticeList} setNoticeList={setNoticeList} />
+      <NoticeItemList searchParam={searchParam} />
       <Spacer y={1} />
-      <div>
-        <Button
-          aria-label="more"
-          style={{
-            margin: "0 auto",
-            backgroundColor: "var(--bibot-primary)",
-          }}
-        >
-          더보기
-        </Button>
-      </div>
     </>
   );
 }

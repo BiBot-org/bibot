@@ -12,7 +12,8 @@ interface Prop {
 }
 
 export default function UsedList({ cardId }: Prop) {
-  const today = new Date().toISOString().slice(0, 10);
+  const offset = new Date().getTimezoneOffset() * 60000;
+  const today = new Date(Date.now() - offset).toISOString().slice(0, 10);
 
   const calculateThreeMonthAgo = (selectedDate: string) => {
     const currentDate = new Date(selectedDate);
@@ -37,26 +38,15 @@ export default function UsedList({ cardId }: Prop) {
       }
     );
 
-  const handleRightDateChange = (
+  const handleDateChange = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<FormElement>
   ) => {
-    const selectedDate = e.target.value;
-    const currentDate = new Date();
-    const selected = new Date(selectedDate);
+    const { name, value } = e.target;
 
-    if (selected <= currentDate) {
-      setSearchParam({
-        ...searchParam,
-        startDate: calculateThreeMonthAgo(selectedDate),
-        endDate: selectedDate,
-      });
-    } else {
-      setSearchParam({
-        ...searchParam,
-        startDate: calculateThreeMonthAgo(today),
-        endDate: today,
-      });
-    }
+    setSearchParam({
+      ...searchParam,
+      [name]: value,
+    });
   };
 
   return (
@@ -66,15 +56,18 @@ export default function UsedList({ cardId }: Prop) {
           <Input
             aria-label="threeMonthAgo"
             type="date"
+            name="startDate"
             value={searchParam.startDate}
-            readOnly
+            onChange={handleDateChange}
+            max={today}
           />
           <span>-</span>
           <Input
             aria-label="today"
             type="date"
+            name="endDate"
             value={searchParam.endDate}
-            onChange={handleRightDateChange}
+            onChange={handleDateChange}
             max={today}
           />
         </div>

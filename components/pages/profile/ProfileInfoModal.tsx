@@ -4,7 +4,7 @@ import React, { SetStateAction, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import ProfileInfo from "@/components/ui/profile/ProfileInfo";
 import style from "./ProfileInfoList.module.css";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import { UserAuthInfo } from "@/types/user/types";
 import { userInfoState } from "@/state/userInfo/UserInfoState";
 import {
@@ -13,7 +13,7 @@ import {
 } from "@/service/user/UserService";
 import ProfileModalBackButton from "./ProfileModalBackbutton";
 import Swal from "sweetalert2";
-import { useMutation } from "@tanstack/react-query";
+import { useQueryClient, useMutation } from "@tanstack/react-query";
 
 interface Props {
   isModalOpen: boolean;
@@ -26,6 +26,7 @@ export default function ProfileInfoModal({
 }: Props) {
   const userInfo = useRecoilValue<UserAuthInfo>(userInfoState);
   const imgRef = useRef<HTMLImageElement>(null);
+  const queryClient = useQueryClient();
 
   const { isLoading, data, isError } = useGetuserinfo(userInfo.userId);
   const { mutate } = useMutation((req: File) =>
@@ -54,6 +55,13 @@ export default function ProfileInfoModal({
               Swal.fire({
                 text: "프로필이 변경 되었습니다.",
                 icon: "success",
+              }).then((res) => {
+                if (res.isConfirmed) {
+                  queryClient.invalidateQueries([
+                    "getUserInfo",
+                    userInfo.userId,
+                  ]);
+                }
               });
             },
             onError: () => {

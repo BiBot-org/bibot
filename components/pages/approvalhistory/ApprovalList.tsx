@@ -11,9 +11,11 @@ import { SearchApprovalInfo } from "@/service/expense/ExpenseService";
 import InfiniteScroll from "react-infinite-scroller";
 
 export default function ApprovalList() {
+  const offset = new Date().getTimezoneOffset() * 60000;
+  const today = new Date(Date.now() - offset).toISOString().slice(0, 10);
   const [searchParam, setSearchParam] = useState<SearchApprovalInfoReq>({
-    startDate: calculateThreeMonthAgo(new Date().toISOString().slice(0, 10)),
-    endDate: new Date().toISOString().slice(0, 10),
+    startDate: calculateThreeMonthAgo(today),
+    endDate: today,
   });
 
   const onChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -34,8 +36,6 @@ export default function ApprovalList() {
       }
     );
 
-  const today = new Date().toISOString().slice(0, 10);
-
   return (
     <section>
       <div className={style.dateWrap}>
@@ -46,7 +46,7 @@ export default function ApprovalList() {
           max={today}
           width="100%"
         />
-        <span style={{ fontSize: '2rem' }}>-</span>
+        <span style={{ fontSize: "2rem" }}>-</span>
         <Input
           aria-label="endDate"
           type="date"

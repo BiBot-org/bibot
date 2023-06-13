@@ -19,6 +19,7 @@ export default function ReceiptResendDetail({ approvalId }: Props) {
             open={isResendModalOpen}
             onClose={() => setIsResendModalOpen(false)}
             paymentHistory={data.data}
+            resend={true}
           />
           <button
             className={style.registerBtn}

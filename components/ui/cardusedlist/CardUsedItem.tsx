@@ -31,22 +31,23 @@ export default function CardUsedItem({ paymentHistory }: Props) {
         open={modalOpen}
         onClose={() => setModalOpen(false)}
         paymentHistory={paymentHistory}
+        resend={false}
       />
-      <div
-        className={style.card_used_list}
-        onClick={handleClick}
-      >
+      <div className={style.card_used_list} onClick={handleClick}>
         <div className={style.usedItemInfo}>
           {}
-          <div className={style.category}
-          style={{backgroundColor: paymentHistory.requested ? 'var(--bibot-primary)' : 'var(--bibot-secondary)' }}>
+          <div
+            className={style.category}
+            style={{
+              backgroundColor: paymentHistory.requested
+                ? "var(--bibot-primary)"
+                : "var(--bibot-secondary)",
+            }}
+          >
             <p>{paymentHistory.requested === true ? "승인" : "미승인"}</p>
           </div>
           <div className={style.useInfo}>
-            <p 
-            style={requestStyle}>
-              {paymentHistory.paymentDestination}
-              </p>
+            <p style={requestStyle}>{paymentHistory.paymentDestination}</p>
             <p>
               {getFormattedDateTimeFromLocalDateTime(paymentHistory.regTime)}
             </p>
