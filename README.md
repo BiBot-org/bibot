@@ -1,7 +1,8 @@
 # 🤖 Bibot _**자동 영수증 경비처리 솔루션**_
 
 <div align="center">
- <img src="https://github.com/BiBot-org/bibot/assets/36991763/c046ae23-33a0-4d3e-97d4-18ff6d90d112" />
+ <img src="https://github.com/BiBot-org/bibot/assets/36991763/5d7d35c4-16f4-404a-ac0d-9443342687ab" />
+
 </div>
 
 # 🔍 Intro
@@ -10,16 +11,17 @@
 > 카드사와 연동되었다는 가정 하에, 카드사 기록과 영수증 데이터를 대조하여 자동으로 경비를 처리 해 주는 B2B 서비스입니다. 
 
 <div align="center">
-    <img src="https://github.com/BiBot-org/bibot/assets/36991763/fdae1f14-ff85-46c8-88d9-d6c62d8f9399" width="30%" height="auto" />
-    <img src="https://github.com/BiBot-org/bibot/assets/36991763/761d33d9-5dc3-4137-bdb4-5545e319e385" width="30%" height="auto" />
-    <img src="https://github.com/BiBot-org/bibot/assets/36991763/f35fff23-6476-4ec3-9b5b-bbe8c170ed16" width="30%" height="auto" /> 
+ <img src="https://github.com/BiBot-org/bibot/assets/36991763/9fdfd058-e55c-46e4-a718-c1f15b95eeb6" width="30%" height="auto" />
+ <img src="https://github.com/BiBot-org/bibot/assets/36991763/4d8d72c5-2402-47e2-a164-4eb2b8152969" width="30%" height="auto" />
+ <img src="https://github.com/BiBot-org/bibot/assets/36991763/14627b68-4d5f-4972-aa7e-326a0e7058e4" width="30%" height="auto" />
 </div>
 
 # 😃 팀 소개
 
 <div align="center">
-  <img src="https://github.com/BiBot-org/bibot/assets/36991763/45d87402-e004-4946-9a79-9f89b7524d9c" />
+  <img src="https://github.com/BiBot-org/bibot/assets/36991763/383c3ce4-8701-4208-97b6-651fd14db664"/>
 </div>
+
 <div align="center" margin="10 0 0 10">
   <h2>맛있게 먹어요! 우리는 Code Recipe!</h3>
 </div>
@@ -40,17 +42,18 @@
 
 | 스플래시 화면 및 메인|| 카테고리 별 경비 현황 조회 ||공지사항 조회|
 | :-------------: |:---:|:-------------: |:---:|:-------------: |
-| ![스플래시 화면 및 메인](https://github.com/BiBot-org/bibot/assets/36991763/caf0feb7-25ba-4ba2-95f9-cd359d3e38ed)| | ![카테고리 별 경비 현황 조회](https://github.com/BiBot-org/bibot/assets/36991763/3d4f566d-8449-4a62-ab0a-034c25d86629)| | ![공지사항 조회](https://github.com/BiBot-org/bibot/assets/36991763/20217b48-034e-456f-a5ec-d1af4a69a6b2)|
+| ![스플래쉬-min](https://github.com/BiBot-org/bibot/assets/36991763/f6313e58-1734-4523-9dcf-8bab6c19f3ee)||![main_ex1-min](https://github.com/BiBot-org/bibot/assets/36991763/85813785-48a0-4495-820e-6228f0399f9a)||![메인화면2](https://github.com/BiBot-org/bibot/assets/36991763/1f572aaf-aa1f-467d-b4b8-f6f10cf41b85)
+|
 
 ## 💸 경버처리 화면 (결제 기록 조회, 경비 결재 요청)
 | 카드 결제 기록 조회 | | 경비 요쳥 및 내역 조회 | | 경비 처리 실패 및 재처리 |
 | :-------------: |:---:|:-------------: |:---:|:-------------: |
-| ![카드 결제 기록 조회](https://github.com/BiBot-org/bibot/assets/36991763/2ffc136a-f3de-4ef2-8ef8-73c6c7102865) |  |![결재성공](https://github.com/BiBot-org/bibot/assets/36991763/c901064f-ca94-434d-8600-816673564656)|  | ![결재 실패 후 재등록](https://github.com/BiBot-org/bibot/assets/36991763/d8c337ff-3388-436c-a941-eac865882ce6)|
+| ![카드 결제 내역 조회](https://github.com/BiBot-org/bibot/assets/36991763/fa0b8338-82f2-476c-bb40-906b3ade8859)| | ![결재성공](https://github.com/BiBot-org/bibot/assets/36991763/0584d1eb-d5eb-4a23-aa3a-a890826c46ee)| | ![결재 실패 후 재등록](https://github.com/BiBot-org/bibot/assets/36991763/906536a3-5f20-4af4-917d-965c866d35cc)|
 
 ## 🤔 그 외 기능
 | 프로필 사진 변경 | | 다크모드 |
 | :-------------: |:---:|:-------------: |
-|![프로필 변경](https://github.com/BiBot-org/bibot/assets/36991763/69238612-4e86-411e-af9a-053ae1ad7fd3)| | ![다크모드](https://github.com/BiBot-org/bibot/assets/36991763/ca930e84-a6bb-44a1-884b-d26fce17d440) |
+| ![프로필 변경](https://github.com/BiBot-org/bibot/assets/36991763/0a12a82a-a406-4bc6-8240-4a6fdaaed228)| | ![darkmode](https://github.com/BiBot-org/bibot/assets/36991763/495780c9-134b-482f-a153-d8bc886e9821) |
 
 # 🛠 Tech Stacks
 ## 🖥 Back End
