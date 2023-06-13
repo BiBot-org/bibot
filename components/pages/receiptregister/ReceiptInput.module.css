@@ -36,7 +36,7 @@
 
 .categorySel select {
   width: 60%;
-  }
+}
 
 .amountDiv {
   display: flex;
@@ -60,4 +60,7 @@
 
 .registerBtn {
   background-color: var(--bibot-primary);
+  width: 200px;
+  border: none;
+  border-radius: 30px;
 }

@@ -29,7 +29,7 @@ export default function PaymentInfoDetail({ approval }: Props) {
             labelPlaceholder="상호명"
             value={data.data.paymentDestination}
           />
-          {approval.managerId !== "" && (
+          {approval.managerId && (
             <ApprovalInfoDetail userId={approval.managerId} />
           )}
           {approval.comment !== "" && (

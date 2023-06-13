@@ -20,7 +20,7 @@ export interface NoticeInfo {
 export interface SearchNoticeResult {
   content: NoticeDTO[];
   pageNo: number;
-  isLast: boolean;
+  last: boolean;
   totalPage: number;
   totalElement: number;
 }

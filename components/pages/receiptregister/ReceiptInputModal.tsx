@@ -9,23 +9,26 @@ import CategorySelectBox from "@/components/select/categorySelect";
 import { UploadReceiptImage } from "@/service/receipt/ReceiptService";
 import { getFormattedDateFromLocalDateTime } from "@/utils/dateUtils";
 import ModalContainer from "@/components/modal/modalContainer";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { UploadReceiptImageReq } from "@/types/receipt/RequestType";
 
 interface Props {
   open: boolean;
   onClose: React.Dispatch<SetStateAction<boolean>>;
   paymentHistory: PaymentHistoryInfo;
+  resend: boolean;
 }
 
 export default function ReceiptRegisterModal({
   open,
   onClose,
   paymentHistory,
+  resend,
 }: Props) {
   const imgRef = useRef<HTMLImageElement>(null);
   const [imageBlob, setImageBlob] = useState<File>();
   const [categoryId, setCategoryId] = useState<number>(0);
+  const queryClient = useQueryClient();
 
   const { mutate } = useMutation((req: UploadReceiptImageReq) =>
     UploadReceiptImage(req)
@@ -73,7 +76,14 @@ export default function ReceiptRegisterModal({
                 icon: "success",
                 timer: 5000,
                 showConfirmButton: false,
+                showDenyButton: false,
+                showCancelButton: false,
               }).then(() => {
+                if (resend) {
+                  queryClient.invalidateQueries(["searchApprovalInfo"]);
+                } else {
+                  queryClient.invalidateQueries(["searchPaymentHistory"]);
+                }
                 onClose(false);
               });
             },
@@ -95,9 +105,24 @@ export default function ReceiptRegisterModal({
     <>
       {open && (
         <ModalContainer>
-          <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', height: '70px' }}>
+          <header
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-around",
+              height: "70px",
+            }}
+          >
             <div></div>
-            <h4 style={{ textAlign: 'center', color: 'var(--bibot-primary)', margin: '0' }}>영수증 등록</h4>
+            <h4
+              style={{
+                textAlign: "center",
+                color: "var(--bibot-primary)",
+                margin: "0",
+              }}
+            >
+              영수증 등록
+            </h4>
             <Image
               src="/assets/images/icons/cancelMint.svg"
               alt="cancelIcon"
@@ -142,9 +167,9 @@ export default function ReceiptRegisterModal({
             </div>
             <Spacer y={1} />
             <div className={style.btnContainer}>
-              <Button className={style.registerBtn} onClick={handleSubmit}>
+              <button className={style.registerBtn} onClick={handleSubmit}>
                 등록하기
-              </Button>
+              </button>
             </div>
             <Spacer y={1} />
           </div>

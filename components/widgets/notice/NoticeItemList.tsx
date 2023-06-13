@@ -1,29 +1,39 @@
 import NoticeItem from "@/components/ui/notice/NoticeItem";
-import { GetNoticeMain } from "@/service/notice/NoticeService";
-import { NoticeDTO } from "@/types/notice/types";
-import React, { useEffect } from "react";
+import { SearchNotice } from "@/service/notice/NoticeService";
+import { SearchNoticeReq } from "@/types/notice/RequestType";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import React from "react";
+import InfiniteScroll from "react-infinite-scroller";
 
 export default function NoticeItemList(props: {
-  noticeList: NoticeDTO[];
-  setNoticeList: React.Dispatch<React.SetStateAction<NoticeDTO[]>>;
+  searchParam: SearchNoticeReq;
 }) {
-  const { noticeList, setNoticeList } = props;
-
-  useEffect(() => {
-    GetNoticeMain().then((res) => {
-      setNoticeList(res.data);
-    });
-  }, [setNoticeList]);
+  const { searchParam } = props;
+  const { data, fetchNextPage, hasNextPage, isLoading, isError } =
+    useInfiniteQuery(
+      ["searchNotice", searchParam],
+      ({ pageParam = 0 }) => SearchNotice(searchParam, pageParam),
+      {
+        getNextPageParam: (lastPage) => {
+          return lastPage.data.last ? undefined : lastPage.data.pageNo + 1;
+        },
+      }
+    );
 
   return (
     <div>
-      <p>{noticeList.length}건</p>
-      <div>
-        {noticeList &&
-          noticeList.map((notice) => (
-            <NoticeItem key={notice.id} notice={notice} />
-          ))}
-      </div>
+      <InfiniteScroll
+        hasMore={hasNextPage}
+        loadMore={() => fetchNextPage()}
+        useWindow={false}
+      >
+        {!(isLoading || isError) &&
+          data?.pages.map((page) => {
+            return page.data.content.map((notice) => (
+              <NoticeItem key={notice.id} notice={notice} />
+            ));
+          })}
+      </InfiniteScroll>
     </div>
   );
 }

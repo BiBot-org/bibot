@@ -9,6 +9,7 @@ import "../styles/globals.css";
 import { useRouter } from "next/router";
 import { LoadingComponent } from "@/components/splash/Loading";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const lightTheme = createTheme({
   type: "light",
@@ -17,8 +18,6 @@ const lightTheme = createTheme({
 const darkTheme = createTheme({
   type: "dark",
 });
-
-
 
 export type NextPageWithLayout<P = {}, IP = P, auth = boolean> = NextPage<
   P,
@@ -59,20 +58,20 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
                 defaultTheme="system"
                 attribute="class"
                 themes={[lightTheme, darkTheme]}
-                value={{ 
+                value={{
                   light: lightTheme.className,
                   dark: darkTheme.className,
                 }}
-                >
-              <NextUIProvider>
-                {Component.auth ? (
-                  <Auth>
+              >
+                <NextUIProvider>
+                  {Component.auth ? (
+                    <Auth>
+                      <Component {...pageProps} />
+                    </Auth>
+                  ) : (
                     <Component {...pageProps} />
-                  </Auth>
-                ) : (
-                  <Component {...pageProps} />
-                )}
-              </NextUIProvider>
+                  )}
+                </NextUIProvider>
               </NextThemeProvider>
             )}
         </QueryClientProvider>

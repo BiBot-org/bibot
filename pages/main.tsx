@@ -16,7 +16,7 @@ export default function Main() {
 Main.getLayout = function getLayout(page: React.ReactNode) {
   return (
     <>
-      <Layout>{page}</Layout>
+      <Layout title="main">{page}</Layout>
     </>
   );
 };

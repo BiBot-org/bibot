@@ -28,13 +28,13 @@ export async function GetNotice(id: number) {
   return response;
 }
 
-export async function SearchNotice(searchParam: SearchNoticeReq) {
+export async function SearchNotice(searchParam: SearchNoticeReq, page: number) {
   const response: SearchNoticeRes = await CustomAxios.get(
     `${userServiceUrl}/api/v1/notice/search`,
     {
       params: {
         title: searchParam.title,
-        page: searchParam.page,
+        page: page,
         type: searchParam.type,
       },
     }

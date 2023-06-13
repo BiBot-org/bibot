@@ -6,6 +6,7 @@ interface Props {
 }
 
 export default function ApprovalInfoDetail({ userId }: Props) {
+  console.log(userId);
   const { isLoading, data, isError } = useGetUser(userId);
 
   return (

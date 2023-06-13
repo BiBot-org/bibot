@@ -1,6 +1,5 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import style from "./ApprovalList.module.css";
-import Image from "next/image";
 import { Input } from "@nextui-org/react";
 import ApprovalItem from "@/components/ui/approvalhistory/ApprovalItem";
 import { SearchApprovalInfoReq } from "@/types/expense/RequestType";
@@ -11,9 +10,11 @@ import { SearchApprovalInfo } from "@/service/expense/ExpenseService";
 import InfiniteScroll from "react-infinite-scroller";
 
 export default function ApprovalList() {
+  const offset = new Date().getTimezoneOffset() * 60000;
+  const today = new Date(Date.now() - offset).toISOString().slice(0, 10);
   const [searchParam, setSearchParam] = useState<SearchApprovalInfoReq>({
-    startDate: calculateThreeMonthAgo(new Date().toISOString().slice(0, 10)),
-    endDate: new Date().toISOString().slice(0, 10),
+    startDate: calculateThreeMonthAgo(today),
+    endDate: today,
   });
 
   const onChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -34,8 +35,6 @@ export default function ApprovalList() {
       }
     );
 
-  const today = new Date().toISOString().slice(0, 10);
-
   return (
     <section>
       <div className={style.dateWrap}>
@@ -46,7 +45,7 @@ export default function ApprovalList() {
           max={today}
           width="100%"
         />
-        <span style={{ fontSize: '2rem' }}>-</span>
+        <span style={{ fontSize: "2rem" }}>-</span>
         <Input
           aria-label="endDate"
           type="date"
@@ -75,7 +74,7 @@ export default function ApprovalList() {
           loadMore={() => fetchNextPage()}
           useWindow={false}
         >
-          {!isLoading &&
+          {!(isLoading || isError) &&
             data?.pages.map((page) => {
               return page.data.content.map((history) => (
                 <ApprovalItem key={history.id} item={history} />
