@@ -1,6 +1,5 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import style from "./ApprovalList.module.css";
-import Image from "next/image";
 import { Input } from "@nextui-org/react";
 import ApprovalItem from "@/components/ui/approvalhistory/ApprovalItem";
 import { SearchApprovalInfoReq } from "@/types/expense/RequestType";
@@ -75,7 +74,7 @@ export default function ApprovalList() {
           loadMore={() => fetchNextPage()}
           useWindow={false}
         >
-          {!isLoading &&
+          {!(isLoading || isError) &&
             data?.pages.map((page) => {
               return page.data.content.map((history) => (
                 <ApprovalItem key={history.id} item={history} />

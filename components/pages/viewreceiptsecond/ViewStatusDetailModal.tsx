@@ -21,9 +21,24 @@ export default function ViewInfoDetailModal({
     <>
       {open && (
         <ModalContainer>
-          <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', height: '70px' }}>
+          <header
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-around",
+              height: "70px",
+            }}
+          >
             <div></div>
-            <h4 style={{ textAlign: 'center', color: 'var(--bibot-primary)', margin: '0' }}>결재 상세 화면</h4>
+            <h4
+              style={{
+                textAlign: "center",
+                color: "var(--bibot-primary)",
+                margin: "0",
+              }}
+            >
+              결재 상세 화면
+            </h4>
             <Image
               src="/assets/images/icons/cancelMint.svg"
               alt="cancelIcon"

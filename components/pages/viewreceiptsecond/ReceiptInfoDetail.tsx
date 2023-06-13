@@ -13,8 +13,8 @@ export default function ReceiptInfoDetail({ approvalId, status }: Prop) {
   const columns = [
     { key: "item", label: "품명" },
     { key: "price", label: "가격" },
-    { key: "price", label: "갯수" },
-    { key: "price", label: "총 가격" },
+    { key: "count", label: "갯수" },
+    { key: "amount", label: "총 가격" },
   ];
 
   const [isResendModalOpen, setIsResendModalOpen] = useState<boolean>(false);
@@ -29,10 +29,14 @@ export default function ReceiptInfoDetail({ approvalId, status }: Prop) {
             isResendModalOpen={isResendModalOpen}
             setIsResendModalOpen={() => setIsResendModalOpen(false)}
           />
-          <div style={{ display: "flex", flexDirection: "column", padding: '0 2rem' }}>
-            <Collapse.Group
-              style={{ padding: '0' }}
-            >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              padding: "0 2rem",
+            }}
+          >
+            <Collapse.Group style={{ padding: "0" }}>
               {data.data.imageUrl && (
                 <Collapse title="영수증 이미지">
                   <Image
@@ -58,7 +62,7 @@ export default function ReceiptInfoDetail({ approvalId, status }: Prop) {
                     </Table.Header>
                     <Table.Body>
                       {data.data.ocrResult.items.map((item, idx) => (
-                        <Table.Row key={`${idx} ${item.name}`}>
+                        <Table.Row key={`${idx}`}>
                           <Table.Cell css={{ textAlign: "center" }}>
                             {item.name}
                           </Table.Cell>

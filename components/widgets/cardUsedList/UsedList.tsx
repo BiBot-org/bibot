@@ -77,11 +77,12 @@ export default function UsedList({ cardId }: Prop) {
           loadMore={() => fetchNextPage()}
           useWindow={false}
         >
-          {data?.pages.map((page) => {
-            return page.data.content.map((history) => (
-              <CardUsedItem key={history.id} paymentHistory={history} />
-            ));
-          })}
+          {!(isLoading || isError) &&
+            data?.pages.map((page) => {
+              return page.data.content.map((history) => (
+                <CardUsedItem key={history.id} paymentHistory={history} />
+              ));
+            })}
         </InfiniteScroll>
       </div>
     </>

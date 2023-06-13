@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import { FormElement, Input } from "@nextui-org/react";
-import { SearchNotice } from "@/service/notice/NoticeService";
 import { SearchNoticeReq } from "@/types/notice/RequestType";
-import { NoticeDTO } from "@/types/notice/types";
 
 export default function SearchInput(props: {
   searchParam: SearchNoticeReq;

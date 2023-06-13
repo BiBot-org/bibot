@@ -1,9 +1,8 @@
 import NoticeItem from "@/components/ui/notice/NoticeItem";
-import { GetNoticeMain, SearchNotice } from "@/service/notice/NoticeService";
+import { SearchNotice } from "@/service/notice/NoticeService";
 import { SearchNoticeReq } from "@/types/notice/RequestType";
-import { NoticeDTO } from "@/types/notice/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import InfiniteScroll from "react-infinite-scroller";
 
 export default function NoticeItemList(props: {
@@ -28,11 +27,12 @@ export default function NoticeItemList(props: {
         loadMore={() => fetchNextPage()}
         useWindow={false}
       >
-        {data?.pages.map((page) => {
-          return page.data.content.map((notice) => (
-            <NoticeItem key={notice.id} notice={notice} />
-          ));
-        })}
+        {!(isLoading || isError) &&
+          data?.pages.map((page) => {
+            return page.data.content.map((notice) => (
+              <NoticeItem key={notice.id} notice={notice} />
+            ));
+          })}
       </InfiniteScroll>
     </div>
   );
