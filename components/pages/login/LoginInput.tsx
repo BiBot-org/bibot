@@ -9,11 +9,9 @@ import * as Yup from "yup";
 import { getSession, signIn } from "next-auth/react";
 import Swal from "sweetalert2";
 import { useRecoilState } from "recoil";
-import { userInfoState } from "@/state/userInfo/UserInfoState";
 
 export default function LoginInput() {
   const router = useRouter();
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
 
   const formik = useFormik({
     initialValues: {
@@ -44,12 +42,6 @@ export default function LoginInput() {
           text: `환영합니다`,
           icon: "success",
           timer: 3000,
-        }).then(async () => {
-          const session = await getSession();
-          setUserInfo({
-            isLogin: true,
-            userId: session?.tokenInfo.id,
-          });
         });
       }
     },

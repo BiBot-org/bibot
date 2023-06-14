@@ -11,6 +11,7 @@ import { Spacer } from "@nextui-org/react";
 import EmptyCardInfo from "@/components/ui/cardusedlist/EmptyCardInfo";
 import { CardInfoRes } from "@/types/card/types";
 import { GetAllCard } from "@/service/card/CardService";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function CardSlide() {
   const router = useRouter();

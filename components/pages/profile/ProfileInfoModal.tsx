@@ -1,15 +1,12 @@
 "use client";
 import { Button, Spacer } from "@nextui-org/react";
-import React, { SetStateAction, useEffect, useRef, useState } from "react";
+import React, { SetStateAction, useRef } from "react";
 import Image from "next/image";
 import ProfileInfo from "@/components/ui/profile/ProfileInfo";
 import style from "./ProfileInfoList.module.css";
-import { useRecoilValue } from "recoil";
-import { UserAuthInfo } from "@/types/user/types";
-import { userInfoState } from "@/state/userInfo/UserInfoState";
 import {
   UploadUserProfileImage,
-  useGetuserinfo,
+  useGetMyInfo,
 } from "@/service/user/UserService";
 import ProfileModalBackButton from "./ProfileModalBackbutton";
 import Swal from "sweetalert2";
@@ -24,11 +21,10 @@ export default function ProfileInfoModal({
   isModalOpen,
   setIsModalOpen,
 }: Props) {
-  const userInfo = useRecoilValue<UserAuthInfo>(userInfoState);
   const imgRef = useRef<HTMLImageElement>(null);
   const queryClient = useQueryClient();
 
-  const { isLoading, data, isError } = useGetuserinfo(userInfo.userId);
+  const { isLoading, data, isError } = useGetMyInfo();
   const { mutate } = useMutation((req: File) =>
     UploadUserProfileImage({
       profileImage: req,
@@ -57,10 +53,7 @@ export default function ProfileInfoModal({
                 icon: "success",
               }).then((res) => {
                 if (res.isConfirmed) {
-                  queryClient.invalidateQueries([
-                    "getUserInfo",
-                    userInfo.userId,
-                  ]);
+                  queryClient.invalidateQueries(["getMyInfo"]);
                 }
               });
             },

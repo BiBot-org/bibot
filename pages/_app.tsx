@@ -6,10 +6,10 @@ import { RecoilRoot } from "recoil";
 import { ReactElement, ReactNode } from "react";
 import { SessionProvider, useSession } from "next-auth/react";
 import "../styles/globals.css";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import { LoadingComponent } from "@/components/splash/Loading";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import NextNprogress from "nextjs-progressbar";
 
 const lightTheme = createTheme({
   type: "light",

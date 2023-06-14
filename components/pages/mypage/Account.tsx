@@ -1,18 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Text } from "@nextui-org/react";
-import { GetUserInfo, useGetuserinfo } from "@/service/user/UserService";
-import { useRecoilValue } from "recoil";
-import { UserAuthInfo } from "@/types/user/types";
-import { userInfoState } from "@/state/userInfo/UserInfoState";
+import { useGetMyInfo } from "@/service/user/UserService";
 import AccountProfile from "@/components/ui/mypage/AccountProfile";
 
 export default function Account() {
-  const userInfo = useRecoilValue<UserAuthInfo>(userInfoState);
-  const { isLoading, data, isError } = useGetuserinfo(userInfo.userId);
+  const { isLoading, data, isError } = useGetMyInfo();
 
   return (
     <>
-      {!isLoading && (
+      {!(isLoading || isError) && (
         <div>
           <Text size="$xl" css={{ color: "#40CCC3" }} weight={"bold"}>
             Account
