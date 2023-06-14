@@ -6,6 +6,17 @@ import { UpdateProfileReq } from "@/types/user/RequestType";
 
 const { userServiceUrl } = Config();
 
+export async function GetMyInfo() {
+  const response: GetUserInfoRes = await CustomAxios.get(
+    `${userServiceUrl}/api/v1/user/myInfo`
+  ).then((res) => res.data);
+  return response;
+}
+
+export function useGetMyInfo() {
+  return useQuery(["getMyInfo"], async () => await GetMyInfo());
+}
+
 export async function GetUser(userId: string) {
   const response: GetUserRes = await CustomAxios.get(
     `${userServiceUrl}/api/v1/user`,

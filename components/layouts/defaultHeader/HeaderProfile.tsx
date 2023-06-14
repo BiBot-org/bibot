@@ -1,13 +1,9 @@
 import React, { useEffect, useMemo, useState } from "react";
 import style from "@/components/layouts/defaultHeader/HeaderProfile.module.css";
 import Image from "next/image";
-import { useGetuserinfo } from "@/service/user/UserService";
-import { UserAuthInfo } from "@/types/user/types";
-import { useRecoilValue } from "recoil";
-import { userInfoState } from "@/state/userInfo/UserInfoState";
+import { useGetMyInfo } from "@/service/user/UserService";
 
 export default function HeaderProfile() {
-  const userInfo = useRecoilValue<UserAuthInfo>(userInfoState);
   const [greeting, setGreeting] = useState<string>("" as string);
   const [emoji, setEmoji] = useState<string>("" as string);
 
@@ -23,7 +19,7 @@ export default function HeaderProfile() {
 
   const emojis = useMemo(() => ["👋", "👍", "👏", "👌"], []);
 
-  const { isLoading, data } = useGetuserinfo(userInfo.userId);
+  const { isLoading, data, isError } = useGetMyInfo();
 
   useEffect(() => {
     const random = Math.floor(Math.random() * greetings.length);
@@ -33,7 +29,7 @@ export default function HeaderProfile() {
 
   return (
     <>
-      {!isLoading && (
+      {!(isLoading || isError) && (
         <div className={style.headerProfileWrap}>
           <div className={style.headerProfileImgWrap}>
             <Image

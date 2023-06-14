@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import ReceiptRegisterModal from "@/components/pages/receiptregister/ReceiptInputModal";
 import { PaymentHistoryInfo } from "@/types/payment/types";
 import { getFormattedDateTimeFromLocalDateTime } from "@/utils/dateUtils";
+import Swal from "sweetalert2";
 
 interface Props {
   paymentHistory: PaymentHistoryInfo;
@@ -15,7 +16,10 @@ export default function CardUsedItem({ paymentHistory }: Props) {
 
   const handleClick = () => {
     if (paymentHistory.requested) {
-      router.push(`/viewreceipt/${1}`);
+      Swal.fire({
+        text: "이미 등록 된 결제 정보입니다.",
+        icon: "info",
+      });
     } else {
       setModalOpen(true);
     }

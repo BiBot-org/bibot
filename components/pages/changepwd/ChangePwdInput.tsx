@@ -1,12 +1,10 @@
 "use client";
 import { ChangePassword } from "@/service/auth/AuthService";
-import { useGetuserinfo } from "@/service/user/UserService";
-import { userInfoState } from "@/state/userInfo/UserInfoState";
-import { UserAuthInfo } from "@/types/user/types";
+import { useGetMyInfo } from "@/service/user/UserService";
 import { Input, Spacer, Button, FormElement } from "@nextui-org/react";
 import { signOut } from "next-auth/react";
 import React, { ChangeEvent, useState } from "react";
-import { useRecoilValue } from "recoil";
+
 import Swal from "sweetalert2";
 
 interface changePassword {
@@ -16,8 +14,7 @@ interface changePassword {
 }
 
 export default function ChangePwdInput() {
-  const userInfo = useRecoilValue<UserAuthInfo>(userInfoState);
-  const { isLoading, data } = useGetuserinfo(userInfo.userId);
+  const { isLoading, data, isError } = useGetMyInfo();
 
   const [changePassword, setChangePassword] = useState<changePassword>({
     password: "",
@@ -63,7 +60,7 @@ export default function ChangePwdInput() {
 
   return (
     <>
-      {!isLoading && (
+      {!(isLoading || isError) && (
         <article>
           <Spacer y={3} />
           <Input.Password

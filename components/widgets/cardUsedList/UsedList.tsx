@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import style from "./UsedList.module.css";
 import CardUsedItem from "@/components/ui/cardusedlist/CardUsedItem";
 import { FormElement, Input, Spacer } from "@nextui-org/react";
@@ -26,6 +26,14 @@ export default function UsedList({ cardId }: Prop) {
     startDate: calculateThreeMonthAgo(today),
     endDate: today,
   } as SearchPaymentHistoryReq);
+
+  useEffect(() => {
+    setSearchParam({
+      cardId: cardId,
+      startDate: calculateThreeMonthAgo(today),
+      endDate: today,
+    });
+  }, [cardId, today]);
 
   const { data, fetchNextPage, hasNextPage, isLoading, isError } =
     useInfiniteQuery(
@@ -73,18 +81,18 @@ export default function UsedList({ cardId }: Prop) {
         </div>
         <Spacer y={1} />
         {data ? (
-        <InfiniteScroll
-          hasMore={hasNextPage}
-          loadMore={() => fetchNextPage()}
-          useWindow={false}
-        >
-          {!(isLoading || isError) &&
-            data?.pages.map((page) => {
-              return page.data.content.map((history) => (
-                <CardUsedItem key={history.id} paymentHistory={history} />
-              ));
-            })}
-        </InfiniteScroll>
+          <InfiniteScroll
+            hasMore={hasNextPage}
+            loadMore={() => fetchNextPage()}
+            useWindow={false}
+          >
+            {!(isLoading || isError) &&
+              data?.pages.map((page) => {
+                return page.data.content.map((history) => (
+                  <CardUsedItem key={history.id} paymentHistory={history} />
+                ));
+              })}
+          </InfiniteScroll>
         ) : (
           <></>
         )}

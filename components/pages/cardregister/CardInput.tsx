@@ -5,6 +5,7 @@ import { Button, FormElement, Input, Spacer } from "@nextui-org/react";
 import { CreateCardReq } from "@/types/card/RequestTypes";
 import router from "next/router";
 import { AddCard } from "@/service/card/CardService";
+import Swal from "sweetalert2";
 
 export default function CardInput() {
   const [cardInfo, setCardInfo] = useState<CreateCardReq>({} as CreateCardReq);
@@ -33,10 +34,28 @@ export default function CardInput() {
 
   const handleRegister = () => {
     if (allcheck) {
-      AddCard(cardInfo).then(() => router.push("/cardusedlist"));
-      setCardInfo({} as CreateCardReq);
-      setAllcheck(false);
+      AddCard(cardInfo).then(() => {
+        Swal.fire({
+          text: "카드 등록이 완료 되었습니다.",
+          timer: 5000,
+          icon: "success",
+          showCancelButton: false,
+          showConfirmButton: false,
+        }).then(() => {
+          router.push("/cardusedlist");
+        });
+      });
+    } else {
+      Swal.fire({
+        text: "카드 등록이 실패하였습니다.",
+        timer: 5000,
+        icon: "info",
+        showCancelButton: false,
+        showConfirmButton: false,
+      });
     }
+    setCardInfo({} as CreateCardReq);
+    setAllcheck(false);
   };
 
   const handleCardNo = (e: ChangeEvent<FormElement>) => {

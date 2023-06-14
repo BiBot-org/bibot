@@ -1,11 +1,6 @@
 import { DeaprtmentDTO } from "../department/types";
 import { TeamDTO } from "../team/types";
 
-export interface UserAuthInfo {
-  userId: string;
-  isLogin: boolean;
-}
-
 export interface BibotUserDTO {
   id: string;
   firstName: string;

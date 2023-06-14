@@ -51,14 +51,22 @@ export default function CategoryNav() {
 
   useEffect(() => {
     async function fetchData() {
-      const newExpenseProcessingStatus = categoryId !== undefined
-        ? await GetExpenseProcessingStatusByCategory(Number(categoryId))
-        : await GetAllExpenseProcessingStatus();
+      const newExpenseProcessingStatus =
+        categoryId !== undefined
+          ? await GetExpenseProcessingStatusByCategory(Number(categoryId))
+          : await GetAllExpenseProcessingStatus();
       setExpenseProcessingStatus(newExpenseProcessingStatus.data);
-      if (isReminder)
-        setMount(newExpenseProcessingStatus.data.expenseUsed / newExpenseProcessingStatus.data.limitation);
-      else
-        setMount((newExpenseProcessingStatus.data.limitation - newExpenseProcessingStatus.data.expenseUsed) / newExpenseProcessingStatus.data.limitation);
+      if (!isReminder) {
+        setMount(
+          newExpenseProcessingStatus.data.expenseUsed /
+            newExpenseProcessingStatus.data.limitation
+        );
+      } else
+        setMount(
+          (newExpenseProcessingStatus.data.limitation -
+            newExpenseProcessingStatus.data.expenseUsed) /
+            newExpenseProcessingStatus.data.limitation
+        );
     }
     fetchData();
   }, [categoryId, isReminder]);
@@ -81,7 +89,9 @@ export default function CategoryNav() {
                 <li
                   className={categoryId === undefined ? style.active : ""}
                   onClick={() => router.push("/main")}
-                >전체</li>
+                >
+                  전체
+                </li>
                 {data?.data.map((item: CategoryDTO) => (
                   <li
                     key={item.id}
@@ -120,13 +130,13 @@ export default function CategoryNav() {
           start={
             !isReminder
               ? expenseProcessingStatus.limitation -
-              expenseProcessingStatus.expenseUsed
+                expenseProcessingStatus.expenseUsed
               : expenseProcessingStatus.expenseUsed
           }
           end={
             isReminder
               ? expenseProcessingStatus.limitation -
-              expenseProcessingStatus.expenseUsed
+                expenseProcessingStatus.expenseUsed
               : expenseProcessingStatus.expenseUsed
           }
           duration={1}
