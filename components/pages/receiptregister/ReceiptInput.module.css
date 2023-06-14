@@ -60,7 +60,9 @@
 
 .registerBtn {
   background-color: var(--bibot-primary);
+  color: var(--bibot-white);
   width: 200px;
+  height: 40px;
   border: none;
-  border-radius: 30px;
+  border-radius: 10px;
 }

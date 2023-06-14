@@ -1,14 +1,12 @@
 "use client";
 import { Spacer, Container, Input, Button, Row } from "@nextui-org/react";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import Image from "next/image";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { getSession, signIn } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import Swal from "sweetalert2";
-import { useRecoilState } from "recoil";
 
 export default function LoginInput() {
   const router = useRouter();
@@ -42,6 +40,7 @@ export default function LoginInput() {
           text: `환영합니다`,
           icon: "success",
           timer: 3000,
+          confirmButtonColor: 'var(--bibot-primay)'
         });
       }
     },

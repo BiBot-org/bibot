@@ -69,7 +69,7 @@ export default function UsedList({ cardId }: Prop) {
             onChange={handleDateChange}
             max={today}
           />
-          <span>-</span>
+          <span style={{fontSize:'2rem'}}>-</span>
           <Input
             aria-label="today"
             type="date"

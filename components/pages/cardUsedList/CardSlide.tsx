@@ -11,7 +11,6 @@ import { Spacer } from "@nextui-org/react";
 import EmptyCardInfo from "@/components/ui/cardusedlist/EmptyCardInfo";
 import { CardInfoRes } from "@/types/card/types";
 import { GetAllCard } from "@/service/card/CardService";
-import { useQueryClient } from "@tanstack/react-query";
 
 export default function CardSlide() {
   const router = useRouter();
@@ -20,6 +19,7 @@ export default function CardSlide() {
   const [cardInfoList, setCardInfoList] = useState<CardInfoRes[]>([]);
   const [cardId, setCardId] = useState<number>(1);
   const settings = {
+    className: "center",
     dots: false,
     infinite: false,
     speed: 600,
@@ -27,7 +27,7 @@ export default function CardSlide() {
     slidesToScroll: 1,
     focusOnSelect: true,
     centerMode: true,
-    centerPadding: "40px",
+    centerPadding: "30px",
     initialSlide: 1,
     arrows: false,
     afterChange: (current: number) => {

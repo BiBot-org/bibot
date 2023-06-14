@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Spacer } from "@nextui-org/react";
+import { Spacer } from "@nextui-org/react";
 import Image from "next/image";
 import style from "./DeleteModal.module.css";
 import { useRouter } from "next/router";
@@ -24,13 +24,14 @@ export default function DeleteModal(props: {
         Swal.fire({
           text: "에러가 발생했습니다.",
           icon: "error",
+          confirmButtonColor: "var(--bibot-primary)",
         });
       });
   };
 
   return (
     <>
-      <div className={style.modalBackground}>
+      <div className={style.modalBackground} onClick={()=>props.handlemodal(!props.ismodalopen)}>
         <div className={style.modalWrap}>
           <div className={style.modalHeader}>
             <Image
@@ -47,20 +48,18 @@ export default function DeleteModal(props: {
             </div>
             <Spacer y={1} />
             <div className={style.contentsBtn}>
-              <Button
-                auto
+              <button
                 className={style.checkBtn}
-                onPress={handleDeleteCard}
+                onClick={handleDeleteCard}
               >
                 늬예 늬예
-              </Button>
-              <Button
-                auto
+              </button>
+              <button
                 className={style.cancelBtn}
-                onPress={() => props.handlemodal(!props.ismodalopen)}
+                onClick={() => props.handlemodal(!props.ismodalopen)}
               >
                 응 아니야
-              </Button>
+              </button>
             </div>
           </div>
         </div>

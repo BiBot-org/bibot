@@ -23,14 +23,21 @@ export default function Findpassword() {
         icon: "error",
       });
     }
-    SendConfirmEmail(email)
-      .then(() => {
-        Swal.fire({
-          text: "인증 번호가 이메일로 발급 되었습니다.",
-          icon: "info",
-        });
-      })
-      .then(() => setIsVerifyMailSended(true));
+    else {
+      SendConfirmEmail(email)
+        .then(() => {
+          Swal.fire({
+            text: "인증 번호가 이메일로 발급 되었습니다.",
+            icon: "info",
+          });
+        })
+        .then(() => setIsVerifyMailSended(true))
+        .catch(() => Swal.fire({
+          text: "에러가 발생했습니다.",
+          icon: "error",
+        })
+        );
+    }
   };
 
   const sendVerifyEmail = () => {
@@ -53,8 +60,6 @@ export default function Findpassword() {
           Swal.fire({
             text: "에러가 발생했습니다. 잠시 후 다시 시도 해 주세요.",
             icon: "error",
-          }).then(() => {
-            router.push("/login");
           });
         });
     }
@@ -127,6 +132,7 @@ export default function Findpassword() {
                   fontWeight: "bold",
                 }}
               />
+              <Spacer y={1} />
               <Button
                 aria-label="issuepassword"
                 auto
