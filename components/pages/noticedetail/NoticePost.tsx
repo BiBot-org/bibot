@@ -1,38 +1,24 @@
-import { GetNotice } from "@/service/notice/NoticeService";
+import { useGetNotice } from "@/service/notice/NoticeService";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import NoticeContents from "@/components/widgets/noticedetail/NoticeContents";
-import NoticeDetailBtn from "@/components/widgets/noticedetail/NoticeDetailBtn";
-import { NoticeDTO } from "@/types/notice/types";
 
 export default function NoticePost() {
   const router = useRouter();
   const id = parseInt(router.query.id as string);
-  const [notice, setNotice] = useState<NoticeDTO>();
 
-  useEffect(() => {
-    GetNotice(id)
-      .then((res) => {
-        setNotice(res.data);
-      })
-      .catch((err) => {
-        if (err.response.status === 404) {
-          router.push("/404");
-        }
-      });
-  }, [router, id]);
+  const { isLoading, data, isError } = useGetNotice(id);
 
   return (
     <>
-      {notice && (
+      {!(isLoading || isError) && (
         <>
           <NoticeContents
-            title={notice.title}
-            content={notice.content}
-            type={notice.type}
-            updateTime={notice.updateTime}
+            title={data.data.title}
+            content={data.data.content}
+            type={data.data.type}
+            updateTime={data.data.updateTime}
           />
-          <NoticeDetailBtn id={id} />
         </>
       )}
     </>
