@@ -19,6 +19,7 @@ export default function CardUsedItem({ paymentHistory }: Props) {
       Swal.fire({
         text: "이미 등록 된 결제 정보입니다.",
         icon: "info",
+        confirmButtonColor: "var(--bibot-primary)",
       });
     } else {
       setModalOpen(true);

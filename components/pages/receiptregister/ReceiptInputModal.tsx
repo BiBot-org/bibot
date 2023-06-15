@@ -1,5 +1,5 @@
 import Approval from "@/components/widgets/Approval";
-import { Button, Spacer } from "@nextui-org/react";
+import { Spacer } from "@nextui-org/react";
 import React, { SetStateAction, useRef, useState } from "react";
 import style from "./ReceiptInput.module.css";
 import Image from "next/image";
@@ -58,6 +58,8 @@ export default function ReceiptRegisterModal({
       text: "전송 하시겠습니까?",
       icon: "question",
       showCancelButton: true,
+      confirmButtonColor: "var(--bibot-primary)",
+      cancelButtonColor: "var(--bibot-secondary)",
     }).then((res) => {
       if (res.isConfirmed) {
         mutate(

@@ -21,7 +21,9 @@ export default function NoticeItemList(props: {
     );
 
   return (
-    <div>
+    <div style={{
+      height:'32rem',
+      overflowY:'scroll'}}>
       <InfiniteScroll
         hasMore={hasNextPage}
         loadMore={() => fetchNextPage()}

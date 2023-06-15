@@ -63,7 +63,7 @@ export async function UploadUserProfileImage(req: UpdateProfileReq) {
 }
 
 export async function SendConfirmEmail(email: string) {
-  return CustomAxios.get(`${userServiceUrl}/public/v1/user/email`, {
+  return CustomAxios.get(`${userServiceUrl}/public/v1/user/verify/email`, {
     params: {
       email: email,
     },

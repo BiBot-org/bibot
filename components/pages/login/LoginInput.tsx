@@ -1,6 +1,5 @@
 "use client";
 import { Spacer, Container, Input, Button, Row } from "@nextui-org/react";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import Image from "next/image";
@@ -41,6 +40,7 @@ export default function LoginInput() {
           text: `환영합니다`,
           icon: "success",
           timer: 3000,
+          confirmButtonColor: 'var(--bibot-primay)'
         });
       }
     },

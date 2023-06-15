@@ -32,6 +32,7 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0px 4px 4px 0px #C95DEF49;
+    z-index: 202;
 }
 
 .modalText p {
@@ -59,10 +60,15 @@
 .checkBtn {
     background-color: var(--bibot-primary);
     border: 2px solid var(--bibot-primary);
+    color: var(--bibot-white);
+    width: 110px;
+    height: 40px;
 }
 
 .cancelBtn {
     background-color: var(--bibot-white);
     border: 2px solid var(--bibot-secondary);
     color: var(--bibot-secondary);
+    width: 110px;
+    height: 40px;
 }

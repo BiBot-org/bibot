@@ -1,7 +1,6 @@
 import { Text } from "@nextui-org/react";
 import React, { useState } from "react";
 import SettingItems from "@/components/ui/mypage/SettingItems";
-import LogoutModal from "@/components/modal/mypage/LogoutModal";
 import Swal from "sweetalert2";
 import { endSession } from "@/service/auth/AuthService";
 import { signOut } from "next-auth/react";
@@ -14,6 +13,8 @@ export default function Setting() {
       icon: "question",
       text: "로그아웃 하시겠습니까?",
       showCancelButton: true,
+      confirmButtonColor: "var(--bibot-primary)",
+      cancelButtonColor: "var(--bibot-secondary)",
     }).then(async (res) => {
       if (res.isConfirmed) {
         await endSession().then(async () => {
@@ -23,6 +24,7 @@ export default function Setting() {
                 text: "로그아웃 되었습니다.",
                 icon: "success",
                 timer: 3000,
+                confirmButtonColor: "var(--bibot-primary)"
               });
             })
             .catch(() => {
@@ -30,6 +32,7 @@ export default function Setting() {
                 text: "에러가 발생했습니다!",
                 icon: "error",
                 timer: 3000,
+                confirmButtonColor: "var(--bibot-primary)"
               });
             });
         });
