@@ -6,6 +6,7 @@ import {
   SearchNoticeRes,
 } from "@/types/notice/ResponseType";
 import { SearchNoticeReq } from "@/types/notice/RequestType";
+import { useQuery } from "@tanstack/react-query";
 
 const { userServiceUrl } = Config();
 
@@ -28,13 +29,17 @@ export async function GetNotice(id: number) {
   return response;
 }
 
-export async function SearchNotice(searchParam: SearchNoticeReq) {
+export function useGetNotice(id: number) {
+  return useQuery(["getNotice", id], async () => await GetNotice(id));
+}
+
+export async function SearchNotice(searchParam: SearchNoticeReq, page: number) {
   const response: SearchNoticeRes = await CustomAxios.get(
     `${userServiceUrl}/api/v1/notice/search`,
     {
       params: {
         title: searchParam.title,
-        page: searchParam.page,
+        page: page,
         type: searchParam.type,
       },
     }

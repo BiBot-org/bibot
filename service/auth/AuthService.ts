@@ -2,9 +2,8 @@ import Config from "@/config/config.export";
 import { KeycloakTokenRes, KeycloakUserInfoRes } from "@/types/auth/types";
 import axios from "axios";
 import { getSession } from "next-auth/react";
-import { CustomAxios } from "../CusomAxios";
 
-const { keycloakUrl, clientCridential } = Config();
+const { keycloakUrl, userServiceUrl, clientCridential } = Config();
 export async function keycloakSignIn(username: string, password: string) {
   return await axios
     .post(
@@ -35,7 +34,6 @@ export async function keycloakSignIn(username: string, password: string) {
           }
         )
         .then((res) => {
-          console.log(res.data);
           const userInfo: KeycloakUserInfoRes = res.data;
           return {
             id: userInfo.sub,
@@ -99,5 +97,51 @@ export async function endSession() {
         },
       }
     );
+  }
+}
+
+export async function ChangePassword(
+  username: string,
+  password: string,
+  newPassword: string
+) {
+  const session = await getSession();
+  if (session) {
+    return await axios
+      .post(
+        `${keycloakUrl}/realms/bibot-org/protocol/openid-connect/token`,
+        {
+          grant_type: "password",
+          username: username,
+          password: password,
+          client_id: "bibot",
+          client_secret: clientCridential,
+        },
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      )
+      .then(async (res) => {
+        const tokenResponse: KeycloakTokenRes = res.data;
+        if (tokenResponse) {
+          return await axios
+            .put(
+              `${userServiceUrl}/api/v1/user/password/reset`,
+              {
+                newPassword: newPassword,
+              },
+              {
+                headers: {
+                  Authorization: `Bearer ${tokenResponse.access_token}`,
+                },
+              }
+            )
+            .then((res) => res.data);
+        } else {
+          return Promise.reject();
+        }
+      });
   }
 }

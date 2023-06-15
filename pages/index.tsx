@@ -10,10 +10,9 @@ export default function Home() {
   const router = useRouter();
   const workspaceUrl = useRecoilValue(workspaceState);
   useEffect(() => {
-    console.log(workspaceUrl);
     const timer = setTimeout(() => {
       if (workspaceUrl.url !== "") {
-        router.push("/main");
+        router.push("/login");
       } else {
         router.push("/urlsetting");
       }
@@ -23,7 +22,7 @@ export default function Home() {
   }, [workspaceUrl]);
 
   return (
-    <main className={style.mainContainer}>
+    <div className={style.mainContainer}>
       <div className={style.logo}>
         <Image
           src="assets/images/icons/companyLogo.svg"
@@ -33,6 +32,6 @@ export default function Home() {
           priority
         />
       </div>
-    </main>
+    </div>
   );
 }

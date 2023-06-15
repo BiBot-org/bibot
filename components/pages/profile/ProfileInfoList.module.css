@@ -1,0 +1,61 @@
+.modalContainer {
+  z-index: 110;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+}
+
+.back_btn {
+  height: auto;
+}
+
+.title {
+  font-weight: bold;
+  color: var(--bibot-primary);
+  padding: 0 3rem;
+}
+
+.profileImage {
+  display: flex;
+  justify-content: center;
+}
+
+.ImageBtnWrap {
+  display: flex;
+  justify-content: center;
+}
+
+.ImageBtnWrap button {
+  background-color: var(--bibot-primary);
+}
+
+.Back_btn_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  height: 70px;
+}
+
+.left {
+  width: 10%;
+}
+
+.center {
+  width: 80%;
+  text-align: center;
+}
+
+.right {
+  width: 10%;
+}
+
+.Back_btn_words {
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-align: center;
+  color: var(--bibot-primary);
+}

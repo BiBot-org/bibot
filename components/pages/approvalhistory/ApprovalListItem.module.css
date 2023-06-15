@@ -1,0 +1,43 @@
+.approval_history_list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+  padding: 0 2rem;
+  margin-top: 0.5rem;
+}
+
+.historyItemInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.category {
+  background-color: var(--bibot-primary);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.historyInfo {
+  margin-left: 1rem;
+}
+
+.historyInfo p:first-child {
+  color: #1e1e1e;
+  font-size: 1rem;
+}
+
+.historyInfo p:last-child {
+  color: #9b9b9b;
+  font-size: 1rem;
+}
+
+.price p {
+  font-size: 1.2rem;
+}

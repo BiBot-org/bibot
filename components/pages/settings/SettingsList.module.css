@@ -1,0 +1,13 @@
+.settingsItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 3.5rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.settingsWrap h3 {
+    font-size: 1.2rem;
+    color: var(--bibot-primary);
+}

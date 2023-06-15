@@ -1,11 +1,12 @@
+"use client";
 import { Spacer, Container, Input, Button, Row } from "@nextui-org/react";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import Image from "next/image";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { signIn } from "next-auth/react";
+import Swal from "sweetalert2";
 
 export default function LoginInput() {
   const router = useRouter();
@@ -29,11 +30,18 @@ export default function LoginInput() {
         password: values.password,
         callbackUrl: "/main",
       });
-
       if (result?.error) {
-        alert("아이디와 비밀번호를 확인하세요");
+        Swal.fire({
+          text: "아이디와 비밀번호를 확인 해 주세요",
+          icon: "error",
+        });
       } else {
-        alert("환영합니다.");
+        Swal.fire({
+          text: `환영합니다`,
+          icon: "success",
+          timer: 3000,
+          confirmButtonColor: 'var(--bibot-primay)'
+        });
       }
     },
   });
@@ -90,7 +98,13 @@ export default function LoginInput() {
         </form>
         <Spacer y={1} />
         <Row justify="center">
-          <Link href="/findpassword">비밀번호 찾기</Link>
+          <Button
+            size="lg"
+            onPress={() => router.push("/findpassword")}
+            style={{ width: "100%", backgroundColor: "#40CCC3" }}
+          >
+            비밀번호 찾기
+          </Button>
         </Row>
       </Container>
     </article>

@@ -1,18 +1,19 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import style from "./UsedList.module.css";
-import { cardUsedData } from "@/datas/dummy/cardUsedData";
 import CardUsedItem from "@/components/ui/cardusedlist/CardUsedItem";
 import { FormElement, Input, Spacer } from "@nextui-org/react";
 import { SearchPaymentHistory } from "@/service/payment/PaymentService";
-import { SearchPaymentHistoryInfo } from "@/types/payment/types";
 import { SearchPaymentHistoryReq } from "@/types/payment/RequestTypes";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import InfiniteScroll from "react-infinite-scroller";
 
 interface Prop {
   cardId: number;
 }
 
 export default function UsedList({ cardId }: Prop) {
-  const today = new Date().toISOString().slice(0, 10);
+  const offset = new Date().getTimezoneOffset() * 60000;
+  const today = new Date(Date.now() - offset).toISOString().slice(0, 10);
 
   const calculateThreeMonthAgo = (selectedDate: string) => {
     const currentDate = new Date(selectedDate);
@@ -21,84 +22,81 @@ export default function UsedList({ cardId }: Prop) {
   };
 
   const [searchParam, setSearchParam] = useState<SearchPaymentHistoryReq>({
+    cardId: cardId,
     startDate: calculateThreeMonthAgo(today),
     endDate: today,
-    page: 1,
   } as SearchPaymentHistoryReq);
 
-  const [searchPaymentHistoryInfo, setSearchPaymentHistoryInfo] =
-    useState<SearchPaymentHistoryInfo>({} as SearchPaymentHistoryInfo);
+  useEffect(() => {
+    setSearchParam({
+      cardId: cardId,
+      startDate: calculateThreeMonthAgo(today),
+      endDate: today,
+    });
+  }, [cardId, today]);
 
-  const handleRightDateChange = (
+  const { data, fetchNextPage, hasNextPage, isLoading, isError } =
+    useInfiniteQuery(
+      [`searchPaymentHistory`, searchParam],
+      ({ pageParam = 0 }) => SearchPaymentHistory(searchParam, pageParam),
+      {
+        getNextPageParam: (lastPage, pages) => {
+          return lastPage.data.last ? undefined : lastPage.data.pageNo + 1;
+        },
+      }
+    );
+
+  const handleDateChange = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<FormElement>
   ) => {
-    const selectedDate = e.target.value;
-    const currentDate = new Date();
-    const selected = new Date(selectedDate);
+    const { name, value } = e.target;
 
-    if (selected <= currentDate) {
-      setSearchParam({
-        ...searchParam,
-        startDate: calculateThreeMonthAgo(selectedDate),
-        endDate: selectedDate,
-      });
-    } else {
-      setSearchParam({
-        ...searchParam,
-        startDate: calculateThreeMonthAgo(today),
-        endDate: today,
-      });
-    }
-  };
-
-  //구현해야 합니다
-  const sum = cardUsedData.reduce((acc, cur) => {
-    return acc + cur.price;
-  }, 0);
-
-  useEffect(() => {
-    SearchPaymentHistory({
-      cardId: cardId,
+    setSearchParam({
       ...searchParam,
-    }).then((res) => setSearchPaymentHistoryInfo(res.data));
-  }, [cardId, searchParam]);
+      [name]: value,
+    });
+  };
 
   return (
     <>
-      <div className={style.card_used_sum}>
-        <p>사용내역 합</p>
-        <p>{sum.toLocaleString()}원</p>
+      <div className={style.usedListWrap}>
+        <div className={style.dateWrap}>
+          <Input
+            aria-label="threeMonthAgo"
+            type="date"
+            name="startDate"
+            value={searchParam.startDate}
+            onChange={handleDateChange}
+            max={today}
+          />
+          <span style={{fontSize:'2rem'}}>-</span>
+          <Input
+            aria-label="today"
+            type="date"
+            name="endDate"
+            value={searchParam.endDate}
+            onChange={handleDateChange}
+            max={today}
+          />
+        </div>
+        <Spacer y={1} />
+        {data ? (
+          <InfiniteScroll
+            hasMore={hasNextPage}
+            loadMore={() => fetchNextPage()}
+            useWindow={false}
+          >
+            {!(isLoading || isError) &&
+              data?.pages.map((page) => {
+                return page.data.content.map((history) => (
+                  <CardUsedItem key={history.id} paymentHistory={history} />
+                ));
+              })}
+          </InfiniteScroll>
+        ) : (
+          <></>
+        )}
       </div>
-      <div className={style.dateWrap}>
-        <Input
-          aria-label="threeMonthAgo"
-          type="date"
-          value={searchParam.startDate}
-          readOnly
-        />
-        <span>-</span>
-        <Input
-          aria-label="today"
-          type="date"
-          value={searchParam.endDate}
-          onChange={handleRightDateChange}
-          max={today}
-        />
-      </div>
-      <Spacer y={1} />
-      {searchPaymentHistoryInfo.content &&
-        searchPaymentHistoryInfo.content.map((data, idx) => (
-          <>
-            <CardUsedItem
-              key={`itm ${data.id}`}
-              approvalId={data.approvalId || ""}
-              title={data.paymentDestination}
-              price={data.amount}
-              date="2023-05-31"
-              isRequested={data.isRequested}
-            />
-          </>
-        ))}
     </>
   );
 }

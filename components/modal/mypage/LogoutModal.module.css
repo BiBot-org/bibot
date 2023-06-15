@@ -1,0 +1,68 @@
+.modalBackground {
+    width: 100vw;
+    height: 100vh;
+    background-color: #00000070;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 202;
+}
+
+.modalWrap {
+    width: 280px;
+    height: 210px;
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modalHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalContents {
+    background-color: var(--bibot-white);
+    border-radius: 15px;
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 4px 0px #C95DEF49;
+}
+
+.modalText p {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--bibot-secondary);
+}
+
+.contentsBtn {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.contentsBtn button {
+    border-radius: 5px;
+}
+
+.contentsBtn span {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.checkBtn {
+    background-color: var(--bibot-primary);
+    border: 2px solid var(--bibot-primary);
+}
+
+.cancelBtn {
+    background-color: var(--bibot-white);
+    border: 2px solid var(--bibot-secondary);
+    color: var(--bibot-secondary);
+}

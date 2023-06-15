@@ -25,8 +25,9 @@
 
 .notice_detail_words {
     border-top: solid 1.5px;
-    border-bottom: solid 1.5px;
     padding: 2rem 0px;
+    height: 23rem;
+    overflow-y: scroll;
 }
 
 .notice_detail_words p {

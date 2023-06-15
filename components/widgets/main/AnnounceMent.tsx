@@ -13,41 +13,27 @@ export default function AnnounceMent() {
 
   return (
     <>
-      <div
+      <p
         style={{
-          backgroundColor: '#ffffff40',
-          width: '90%',
-          margin: '0 auto',
-          paddingTop: '0.7rem',
-          borderRadius: '10px',
-          height: '20rem',
-          overflowY: 'scroll',
+          width: "90%",
+          margin: "0.5rem auto",
+          padding: "0 1rem",
         }}
       >
-        <p
+        <Link
           style={{
-            textAlign: 'right',
-            width: '90%',
-            margin: '0 auto',
+            textDecoration: "none",
+            color: "var(--bibot-white)",
           }}
+          href={"/notice"}
         >
-          <Link
-            style={{
-              textDecoration: 'none',
-              color: 'var(--bibot-primary)'
-            }}
-            href={"/notice"}
-          >
-            전체목록
-          </Link>
-        </p>
-        {noticeList &&
-          noticeList.map((notice) => (
-            <>
-              <AnnouncementPanel key={`notice : ${notice.id}`} notice={notice} />
-            </>
-          ))}
-      </div>
+          전체목록
+        </Link>
+      </p>
+      {noticeList &&
+        noticeList.map((notice) => (
+          <AnnouncementPanel key={notice.id} notice={notice} />
+        ))}
     </>
   );
 }

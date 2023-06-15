@@ -1,59 +1,67 @@
 import React, { useState } from "react";
 import style from "./CardUsedItem.module.css";
 import { useRouter } from "next/router";
+import ReceiptRegisterModal from "@/components/pages/receiptregister/ReceiptInputModal";
+import { PaymentHistoryInfo } from "@/types/payment/types";
+import { getFormattedDateTimeFromLocalDateTime } from "@/utils/dateUtils";
+import Swal from "sweetalert2";
 
-export default function CardUsedItem(props: {
-  approvalId?: string;
-  title: string;
-  price: number;
-  date: string;
-  isRequested: boolean;
-}) {
+interface Props {
+  paymentHistory: PaymentHistoryInfo;
+}
+
+export default function CardUsedItem({ paymentHistory }: Props) {
   const router = useRouter();
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   const handleClick = () => {
-    if (!props.isRequested) {
-      router.push("/receiptregister");
+    if (paymentHistory.requested) {
+      Swal.fire({
+        text: "이미 등록 된 결제 정보입니다.",
+        icon: "info",
+        confirmButtonColor: "var(--bibot-primary)",
+      });
     } else {
-      router.push(`/viewreceipt/${1}`);
+      setModalOpen(true);
     }
   };
 
-  const [categoryName, setCategoryName] = useState<string>("미승인");
-  const backgroundStyle = {
-    backgroundColor: props.isRequested ? "lightgray" : "transparent",
+  const requestStyle = {
+    textDecoration: paymentHistory.requested ? "line-through" : "none",
   };
 
-  //   const categoryColor: Record<string, string> = {
-  //     식비: "var(--bibot-primary)",
-  //     유류비: "var(--bibot-secondary)",
-  //     비품비: "#FFD28E",
-  //     미승인: "#FFF6",
-  //   };
-
-  //   const categoryBackground = {
-  //     backgroundColor: categoryColor[categoryName] || "var(--bibot-primary)",
-  //   };
-
   return (
-    <div
-      className={style.card_used_list}
-      onClick={handleClick}
-      style={backgroundStyle}
-    >
-      <div className={style.usedItemInfo}>
-        {}
-        <div className={style.category}>
-          <p>{categoryName}</p>
+    <>
+      <ReceiptRegisterModal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        paymentHistory={paymentHistory}
+        resend={false}
+      />
+      <div className={style.card_used_list} onClick={handleClick}>
+        <div className={style.usedItemInfo}>
+          {}
+          <div
+            className={style.category}
+            style={{
+              backgroundColor: paymentHistory.requested
+                ? "var(--bibot-primary)"
+                : "var(--bibot-secondary)",
+            }}
+          >
+            <p>{paymentHistory.requested === true ? "승인" : "미승인"}</p>
+          </div>
+          <div className={style.useInfo}>
+            <p style={requestStyle}>{paymentHistory.paymentDestination}</p>
+            <p>
+              {getFormattedDateTimeFromLocalDateTime(paymentHistory.regTime)}
+            </p>
+          </div>
         </div>
-        <div className={style.useInfo}>
-          <p>{props.title}</p>
-          <p>{props.date}</p>
+        <div className={style.price}>
+          <p>{paymentHistory.amount.toLocaleString()}원</p>
         </div>
       </div>
-      <div className={style.price}>
-        <p>{props.price.toLocaleString()}원</p>
-      </div>
-    </div>
+    </>
   );
 }

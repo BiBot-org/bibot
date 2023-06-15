@@ -5,6 +5,7 @@ export declare namespace ICommonConfig {
     userServiceUrl: string;
     expenseServiceUrl: string;
     cardServiceUrl: string;
+    receiptServiceUrl: string;
     keycloakUrl: string;
     clientCridential?: string;
     mode: Mode;
@@ -16,6 +17,7 @@ export default function getConfigs(params: ICommonConfig.Params) {
     userServiceUrl,
     expenseServiceUrl,
     cardServiceUrl,
+    receiptServiceUrl,
     keycloakUrl,
     clientCridential,
     mode,
@@ -25,6 +27,7 @@ export default function getConfigs(params: ICommonConfig.Params) {
     userServiceUrl,
     expenseServiceUrl,
     cardServiceUrl,
+    receiptServiceUrl,
     keycloakUrl,
     clientCridential,
     mode,

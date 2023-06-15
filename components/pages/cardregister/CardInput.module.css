@@ -1,0 +1,59 @@
+.cardRegistwrap {
+    width: 100%;
+}
+
+.subject {
+    color: #6A6F7D70;
+}
+
+.errorMsg {
+    color: red;
+    font-size: 0.8rem;
+}
+
+.cardNum {
+    display: flex;
+    align-items: center;
+}
+
+.cardNum input {
+    text-align: center;
+    color: #40CCC3;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.cardNum span {
+    font-size: 2rem;
+    color: #6A6F7D70;
+}
+
+.cardValid {
+    display: flex;
+    align-items: center;
+}
+
+.cardValid input {
+    text-align: center;
+    color: #40CCC3;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.cardCompany input {
+    color: #40CCC3;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.cardCVC input {
+    color: #40CCC3;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.registBtn button {
+    margin: 0 auto;
+    width: 100%;
+    background-color: var(--bibot-primary);
+}

@@ -1,14 +1,23 @@
-import { NextUIProvider, useSSR } from "@nextui-org/react";
+import { NextUIProvider, createTheme, useSSR } from "@nextui-org/react";
+import { ThemeProvider as NextThemeProvider } from "next-themes";
 import { NextPage } from "next";
 import { AppProps } from "next/app";
 import { RecoilRoot } from "recoil";
 import { ReactElement, ReactNode } from "react";
 import { SessionProvider, useSession } from "next-auth/react";
 import "../styles/globals.css";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import { LoadingComponent } from "@/components/splash/Loading";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import NextNprogress from "nextjs-progressbar";
+
+const lightTheme = createTheme({
+  type: "light",
+});
+
+const darkTheme = createTheme({
+  type: "dark",
+});
 
 export type NextPageWithLayout<P = {}, IP = P, auth = boolean> = NextPage<
   P,
@@ -20,8 +29,6 @@ export type NextPageWithLayout<P = {}, IP = P, auth = boolean> = NextPage<
 
 function Auth({ children: page }: { children: ReactNode }) {
   const { status } = useSession({ required: true });
-
-  console.log(status);
   const router = useRouter();
   if (status === "loading") {
     return <LoadingComponent />;
@@ -45,18 +52,27 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     <SessionProvider session={pageProps.session}>
       <RecoilRoot>
         <QueryClientProvider client={queryClient}>
-          <ReactQueryDevtools initialIsOpen />
           {isBrowser &&
             getLayout(
-              <NextUIProvider>
-                {Component.auth ? (
-                  <Auth>
+              <NextThemeProvider
+                defaultTheme="system"
+                attribute="class"
+                themes={[lightTheme, darkTheme]}
+                value={{
+                  light: lightTheme.className,
+                  dark: darkTheme.className,
+                }}
+              >
+                <NextUIProvider>
+                  {Component.auth ? (
+                    <Auth>
+                      <Component {...pageProps} />
+                    </Auth>
+                  ) : (
                     <Component {...pageProps} />
-                  </Auth>
-                ) : (
-                  <Component {...pageProps} />
-                )}
-              </NextUIProvider>
+                  )}
+                </NextUIProvider>
+              </NextThemeProvider>
             )}
         </QueryClientProvider>
       </RecoilRoot>

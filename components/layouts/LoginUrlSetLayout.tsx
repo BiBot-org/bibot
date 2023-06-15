@@ -12,7 +12,7 @@ export default function LoginUrlSetLayout(props: { children: React.ReactNode, ti
             <header className={style.mainContainer}>
 
                 {
-                    router.pathname === '/find_password' || router.pathname === '/changepwd' ?
+                    router.pathname === '/findpassword' || router.pathname === '/changepwd' ?
                         <>
                             <Spacer y={2} />
                             <HeaderBackBtn />

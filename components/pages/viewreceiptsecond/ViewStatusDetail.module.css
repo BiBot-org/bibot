@@ -1,0 +1,33 @@
+.resendModalContainer {
+  z-index: 111;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+  overflow: auto;
+}
+.uploadText {
+  text-align: center;
+  white-space: nowrap;
+  color: var(--bibot-primary);
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.emptyReceiptWrap {
+  position: relative;
+}
+
+.emptyReceiptBg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.registerBtn {
+  display: flex;
+  justify-content: center;
+  width: 30%;
+}

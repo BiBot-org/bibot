@@ -1,36 +1,53 @@
-import React from 'react'
-import style from './ApprovalItem.module.css'
-import Image from 'next/image'
-import { approvalIcon, approvalStatusBC } from '@/datas/approval/approvalItem'
+import React, { useState } from "react";
+import style from "./ApprovalItem.module.css";
+import Image from "next/image";
+import { approvalIcon, approvalStatusBC } from "@/datas/approval/approvalItem";
+import { SearchApproval } from "@/types/expense/types";
+import { useGetCategoryById } from "@/service/category/CategoryService";
+import ViewInfoDetailModal from "@/components/pages/viewreceiptsecond/ViewStatusDetailModal";
+import { getFormattedDateTimeFromLocalDateTime } from "@/utils/dateUtils";
 
-export default function ApprovalItem(props:{item:any}) {
-    const item = props.item
-
-    const itemStyle = {
-        backgroundColor: approvalStatusBC[item.status] || 'var(--bibot-primary)',
-    }
-
-    console.log(item.status)
-
-    return (
-        <div className={style.approvalListWrap}>
+export default function ApprovalItem(props: { item: SearchApproval }) {
+  const item = props.item;
+  const { isLoading, data } = useGetCategoryById(item.categoryId);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const itemStyle = {
+    backgroundColor: approvalStatusBC[item.status] || "var(--bibot-primary)",
+  };
+  return (
+    <>
+      {!isLoading && (
+        <>
+          <ViewInfoDetailModal
+            approval={item}
+            open={modalOpen}
+            setOpen={setModalOpen}
+          />
+          <div
+            className={style.approvalListWrap}
+            onClick={() => setModalOpen(true)}
+          >
             <div className={style.itemIcon} style={itemStyle}>
-                <Image
-                    src={approvalIcon[item.status]}
-                    alt='return'
-                    width={30}
-                    height={30}
-                />
+              <Image
+                src={approvalIcon[item.status]}
+                alt="return"
+                width={30}
+                height={30}
+              />
             </div>
             <div className={style.itemInfoWrap}>
-                <div className={style.itemInfo}>
-                    <p>{item.name}</p>
-                    <p>{item.number}</p>
-                </div>
-                <div className={style.itemStatus} style={itemStyle}>
-                    <p>{item.type}</p>
-                </div>
+              <div className={style.itemInfo}>
+                <p>{getFormattedDateTimeFromLocalDateTime(item.regTime).slice(0,13)}</p>
+                <p>{getFormattedDateTimeFromLocalDateTime(item.regTime).slice(13,)}</p>
+                <p>{item.id}</p>
+              </div>
+              <div className={style.itemStatus} style={itemStyle}>
+                <p>{data?.data.categoryName}</p>
+              </div>
             </div>
-        </div>
-    )
+          </div>
+        </>
+      )}
+    </>
+  );
 }

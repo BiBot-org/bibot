@@ -1,49 +1,68 @@
+.modalContainer {
+  z-index: 110;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+  overflow: auto;
+}
+
 .emptyReceiptWrap {
-    position: relative;
+  position: relative;
 }
 
 .emptyReceiptBg {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .uploadText {
-    text-align: center;
-    white-space: nowrap;
-    color: var(--bibot-primary);
-    font-size: 12px;
-    font-weight: bold;
-    position: absolute;
-    bottom: 0%;
-    left: 50%;
-    transform: translate(-50%, 50%);
+  text-align: center;
+  white-space: nowrap;
+  color: var(--bibot-primary);
+  font-size: 12px;
+  font-weight: bold;
 }
-
-.ReceiptOCRHeader {
-    text-align: center;
-    color:var(--bibot-primary)
-}
-
-/* .ReceiptOCRDetails {
-    border-top: 1px dashed var(--bibot-black);
-    stroke-dasharray: 1px;
-} */
 
 .categorySel {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.categorySel select {
+  width: 60%;
+}
+
+.amountDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.amountDiv &h4 {
+  font-size: 14px;
 }
 
 .modifyBtn {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .registerBtn {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+  background-color: var(--bibot-primary);
+  color: var(--bibot-white);
+  width: 200px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
 }

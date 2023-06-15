@@ -1,35 +1,11 @@
 import React from "react";
-import Alarm_details_item from "@/components/ui/alarmdetails/AlarmDetailsItem";
 import BackTitleLayout from "@/components/layouts/BackTitleLayout";
-import style from "@/styles/pages/alarmdetails.module.css";
+import AlarmList from "@/components/pages/alarmdetails/AlarmList";
 
 export default function Alarmdetails() {
   return (
-    <main className={style.alarm_details_wrap}>
-      <div>
-        <Alarm_details_item />
-      </div>
-      <div className={style.alarm_board_read}>
-        <Alarm_details_item />
-      </div>
-      <div>
-        <Alarm_details_item />
-      </div>
-      <div>
-        <Alarm_details_item />
-      </div>
-      <div className={style.alarm_board_read}>
-        <Alarm_details_item />
-      </div>
-      <div className={style.alarm_board_read}>
-        <Alarm_details_item />
-      </div>
-      <div>
-        <Alarm_details_item />
-      </div>
-      <div>
-        <Alarm_details_item />
-      </div>
+    <main>
+      <AlarmList />
     </main>
   );
 }

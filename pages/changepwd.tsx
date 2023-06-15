@@ -1,46 +1,12 @@
 import React from 'react'
 import LoginUrlSetLayout from '@/components/layouts/LoginUrlSetLayout'
-import { Button, Container, Input, Row, Spacer } from '@nextui-org/react'
+import ChangePwdInput from '@/components/pages/changepwd/ChangePwdInput'
 
 export default function Changepwd() {
     return (
         <>
-            <Spacer y={3} />
             <main>
-                <article>
-                    <Container style={{ padding: 0 }}>
-                        <Row>
-                            <Input.Password
-                                bordered
-                                labelPlaceholder="Input your password"
-                                type='password'
-                                width='100%'
-                            />
-                        </Row>
-                        <Spacer y={1.5} />
-                        <Row>
-                            <Input.Password
-                                bordered
-                                labelPlaceholder="Input your password"
-                                type='password'
-                                width='100%'
-                            />
-                        </Row>
-                        <Spacer y={1.5} />
-                        <Row>
-                            <Input.Password
-                                bordered
-                                labelPlaceholder="Input your password"
-                                type='password'
-                                width='100%'
-                            />
-                        </Row>
-                        <Spacer y={3} />
-                        <Row>
-                            <Button style={{ width: '100%' }}>임시 비밀번호 발급</Button>
-                        </Row>
-                    </Container>
-                </article>
+                <ChangePwdInput />
             </main>
         </>
     )
@@ -53,3 +19,5 @@ Changepwd.getLayout = function getLayout(page: React.ReactNode) {
         </LoginUrlSetLayout>
     )
 }
+
+Changepwd.auth = true

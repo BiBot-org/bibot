@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import {
   Button,
@@ -8,8 +9,6 @@ import {
 } from "@nextui-org/react";
 import Image from "next/image";
 import TwoBtnModal from "@/components/modal/TwoBtnModal";
-import { useSetRecoilState } from "recoil";
-import { workspaceState } from "@/state/company/WorkspaceState";
 
 export default function UrlInput() {
   const [isModalOpen, setIsModalOpen] = useState(false);
