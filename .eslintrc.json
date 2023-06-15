@@ -1,4 +1,3 @@
 {
-  "Kind": "eslintrc",
-  "extends": "next/core-web-vitals"
+ "Kind": "eslintrc", "extends": "next/core-web-vitals"
 }
