@@ -6,9 +6,9 @@ const cardServiceUrl = `http://card.bibot.store`;
 const receiptServiceUrl = `http://receipt.bibot.store`;
 const keycloakUrl = `http://34.64.49.77`;
 const clientCridential = process.env.KEYCLOAK_CLIENT_CREDENTIAL;
-const mode = "dev";
+const mode = "local";
 
-const configDevelop = getConfigs({
+const configLocal = getConfigs({
   userServiceUrl,
   expenseServiceUrl,
   cardServiceUrl,
@@ -18,4 +18,4 @@ const configDevelop = getConfigs({
   mode,
 });
 
-export default configDevelop;
+export default configLocal;

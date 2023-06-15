@@ -16,6 +16,7 @@ const nextConfig = withPWA({
   images: {
     domains: ["storage.googleapis.com"],
   },
+  output: "standalone",
 });
 
 module.exports = nextConfig;

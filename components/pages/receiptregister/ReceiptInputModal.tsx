@@ -79,7 +79,7 @@ export default function ReceiptRegisterModal({
                 showDenyButton: false,
                 showCancelButton: false,
               }).then(() => {
-                if (resend) {
+                if (resend === true) {
                   queryClient.invalidateQueries(["searchApprovalInfo"]);
                 } else {
                   queryClient.invalidateQueries(["searchPaymentHistory"]);

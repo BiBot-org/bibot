@@ -6,9 +6,8 @@ import React from "react";
 import Image from "next/image";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { getSession, signIn } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import Swal from "sweetalert2";
-import { useRecoilState } from "recoil";
 
 export default function LoginInput() {
   const router = useRouter();
