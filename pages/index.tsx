@@ -8,18 +8,13 @@ import { workspaceState } from "@/state/company/WorkspaceState";
 
 export default function Home() {
   const router = useRouter();
-  const workspaceUrl = useRecoilValue(workspaceState);
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (workspaceUrl.url !== "") {
-        router.push("/login");
-      } else {
-        router.push("/urlsetting");
-      }
+      router.push("/login");
     }, 3000);
 
     return () => clearTimeout(timer);
-  }, [workspaceUrl]);
+  }, []);
 
   return (
     <div className={style.mainContainer}>
